@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--这里的id必须和拦截其中的id一致因为拦截其中的对象实际上是一个代理对象-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!--<property name="loginUrl" value="/login.action"/>-->
+        <!--<property name="successUrl" value="/main.do"/>-->
+        <!--<property name="unauthorizedUrl" value="http://localhost:8080/"/>-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.action=anon
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- 配置安全管理器SecurityManager -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>  <!--这里是自定义的realm(数据源)-->
+    </bean>
+
+    <bean id="credentialsMatcher"
+          class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5" />
+        <property name="hashIterations" value="1" />
+    </bean>
+
+    <!-- 自定义Realm -->
+    <bean id="userRealm" class="com.hxoim.common.shiro.UserRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+</beans>

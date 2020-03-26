@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.dicitemmap.mapper.DictItemMappingMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.dicitemmap.entity.DictItemMapping">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+    <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
+    <result column="system_parent_code" jdbcType="VARCHAR" property="systemParentCode" />
+    <result column="mapping_item_code" jdbcType="VARCHAR" property="mappingItemCode" />
+    <result column="mapping_item_name1" jdbcType="VARCHAR" property="mappingItemName1" />
+    <result column="mapping_item_name3" jdbcType="VARCHAR" property="mappingItemName3" />
+    <result column="mapping_identifying" jdbcType="VARCHAR" property="mappingIdentifying" />
+    <result column="applicationId" jdbcType="VARCHAR" property="applicationid" />
+    <result column="systemName" jdbcType="VARCHAR" property="systemname" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dict_code, item_code, item_Name, system_parent_code, mapping_item_code, mapping_item_name1,
+    mapping_item_name3, mapping_identifying, applicationId, systemName, system_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dict_item_mapping
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dict_item_mapping
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.dicitemmap.entity.DictItemMapping">
+    insert into dict_item_mapping (id, dict_code, item_code,
+                                   item_Name, system_parent_code, mapping_item_code,
+                                   mapping_item_name1, mapping_item_name3, mapping_identifying,
+                                   applicationId, systemName, system_id
+    )
+    values (#{id,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR},
+            #{itemName,jdbcType=VARCHAR}, #{systemParentCode,jdbcType=VARCHAR}, #{mappingItemCode,jdbcType=VARCHAR},
+            #{mappingItemName1,jdbcType=VARCHAR}, #{mappingItemName3,jdbcType=VARCHAR}, #{mappingIdentifying,jdbcType=VARCHAR},
+            #{applicationid,jdbcType=VARCHAR}, #{systemname,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}
+           )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.dicitemmap.entity.DictItemMapping">
+    insert into dict_item_mapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="itemCode != null">
+        item_code,
+      </if>
+      <if test="itemName != null">
+        item_Name,
+      </if>
+      <if test="systemParentCode != null">
+        system_parent_code,
+      </if>
+      <if test="mappingItemCode != null">
+        mapping_item_code,
+      </if>
+      <if test="mappingItemName1 != null">
+        mapping_item_name1,
+      </if>
+      <if test="mappingItemName3 != null">
+        mapping_item_name3,
+      </if>
+      <if test="mappingIdentifying != null">
+        mapping_identifying,
+      </if>
+      <if test="applicationid != null">
+        applicationId,
+      </if>
+      <if test="systemname != null">
+        systemName,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemParentCode != null">
+        #{systemParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemCode != null">
+        #{mappingItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemName1 != null">
+        #{mappingItemName1,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemName3 != null">
+        #{mappingItemName3,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingIdentifying != null">
+        #{mappingIdentifying,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationid != null">
+        #{applicationid,jdbcType=VARCHAR},
+      </if>
+      <if test="systemname != null">
+        #{systemname,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.dicitemmap.entity.DictItemMapping">
+    update dict_item_mapping
+    <set>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null">
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_Name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemParentCode != null">
+        system_parent_code = #{systemParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemCode != null">
+        mapping_item_code = #{mappingItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemName1 != null">
+        mapping_item_name1 = #{mappingItemName1,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingItemName3 != null">
+        mapping_item_name3 = #{mappingItemName3,jdbcType=VARCHAR},
+      </if>
+      <if test="mappingIdentifying != null">
+        mapping_identifying = #{mappingIdentifying,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationid != null">
+        applicationId = #{applicationid,jdbcType=VARCHAR},
+      </if>
+      <if test="systemname != null">
+        systemName = #{systemname,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.dicitemmap.entity.DictItemMapping">
+    update dict_item_mapping
+    set dict_code = #{dictCode,jdbcType=VARCHAR},
+        item_code = #{itemCode,jdbcType=VARCHAR},
+        item_Name = #{itemName,jdbcType=VARCHAR},
+        system_parent_code = #{systemParentCode,jdbcType=VARCHAR},
+        mapping_item_code = #{mappingItemCode,jdbcType=VARCHAR},
+        mapping_item_name1 = #{mappingItemName1,jdbcType=VARCHAR},
+        mapping_item_name3 = #{mappingItemName3,jdbcType=VARCHAR},
+        mapping_identifying = #{mappingIdentifying,jdbcType=VARCHAR},
+        applicationId = #{applicationid,jdbcType=VARCHAR},
+        systemName = #{systemname,jdbcType=VARCHAR},
+        system_id = #{systemId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--字典列表-->
+  <select id="selectDictMapping" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dict_item_mapping
+    where
+    1=1
+    <if test="dicKeyword != null and dicKeyword != ''">
+      and dict_code like concat('%',#{dicKeyword,jdbcType=VARCHAR},'%')
+    </if>
+    group by dict_code
+    order by dict_code
+  </select>
+  <!--字典项列表-->
+  <select id="selectDictItemMapping" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dict_item_mapping
+    where
+    1=1
+    <if test="dicCode != null and dicCode != ''">
+      and dict_code = #{dicCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dicItemKeyword != null and dicItemKeyword != ''">
+      and (item_code like concat('%',#{dicItemKeyword,jdbcType=VARCHAR},'%')
+            or item_Name like concat('%',#{dicItemKeyword,jdbcType=VARCHAR},'%'))
+    </if>
+    <if test="applicationId != null and applicationId != ''">
+      and system_id = #{applicationId,jdbcType=VARCHAR}
+    </if>
+      order by item_code
+  </select>
+  <!--数据共享字典项所属系统列表-->
+  <select id="selectApplicationIds" parameterType="java.util.Map" resultType="java.util.Map">
+    select ApplicationId, SystemName from dict_item_mapping where ApplicationId is not null group by ApplicationId
+  </select>
+</mapper>

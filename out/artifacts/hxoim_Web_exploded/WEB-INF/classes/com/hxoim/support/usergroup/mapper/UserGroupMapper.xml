@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.usergroup.mapper.UserGroupMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.usergroup.entity.UserGroup">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="ug_Code" jdbcType="VARCHAR" property="ugCode"/>
+        <result column="ug_name" jdbcType="VARCHAR" property="ugName"/>
+        <result column="ug_type" jdbcType="CHAR" property="ugType"/>
+        <result column="ug_desc" jdbcType="VARCHAR" property="ugDesc"/>
+        <result column="ug_state" jdbcType="CHAR" property="ugState"/>
+        <result column="ug_condition" jdbcType="VARCHAR" property="ugCondition"/>
+        <result column="orderno" jdbcType="INTEGER" property="orderno"/>
+        <result column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="org_id" jdbcType="VARCHAR" property="orgId"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <resultMap id="UserGroupUsersResultMap" type="com.hxoim.support.usergroup.entity.UserGroupUser">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="ug_id" jdbcType="VARCHAR" property="ugId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="ug_name" jdbcType="VARCHAR" property="ugName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, ug_Code, ug_name, ug_type, ug_desc, ug_state, ug_condition, orderno, pid, org_id,
+    modify_user, modify_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_usergroup
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectUserGroupUsers" parameterType="java.lang.String" resultMap="UserGroupUsersResultMap">
+        select
+        a.id,a.ug_id,a.user_id,b.name,c.ug_name
+        from cf_usergroup_user a
+        inner join cf_user b on a.user_id=b.id
+        inner join cf_usergroup c on a.ug_id=c.id
+        where ug_id = #{ugid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cf_usergroup
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.usergroup.entity.UserGroup">
+    insert into cf_usergroup (id, ug_Code, ug_name,
+      ug_type, ug_desc, ug_state,
+      ug_condition, orderno, pid,
+      org_id, modify_user, modify_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ugCode,jdbcType=VARCHAR}, #{ugName,jdbcType=VARCHAR},
+      #{ugType,jdbcType=CHAR}, #{ugDesc,jdbcType=VARCHAR}, #{ugState,jdbcType=CHAR},
+      #{ugCondition,jdbcType=VARCHAR}, #{orderno,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR},
+      #{orgId,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.usergroup.entity.UserGroup">
+        insert into cf_usergroup
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="ugCode != null">
+                ug_Code,
+            </if>
+            <if test="ugName != null">
+                ug_name,
+            </if>
+            <if test="ugType != null">
+                ug_type,
+            </if>
+            <if test="ugDesc != null">
+                ug_desc,
+            </if>
+            <if test="ugState != null">
+                ug_state,
+            </if>
+            <if test="ugCondition != null">
+                ug_condition,
+            </if>
+            <if test="orderno != null">
+                orderno,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ugCode != null">
+                #{ugCode,jdbcType=VARCHAR},
+            </if>
+            <if test="ugName != null">
+                #{ugName,jdbcType=VARCHAR},
+            </if>
+            <if test="ugType != null">
+                #{ugType,jdbcType=CHAR},
+            </if>
+            <if test="ugDesc != null">
+                #{ugDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="ugState != null">
+                #{ugState,jdbcType=CHAR},
+            </if>
+            <if test="ugCondition != null">
+                #{ugCondition,jdbcType=VARCHAR},
+            </if>
+            <if test="orderno != null">
+                #{orderno,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.usergroup.entity.UserGroup">
+        update cf_usergroup
+        <set>
+            <if test="ugCode != null">
+                ug_Code = #{ugCode,jdbcType=VARCHAR},
+            </if>
+            <if test="ugName != null">
+                ug_name = #{ugName,jdbcType=VARCHAR},
+            </if>
+            <if test="ugType != null">
+                ug_type = #{ugType,jdbcType=CHAR},
+            </if>
+            <if test="ugDesc != null">
+                ug_desc = #{ugDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="ugState != null">
+                ug_state = #{ugState,jdbcType=CHAR},
+            </if>
+            <if test="ugCondition != null">
+                ug_condition = #{ugCondition,jdbcType=VARCHAR},
+            </if>
+            <if test="orderno != null">
+                orderno = #{orderno,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.usergroup.entity.UserGroup">
+    update cf_usergroup
+    set ug_Code = #{ugCode,jdbcType=VARCHAR},
+      ug_name = #{ugName,jdbcType=VARCHAR},
+      ug_type = #{ugType,jdbcType=CHAR},
+      ug_desc = #{ugDesc,jdbcType=VARCHAR},
+      ug_state = #{ugState,jdbcType=CHAR},
+      ug_condition = #{ugCondition,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <insert id="assignRolesForUser">
+        <foreach collection="list" separator=";" index="index" item="item">
+            insert into cf_user_roles (id, user_id, role_id) values
+            (uuid(),#{userId},#{item})
+        </foreach>
+    </insert>
+
+    <insert id="insertUgAndUser" parameterType="java.util.Map">
+      insert into cf_usergroup_user (id,ug_id,user_id)
+      values (#{id},#{ugId},#{userId})
+    </insert>
+    <insert id="assignRolesForUserGroup">
+        <foreach collection="list" separator=";" index="index" item="item">
+            insert into cf_usergroup_roles (id, ug_id, role_id) values
+            (uuid(),#{ugId},#{item})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserGroupRoles">
+        delete from cf_usergroup_roles where ug_id=#{id}
+    </delete>
+    <delete id="deleteUserGroupUser">
+        delete from cf_usergroup_user where ug_id=#{id}
+    </delete>
+    <delete id="deleteAssignUserGroup">
+        delete from cf_usergroup_user where user_id=#{userId}
+    </delete>
+
+    <delete id="deleteAssignUserRoles">
+        delete from cf_user_roles where user_id=#{id}
+    </delete>
+    <delete id="deleteAssignUserGroupRoles">
+        delete from cf_usergroup_roles where ug_id=#{id}
+    </delete>
+
+    <!--通过管理处室id查询名称-->
+    <select id="selectUserGroupNameByUgId" parameterType="String" resultType="String">
+    SELECT GROUP_CONCAT(ug_name) FROM cf_usergroup WHERE id IN (${ugIds})
+    </select>
+
+    <!--查询管理处室树-->
+    <select id="selectUserGroupTree" parameterType="String" resultType="com.hxoim.common.tree.Tree">
+    SELECT id as "id",ug_name as "label",pid as "pId" FROM cf_usergroup
+    where org_id=#{id}
+    ORDER  BY orderno
+    </select>
+    <select id="selectUserGroupUserTree" resultType="com.hxoim.common.tree.Tree">
+        select id as "id",ug_name as "label", '0' as "pId","usergroup" as "type"
+        from cf_usergroup
+        where org_id=#{orgId}
+        union all
+        select u.id as "id",concat(u.name,"(",u.user_name,")") as "label", ugu.ug_id as "pId",'user' as "type"
+        from  cf_usergroup_user ugu
+        right join cf_user u
+        on ugu.user_id = u.id where u.org_id=#{orgId}
+    </select>
+    <select id="selectUserGroupList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_usergroup where org_id=#{orgId}
+    </select>
+    <select id="selectUserGroupUser" parameterType="java.lang.String" resultMap="UserGroupUsersResultMap">
+        select * from cf_usergroup_user where user_id=#{userId}
+    </select>
+</mapper>

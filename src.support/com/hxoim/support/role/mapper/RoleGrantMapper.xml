@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.role.mapper.RoleGrantMapper">
+    <!--保存模块授权-->
+    <insert id="insertGrantModule">
+        insert into cf_role_module
+        (id, role_id, mu_id) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.roleId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存系统授权-->
+    <insert id="insertGrantSystem">
+        insert into cf_role_system
+        (id, role_id, system_id) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.roleId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存干部类别信息集-->
+    <insert id="insertGrantLeaderTypeInfo">
+        insert into cf_role_leader_info
+        (id, role_id, leadertype_id, info_id) values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.roleId},#{item.leaderTypeId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存机构权限-->
+    <insert id="insertGrantOrg">
+        insert into cf_roleb01
+        (id, role_id, org_id) values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.roleId},#{item.checkId})
+        </foreach>
+    </insert>
+
+    <!--保存干部信息集权限-->
+    <insert id="insertGrantLeaderInfo">
+        insert into cf_role_datainfo
+        (id, role_id, datatable_id, checked,readwrite) values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.roleId},#{item.datatableId},#{item.checked},#{item.readwrite})
+        </foreach>
+    </insert>
+
+    <!--保存信息项权限-->
+    <insert id="insertGrantInfo">
+        insert into cf_role_datacolinfo
+        (id, role_id, datacol_id,readwrite) values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.roleId},#{item.datacolId},#{item.readwrite})
+        </foreach>
+    </insert>
+
+    <!--拷贝权限start-->
+    <insert id="copyGrantModule">
+       insert into cf_role_module
+        (id, role_id, mu_id)
+        select uuid(),#{targetRoleId},rm.mu_id
+        from cf_role_module rm
+        where rm.role_id=#{srcRoleId}
+    </insert>
+    <insert id="copyGrantOrg">
+        insert into cf_roleb01
+        (id, role_id, org_id)
+        select uuid(),#{targetRoleId},org_id
+        from cf_roleb01
+        where role_id=#{srcRoleId}
+    </insert>
+    <insert id="copyGrantLeaderType">
+        insert into cf_role_leader_info
+        (id, role_id, leadertype_id,info_id)
+        select uuid(),#{targetRoleId},leadertype_id,info_id
+        from cf_role_leader_info
+        where role_id=#{srcRoleId}
+        </insert>
+    <insert id="copyGrantSystem">
+        insert into cf_role_system
+        (id, role_id, system_id)
+        select uuid(),#{targetRoleId},system_id
+        from cf_role_system
+        where role_id=#{srcRoleId}
+        </insert>
+    <!--拷贝权限end-->
+
+    <delete id="deleteGrantByTabName">
+        delete from ${tabName} where role_id=#{id}
+    </delete>
+
+    <select id="selectGrantModuleId" resultType="string">
+        select m.id
+        from cf_role_module rm
+        inner join cf_module m
+        on rm.mu_id=m.id
+        where
+        m.mu_state='1'
+        and rm.role_id=#{roleId}
+        order by order_index
+    </select>
+    <!--单点登录系统-->
+    <select id="selectGrantSysInfo" resultType="java.lang.String">
+        select s.id
+        from cf_role_system rs
+        inner join cf_system s
+        on rs.system_id = s.id
+        where rs.role_id=#{roleId}
+        order by s.order_index
+    </select>
+
+    <!--机构授权-->
+
+    <!--干部类别信息集授权-->
+    <select id="selectGrantLeaderTypeInfo" resultType="java.lang.String">
+        select rl.info_id from
+        cf_role_leader_info rl
+        inner join data_table ir
+        on rl.info_id=ir.tab_code
+        where rl.role_id=#{roleId}
+        and rl.leadertype_id=#{leaderTypeId}
+        order by ir.order_index
+    </select>
+
+    <select id="selectLeaderType" resultType="com.hxoim.common.tree.Tree">
+        SELECT id as "id", item_name as "label",parent_item_code as "pId"
+        FROM sys_dict_item
+        where dict_code=#{dictCode}
+        ORDER BY orderindex
+    </select>
+    <select id="selectGrantOrg" resultType="java.lang.String">
+        select b.b0111  from cf_roleb01 rb
+        inner join b01 b
+        on rb.org_id=b.b0111
+        where rb.role_id=#{roleId}
+    </select>
+
+    <!--获取人员信息集权限-->
+    <select id="selectGrantdataInfo" resultType="java.util.Map">
+    select
+    a.org_id,a.datatable_id,b.tab_code,b.tab_name,
+
+    IFNULL((select c.checked
+    from  cf_role_datainfo c
+    where c.role_id = #{roleId} and c.datatable_id=a.datatable_id),false) checked,
+    IFNULL((select c.readwrite
+    from  cf_role_datainfo c
+    where c.role_id = #{roleId} and c.datatable_id=a.datatable_id),0) readwrite
+
+    from data_table_b01 a
+    inner join
+    data_table b
+    on
+    a.datatable_id = b.id
+    where
+    org_id = #{orgId}
+    order by
+    b.tab_code asc
+    </select>
+
+    <!--获取信息列表权限-->
+    <select id="selectGrantListInfo" resultType="java.util.Map">
+        select c.id,c.tab_code,c.tab_name
+      from data_table_b01 b
+		inner join data_table c
+        on
+		b.datatable_id = c.id
+        where
+		b.org_id= #{orgId}
+		order by
+		c.tab_code asc
+    </select>
+
+    <!--获取信息项权限-->
+    <select id="selectGrantInfo" resultType="java.util.Map">
+    SELECT
+	b.id,b.tab_code,b.col_name,c.datacol_id,
+	IFNULL((
+	SELECT
+		a.readwrite
+	FROM
+		cf_role_datacolinfo a
+	WHERE
+		a.role_id = #{id}
+	AND a.datacol_id = b.id
+	),0) AS readwrite
+    FROM
+	data_table_col b,cf_role_datacolinfo c
+    WHERE
+	b.TAB_CODE = #{tablecode} and c.datacol_id = b.id
+
+    </select>
+
+    <!--根据机构id获取角色id-->
+    <select id="selectRoleId" resultType="java.lang.String">
+        select role_id from cf_roleb01 where org_id = #{orgId}
+    </select>
+</mapper>

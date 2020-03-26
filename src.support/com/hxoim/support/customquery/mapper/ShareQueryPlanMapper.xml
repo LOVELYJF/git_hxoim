@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.customquery.mapper.ShareQueryPlanMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="plan_id" jdbcType="VARCHAR" property="planId" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, userid, username
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from q_share_queryplan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from q_share_queryplan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    insert into q_share_queryplan (id, plan_id, userid, 
+      username)
+    values (#{id,jdbcType=VARCHAR}, #{planId,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    insert into q_share_queryplan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    update q_share_queryplan
+    <set>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    update q_share_queryplan
+    set plan_id = #{planId,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--删除分享用户-->
+  <delete id="deleteShareUser" parameterType="com.hxoim.support.customquery.entity.ShareQueryPlan">
+    delete from q_share_queryplan
+    where
+      plan_id = #{planId,jdbcType=VARCHAR}
+      and userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <!--查询分享用户列表-->
+  <select id="selectShareUsers" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT CONCAT(userid, ' ', username) from q_share_queryplan where plan_id = #{queryPlanId,jdbcType=VARCHAR}
+  </select>
+</mapper>

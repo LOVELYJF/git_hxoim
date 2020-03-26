@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.usergroup.mapper.SystemUserGroupMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.usergroup.entity.SystemUserGroup">
+        <result column="Id" jdbcType="VARCHAR" property="id"/>
+        <result column="sy_id" jdbcType="VARCHAR" property="syId"/>
+        <result column="ug_id" jdbcType="VARCHAR" property="ugId"/>
+        <result column="syName" jdbcType="VARCHAR" property="syName"/>
+        <result column="ugName" jdbcType="VARCHAR" property="ugName"/>
+    </resultMap>
+
+    <insert id="insertSelective" parameterType="com.hxoim.support.usergroup.entity.SystemUserGroup">
+        insert into cf_system_usergroup
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="syId != null">
+                sy_id,
+            </if>
+            <if test="ugId != null">
+                ug_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="syId != null">
+                #{syId,jdbcType=VARCHAR},
+            </if>
+            <if test="ugId != null">
+                #{ugId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--删除该业务系统拥有的管理处室-->
+    <delete id="deleteSystemUserGroup" parameterType="com.hxoim.support.usergroup.entity.SystemUserGroup">
+    DELETE FROM cf_system_usergroup WHERE sy_id=#{syId}
+    </delete>
+
+    <!--根据ID删除系统的管理处室-->
+    <delete id="deleteSystemUserGroupById" parameterType="com.hxoim.support.usergroup.entity.SystemUserGroup">
+    DELETE FROM cf_system_usergroup WHERE id=#{id}
+    </delete>
+
+    <!--该系统设置管理处室-->
+    <insert id="insertSystemUserGroup" parameterType="com.hxoim.support.usergroup.entity.SystemUserGroup">
+    INSERT INTO cf_system_usergroup(id,sy_id,ug_id) VALUES(#{id},#{syId},#{ugId})
+    </insert>
+
+    <!--查询每个业务系统所拥有的管理处室-->
+    <select id="selectSystemUserGroup" resultType="com.hxoim.support.usergroup.entity.SystemUserGroup">
+    SELECT sy_id syId,GROUP_CONCAT(ug_id) orgIds FROM cf_system_usergroup GROUP BY sy_id
+    </select>
+
+    <!--查询该业务系统所拥有的管理处室-->
+    <select id="selectUserGroupBySyId" parameterType="com.hxoim.support.usergroup.entity.SystemUserGroup"
+            resultMap="BaseResultMap">
+      SELECT cf_system_usergroup.id,cf_system_usergroup.ug_id,cf_usergroup.ug_name as ugName FROM cf_system_usergroup
+      inner join cf_usergroup on cf_system_usergroup.ug_id=cf_usergroup.id WHERE sy_id=#{syId}
+    </select>
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.parameter.mapper.ParameterMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.parameter.entity.Parameter">
+        <result column="PM_ID" jdbcType="VARCHAR" property="pmId" />
+        <result column="pm_code" jdbcType="VARCHAR" property="pmCode" />
+        <result column="pm_name" jdbcType="VARCHAR" property="pmName" />
+        <result column="pm_value" jdbcType="VARCHAR" property="pmValue" />
+        <result column="orderno" jdbcType="INTEGER" property="orderno" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime" />
+    </resultMap>
+
+    <insert id="insertParameter" parameterType="com.hxoim.support.parameter.entity.Parameter">
+        insert into cf_parameter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pmId != null">
+                id,
+            </if>
+            <if test="pmCode != null">
+                pm_code,
+            </if>
+            <if test="pmName != null">
+                pm_name,
+            </if>
+            <if test="pmValue != null">
+                pm_value,
+            </if>
+            <if test="orderno != null">
+                orderno,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pmId != null">
+                #{pmId,jdbcType=VARCHAR},
+            </if>
+            <if test="pmCode != null">
+                #{pmCode,jdbcType=VARCHAR},
+            </if>
+            <if test="pmName != null">
+                #{pmName,jdbcType=VARCHAR},
+            </if>
+            <if test="pmValue != null">
+                #{pmValue,jdbcType=VARCHAR},
+            </if>
+            <if test="orderno != null">
+                #{orderno,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询最大排序orderno-->
+    <select id="selectMaxOrderIndex" resultType="INTEGER">
+    SELECT MAX(orderno) FROM cf_parameter
+    </select>
+
+    <!--排序-->
+    <update id="sortParameter" parameterType="com.hxoim.support.parameter.entity.Parameter">
+        update cf_parameter set orderno=
+        <foreach collection="array" open="case id" close="end" item="id" index="index" separator="">
+            when #{id} then #{index}
+        </foreach>
+        where id IN
+        <foreach collection="array" open="(" close=")" item="id" index="index" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <!--修改参数-->
+    <update id="updateParameter" parameterType="com.hxoim.support.parameter.entity.Parameter">
+    UPDATE cf_parameter SET pm_value=#{pmValue}, modify_user=#{modifyUser},modify_time=#{modifyTime} WHERE id=#{pmId}
+    </update>
+
+    <!--删除参数-->
+    <delete id="deleteParameter" parameterType="com.hxoim.support.parameter.entity.Parameter">
+    DELETE FROM cf_parameter WHERE id=#{pmId}
+    </delete>
+
+    <!--查询参数列表-->
+    <select id="selectAllParameter" resultMap="BaseResultMap">
+    SELECT id,pm_code,pm_name,pm_value,orderno,modify_user,modify_time
+    FROM cf_parameter ORDER BY orderno
+    </select>
+
+    <select id="selectPValueByCode" resultType="String">
+        select pm_value from cf_parameter  where pm_code=#{code}
+    </select>
+</mapper>

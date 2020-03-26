@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.full.search.mapper.FullSearchSettingMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.full.search.entity.FullSearchSetting">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="TABLE_CODE" jdbcType="VARCHAR" property="tableCode"/>
+        <result column="COLUMN_CODE" jdbcType="VARCHAR" property="columnCode"/>
+        <result column="COLUMN_NAME" jdbcType="VARCHAR" property="columnName"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID, TABLE_CODE, COLUMN_CODE, COLUMN_NAME
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from full_search_setting
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from full_search_setting
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.full.search.entity.FullSearchSetting">
+    insert into full_search_setting (ID, TABLE_CODE, COLUMN_CODE,
+      COLUMN_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{tableCode,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR},
+      #{columnName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.full.search.entity.FullSearchSetting">
+        insert into full_search_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="tableCode != null">
+                TABLE_CODE,
+            </if>
+            <if test="columnCode != null">
+                COLUMN_CODE,
+            </if>
+            <if test="columnName != null">
+                COLUMN_NAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnCode != null">
+                #{columnCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnName != null">
+                #{columnName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.full.search.entity.FullSearchSetting">
+        update full_search_setting
+        <set>
+            <if test="tableCode != null">
+                TABLE_CODE = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnCode != null">
+                COLUMN_CODE = #{columnCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnName != null">
+                COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.full.search.entity.FullSearchSetting">
+    update full_search_setting
+    set TABLE_CODE = #{tableCode,jdbcType=VARCHAR},
+      COLUMN_CODE = #{columnCode,jdbcType=VARCHAR},
+      COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--业务新增-->
+    <select id="selectPersonTableList" resultType="com.hxoim.common.tree.Tree">
+        SELECT dt.tab_code as "id",dt.tab_name as "label" FROM
+        info_resource r
+        INNER JOIN data_table dt ON r.Id = dt.CatalogId
+        where r.resource_code='person_infos' order by dt.order_index
+    </select>
+    <select id="selectColumnListByTabCode" resultType="java.util.Map">
+        select dtc.col_code as "key", dtc.col_name as "label"
+        from data_table_col dtc
+        where dtc.tab_code=#{tabCode}
+        order by dtc.order_index
+
+    </select>
+    <select id="selectIndexColumnByTabCode" resultType="java.lang.String">
+        select column_code from full_search_setting
+         where table_code=#{tabCode}
+         order by column_code
+    </select>
+    <select id="selectColumnInfo" resultType="com.hxoim.full.search.entity.FullSearchSetting">
+        select tab_code as "tableCode", col_code as "columnCode", col_name as "columnName" from data_table_col
+        where tab_code=#{tabCode}
+        and col_code in
+        <foreach collection="list" separator="," open="(" close=")" item="item" index="index">
+            #{item}
+        </foreach>
+    </select>
+    <select id="executeSelectSql" resultType="java.util.Map">
+        ${_parameter}
+    </select>
+    <select id="selectIndexColumn" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from full_search_setting
+        where table_code = #{tabCode}
+    </select>
+    <select id="selectTabCodes" resultType="string">
+        select distinct table_code from full_search_setting
+    </select>
+    <select id="selectPersonInfo" resultType="java.util.Map">
+        select A01.A01000, A01.A0101, A01.A0107, A01.A0104_A,
+        A01.A0117_A, A01.A0111A, A01.A0140, A01.A0134, A01.A0144,
+        A01.A0192C, A01.A0192A, A01.QRZXL, A01.ZZXL, A01.RXZ_DATE, A01.A1701_A, A57.A5714
+        from A01 left join A57 on a01.a0100=a57.a0100 and a57.a5701='1' where a01.a0100 in
+        <foreach collection="list" separator="," open="(" close=")" index="index" item="item">
+            #{item.personId}
+        </foreach>
+    </select>
+    <insert id="insert1"></insert>
+    <insert id="insertBatch">
+        insert into full_search_setting
+        (id,table_code,column_code,column_name) values
+        <foreach collection="list" item="item" index="index" open="" separator="," close="">
+            (#{item.id},#{item.tableCode},#{item.columnCode},#{item.columnName})
+        </foreach>
+    </insert>
+    <update id="update1"></update>
+    <delete id="delete1"></delete>
+    <delete id="deleteByTabCode">
+        delete from full_search_setting
+        where table_code = #{tabCode}
+    </delete>
+
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.customquery.mapper.QueryPlanMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.customquery.entity.QueryPlan">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="plan_name" jdbcType="VARCHAR" property="planName" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="create_userid" jdbcType="VARCHAR" property="createUserid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="order_index" jdbcType="DECIMAL" property="orderIndex" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.support.customquery.entity.QueryPlanWithBLOBs">
+    <result column="sql_where_json" jdbcType="LONGVARCHAR" property="sqlWhereJson" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="ResultMapWithBLOBs" id="QueryListResult" type="com.hxoim.support.customquery.entity.custom.QueryPlanCustom">
+    <result column="shareUserId" jdbcType="VARCHAR" property="shareUserID" />
+    <result column="shareUserName" jdbcType="VARCHAR" property="shareUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_name, is_delete, create_userid, create_time, order_index, modify_time, modify_user
+  </sql>
+  <sql id="Blob_Column_List">
+    sql_where_json, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from q_query_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from q_query_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.customquery.entity.QueryPlanWithBLOBs">
+    insert into q_query_plan (id, plan_name, is_delete, 
+      create_userid, create_time, order_index, 
+      modify_time, modify_user, sql_where_json, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{planName,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, 
+      #{createUserid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{orderIndex,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{sqlWhereJson,jdbcType=LONGVARCHAR},
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.customquery.entity.QueryPlanWithBLOBs">
+    insert into q_query_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="planName != null">
+        plan_name,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createUserid != null">
+        create_userid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="orderIndex != null">
+        order_index,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="sqlWhereJson != null">
+        sql_where_json,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="planName != null">
+        #{planName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null">
+        #{createUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIndex != null">
+        #{orderIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlWhereJson != null">
+        #{sqlWhereJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.customquery.entity.QueryPlanWithBLOBs">
+    update q_query_plan
+    <set>
+      <if test="planName != null">
+        plan_name = #{planName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null">
+        create_userid = #{createUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIndex != null">
+        order_index = #{orderIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlWhereJson != null">
+        sql_where_json = #{sqlWhereJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.support.customquery.entity.QueryPlanWithBLOBs">
+    update q_query_plan
+    set plan_name = #{planName,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_userid = #{createUserid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_index = #{orderIndex,jdbcType=DECIMAL},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      sql_where_json = #{sqlWhereJson,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.customquery.entity.QueryPlan">
+    update q_query_plan
+    set plan_name = #{planName,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_userid = #{createUserid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_index = #{orderIndex,jdbcType=DECIMAL},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--方案列表-->
+  <select id="selectQueryList" parameterType="java.util.Map" resultMap="QueryListResult">
+    select
+        qp.id, qp.plan_name, qp.create_userid, sq.userid as shareUserId, sq.username as shareUserName,
+        qp.create_time, qp.order_index, qp.modify_time, qp.modify_user, qp.remark, qp.sql_where_json
+    from
+        q_query_plan qp left join q_share_queryplan sq on qp.id = sq.plan_id
+    where sq.userid = #{userId,jdbcType=VARCHAR} and qp.is_delete=0
+  </select>
+
+  <select id="select" parameterType="string" resultType="java.util.LinkedHashMap">
+    ${sql}
+  </select>
+</mapper>

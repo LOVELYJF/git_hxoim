@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.inforesource.mapper.DataTableManagerMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.inforesource.entity.DataTableManagerExtend">
+    <constructor>
+      <idArg column="Id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tableid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sysid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="syName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tabName" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <select id="selectByExample" parameterType="com.hxoim.support.inforesource.entity.DataTableManagerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    data_table_manager.*,cf_system.system_name as syName,data_table.TAB_NAME as tabName
+    from data_table_manager
+    inner join cf_system on data_table_manager.sysid=cf_system.id
+    inner join data_table on data_table_manager.tableid=data_table.ID
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+     data_table_manager.*,cf_system.system_name as syName,data_table.TAB_NAME as tabName
+    from data_table_manager
+    inner join cf_system on data_table_manager.sysid=cf_system.id
+    inner join data_table on data_table_manager.tableid=data_table.ID
+    where data_table_manager.Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from data_table_manager
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.inforesource.entity.DataTableManager">
+    insert into data_table_manager (Id, tableid, sysid
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tableid,jdbcType=VARCHAR}, #{sysid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.inforesource.entity.DataTableManager">
+    insert into data_table_manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="tableid != null">
+        tableid,
+      </if>
+      <if test="sysid != null">
+        sysid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tableid != null">
+        #{tableid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysid != null">
+        #{sysid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.inforesource.entity.DataTableManager">
+    update data_table_manager
+    <set>
+      <if test="tableid != null">
+        tableid = #{tableid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysid != null">
+        sysid = #{sysid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.inforesource.entity.DataTableManager">
+    update data_table_manager
+    set tableid = #{tableid,jdbcType=VARCHAR},
+      sysid = #{sysid,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

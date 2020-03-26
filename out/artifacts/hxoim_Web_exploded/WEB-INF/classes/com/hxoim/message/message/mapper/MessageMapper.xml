@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.message.message.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.message.message.entity.Message">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="send_user_id" jdbcType="VARCHAR" property="sendUserId" />
+    <result column="send_username" jdbcType="VARCHAR" property="sendUsername" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="discussion_group_id" jdbcType="VARCHAR" property="discussionGroupId" />
+    <result column="feather" jdbcType="VARCHAR" property="feather" />
+    <result column="handle_identify" jdbcType="VARCHAR" property="handleIdentify" />
+    <result column="handle_user_id" jdbcType="VARCHAR" property="handleUserId" />
+    <result column="handle_username" jdbcType="VARCHAR" property="handleUsername" />
+    <result column="handle_result" jdbcType="VARCHAR" property="handleResult" />
+    <result column="estimate_time" jdbcType="TIMESTAMP" property="estimateTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="msg_status" jdbcType="VARCHAR" property="msgStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="data_source" jdbcType="VARCHAR" property="dataSource" />
+    <result column="exception_table" jdbcType="VARCHAR" property="exceptionTable" />
+    <result column="is_top" jdbcType="VARCHAR" property="isTop" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.message.message.entity.Message">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+
+  <!--######################################################自定义######################################################-->
+  <!--typeCustom结果集-->
+  <resultMap id="MessageCustom" type="com.hxoim.message.message.entity.MessageCustom" extends="ResultMapWithBLOBs">
+    <result column="typeName" property="typeName"/>
+    <result column="discussionGroupName" property="discussionGroupName"/>
+    <collection property="msgUserList" ofType="com.hxoim.message.msguser.entity.MsgUser">
+      <result column="receive_user_id" jdbcType="VARCHAR" property="receiveUserId" />
+      <result column="receive_username" jdbcType="VARCHAR" property="receiveUsername" />
+      <result column="receiveType" jdbcType="VARCHAR" property="handleIdentify" />
+    </collection>
+  </resultMap>
+
+  <!--查询消息接收信息列表-->
+  <select id="selectReceMsgList" resultMap="MessageCustom" parameterType="java.util.Map">
+    select
+      m.id,
+      m.content,
+      m.send_user_id,
+      m.send_username,
+      m.send_time,
+      m.type_id,
+      m.feather,
+      m.handle_identify,
+      m.handle_username,
+      m.estimate_time,
+      m.finish_time,
+      m.msg_status,
+      m.is_top,
+      mt.name as typeName
+    from
+      m_message m
+      inner join m_msg_send mu on m.id = mu.msgid
+      inner join m_type mt on m.type_id = mt.id
+    where
+        /*个人*/
+        mu.receive_user_id = #{userId,jdbcType=VARCHAR}
+    <if test="msgStatus == 0">
+      and (mu.isreaded=0 or (m.feather = '1' and msg_status=0))
+    </if>
+      /*消息分类*/
+      <if test="typeId != null and typeId != ''">
+        and m.type_id = #{typeId,jdbcType=VARCHAR}
+      </if>
+      /*发送时间*/
+      <if test="startTime != null and startTime != ''">
+        and date_format(m.send_time,"%y-%m-%d") &gt;= date_format(#{startTime,jdbcType=VARCHAR},"%y-%m-%d")
+      </if>
+      <if test="endTime != null and endTime != ''">
+        and date_format(m.send_time,"%y-%m-%d") &lt;= date_format(#{endTime,jdbcType=VARCHAR},"%y-%m-%d")
+      </if>
+      order by
+      is_top desc, m.send_time desc
+  </select>
+
+  <!--查询讨论组消息接收信息列表-->
+  <select id="selectDisGroupReceMsgList" resultMap="MessageCustom" parameterType="java.util.Map">
+    select
+    m.id,
+    m.content,
+    m.send_user_id,
+    m.send_username,
+    m.send_time,
+    m.type_id,
+    m.feather,
+    m.handle_identify,
+    m.msg_status,
+    m.is_top,
+    m.content,
+    mt.name as typeName,
+    md.name as discussionGroupName
+    from
+    m_message m
+    left join m_msg_user mu on m.discussion_group_id = mu.discussion_group_id
+    left join m_discussion_group md on m.discussion_group_id = md.id
+    left join m_type mt on m.type_id = mt.id
+    where
+    mu.receive_user_id = #{userId,jdbcType=VARCHAR}
+    /*不需要处理消息msgStatus=1历史消息*/
+    <choose>
+      <when test="msgStatus == 1">
+        and m.id in
+      </when>
+      <otherwise>
+        and m.id not in
+      </otherwise>
+    </choose>
+    (
+      select
+      msg_id
+      from
+      m_read
+      where
+      read_user_id = #{userId,jdbcType=VARCHAR}
+    )
+    and m.discussion_group_id is not null
+    and m.discussion_group_id != ''
+    /*消息分类*/
+    <if test="typeId != null and typeId != ''">
+      and m.type_id = #{typeId,jdbcType=VARCHAR}
+    </if>
+    /*发送时间*/
+    <if test="startTime != null and startTime != ''">
+      and date_format(m.send_time,"%y-%m-%d") &gt;= date_format(#{startTime,jdbcType=VARCHAR},"%y-%m-%d")
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and date_format(m.send_time,"%y-%m-%d") &lt;= date_format(#{endTime,jdbcType=VARCHAR},"%y-%m-%d")
+    </if>
+    order by
+    is_top desc, m.send_time desc
+  </select>
+
+  <!--已发送消息列表-->
+  <select id="selectSendMsgList" resultMap="MessageCustom" parameterType="java.util.Map">
+    select
+      m.id,
+      m.content,
+      m.send_user_id,
+      m.send_username,
+      m.send_time,
+      m.type_id,
+      m.feather,
+      m.handle_identify,
+      m.msg_status,
+      m.is_top,
+      m.content,
+      mt.name as typename
+      /*讨论组消息、普通消息*/
+      <choose>
+        <when test="messageCategory == 1">
+          from
+            m_message m
+            left join m_type mt on m.type_id = mt.id
+          where
+            m.send_user_id = #{userId,jdbcType=VARCHAR}
+            and (m.discussion_group_id is null or m.discussion_group_id = '')
+        </when>
+        <otherwise>
+          ,md.name as discussiongroupname
+          from
+            m_message m
+            left join m_discussion_group md on m.discussion_group_id = md.id
+            left join m_type mt on m.type_id = mt.id
+          where
+            m.send_user_id = #{userId,jdbcType=VARCHAR}
+            and m.discussion_group_id is not null
+            and m.discussion_group_id != ''
+        </otherwise>
+      </choose>
+      /*消息分类*/
+      <if test="typeId != null and typeId != ''">
+        and m.type_id = #{typeId,jdbcType=VARCHAR}
+      </if>
+      /*发送时间*/
+      <if test="startTime != null and startTime != ''">
+        and date_format(m.send_time,"%y-%m-%d") &gt;= date_format(#{startTime,jdbcType=VARCHAR},"%y-%m-%d")
+      </if>
+      <if test="endTime != null and endTime != ''">
+        and date_format(m.send_time,"%y-%m-%d") &lt;= date_format(#{endTime,jdbcType=VARCHAR},"%y-%m-%d")
+      </if>
+
+    order by
+      m.send_time desc
+  </select>
+  <!--批量消息置顶-->
+  <update id="updateIsTopBatch" parameterType="java.util.Map">
+    update m_message
+    set is_top = #{isTop,jdbcType=VARCHAR}
+    where id in (${ids})
+  </update>
+  <!--通过id查询消息详细信息-->
+  <select id="selectMsgCustomById" resultMap="MessageCustom" parameterType="java.util.Map">
+    select
+      m.id,
+      m.content,
+      m.send_time,
+      m.send_user_id,
+      m.send_username,
+      m.feather,
+      m.handle_identify,
+      m.handle_result,
+      m.handle_username,
+      m.handle_user_id,
+      m.data_source,
+      m.estimate_time,
+      m.exception_table,
+      m.finish_time,
+      m.msg_status,
+      mu.receive_user_id,
+      mu.receive_username,
+      mu.handle_identify as receivetype
+    from
+      m_message m
+        left join m_msg_user mu on
+        /*讨论组或者普通消息*/
+        <choose>
+          <when test="messageCategory == 1">
+            m.id = mu.msg_id
+            where
+            m.id = #{id,jdbcType=VARCHAR}
+          </when>
+          <otherwise>
+            m.discussion_group_id = mu.discussion_group_id
+            where
+            m.id = #{id,jdbcType=VARCHAR} and mu.is_delete = '0'
+          </otherwise>
+        </choose>
+  </select>
+
+  <!--######################################################逆向工程生成######################################################-->
+  <sql id="Base_Column_List">
+    id, send_user_id, send_username, send_time, type_id, discussion_group_id, feather, 
+    handle_identify, handle_user_id, handle_username, handle_result, estimate_time, finish_time, 
+    msg_status, create_time, data_source, exception_table, is_top
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_message
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from m_message
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.message.message.entity.Message">
+    insert into m_message (id, send_user_id, send_username, 
+      send_time, type_id, discussion_group_id, 
+      feather, handle_identify, handle_user_id, 
+      handle_username, handle_result, estimate_time, 
+      finish_time, msg_status, create_time, 
+      data_source, exception_table, is_top, 
+      content)
+    values (#{id,jdbcType=VARCHAR}, #{sendUserId,jdbcType=VARCHAR}, #{sendUsername,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{typeId,jdbcType=VARCHAR}, #{discussionGroupId,jdbcType=VARCHAR}, 
+      #{feather,jdbcType=VARCHAR}, #{handleIdentify,jdbcType=VARCHAR}, #{handleUserId,jdbcType=VARCHAR}, 
+      #{handleUsername,jdbcType=VARCHAR}, #{handleResult,jdbcType=VARCHAR}, #{estimateTime,jdbcType=TIMESTAMP}, 
+      #{finishTime,jdbcType=TIMESTAMP}, #{msgStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{dataSource,jdbcType=VARCHAR}, #{exceptionTable,jdbcType=VARCHAR}, #{isTop,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.message.message.entity.Message">
+    insert into m_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sendUserId != null">
+        send_user_id,
+      </if>
+      <if test="sendUsername != null">
+        send_username,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="discussionGroupId != null">
+        discussion_group_id,
+      </if>
+      <if test="feather != null">
+        feather,
+      </if>
+      <if test="handleIdentify != null">
+        handle_identify,
+      </if>
+      <if test="handleUserId != null">
+        handle_user_id,
+      </if>
+      <if test="handleUsername != null">
+        handle_username,
+      </if>
+      <if test="handleResult != null">
+        handle_result,
+      </if>
+      <if test="estimateTime != null">
+        estimate_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="msgStatus != null">
+        msg_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="dataSource != null">
+        data_source,
+      </if>
+      <if test="exceptionTable != null">
+        exception_table,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUserId != null">
+        #{sendUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUsername != null">
+        #{sendUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="discussionGroupId != null">
+        #{discussionGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="feather != null">
+        #{feather,jdbcType=VARCHAR},
+      </if>
+      <if test="handleIdentify != null">
+        #{handleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="handleUserId != null">
+        #{handleUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleUsername != null">
+        #{handleUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null">
+        #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateTime != null">
+        #{estimateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgStatus != null">
+        #{msgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSource != null">
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTable != null">
+        #{exceptionTable,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.message.message.entity.Message">
+    update m_message
+    <set>
+      <if test="sendUserId != null">
+        send_user_id = #{sendUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUsername != null">
+        send_username = #{sendUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="discussionGroupId != null">
+        discussion_group_id = #{discussionGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="feather != null">
+        feather = #{feather,jdbcType=VARCHAR},
+      </if>
+      <if test="handleIdentify != null">
+        handle_identify = #{handleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="handleUserId != null">
+        handle_user_id = #{handleUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleUsername != null">
+        handle_username = #{handleUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null">
+        handle_result = #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateTime != null">
+        estimate_time = #{estimateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgStatus != null">
+        msg_status = #{msgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSource != null">
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTable != null">
+        exception_table = #{exceptionTable,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.message.message.entity.Message">
+    update m_message
+    set send_user_id = #{sendUserId,jdbcType=VARCHAR},
+      send_username = #{sendUsername,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      discussion_group_id = #{discussionGroupId,jdbcType=VARCHAR},
+      feather = #{feather,jdbcType=VARCHAR},
+      handle_identify = #{handleIdentify,jdbcType=VARCHAR},
+      handle_user_id = #{handleUserId,jdbcType=VARCHAR},
+      handle_username = #{handleUsername,jdbcType=VARCHAR},
+      handle_result = #{handleResult,jdbcType=VARCHAR},
+      estimate_time = #{estimateTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      msg_status = #{msgStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      exception_table = #{exceptionTable,jdbcType=VARCHAR},
+      is_top = #{isTop,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.message.message.entity.Message">
+    update m_message
+    set send_user_id = #{sendUserId,jdbcType=VARCHAR},
+      send_username = #{sendUsername,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      discussion_group_id = #{discussionGroupId,jdbcType=VARCHAR},
+      feather = #{feather,jdbcType=VARCHAR},
+      handle_identify = #{handleIdentify,jdbcType=VARCHAR},
+      handle_user_id = #{handleUserId,jdbcType=VARCHAR},
+      handle_username = #{handleUsername,jdbcType=VARCHAR},
+      handle_result = #{handleResult,jdbcType=VARCHAR},
+      estimate_time = #{estimateTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      msg_status = #{msgStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      exception_table = #{exceptionTable,jdbcType=VARCHAR},
+      is_top = #{isTop,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

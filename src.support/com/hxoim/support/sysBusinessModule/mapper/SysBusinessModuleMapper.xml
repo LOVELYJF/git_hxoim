@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.sysBusinessModule.mapper.SysBusinessModuleMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.sysBusinessModule.entity.SysBusinessModule">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="node_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bm_icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bm_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_index" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="system_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bm_type" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="bm_arguments" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="bm_use_table" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="bm_primark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, modify_user, modify_time, node_name, pid, bm_icon, bm_url, order_index, system_id,
+    bm_type, bm_arguments, bm_use_table, bm_primark
+  </sql>
+  <select id="selectTree" parameterType="java.lang.String" resultType="com.hxoim.common.tree.Tree">
+      select id,pid,node_name as label from sys_business_module where system_id =#{systemId,jdbcType=VARCHAR}  order by order_index
+  </select>
+
+  <update id="updateSortSysBusinessModule" parameterType="java.util.List">
+    update sys_business_module set order_index=
+    <foreach collection="ids"  item="id" index="index" separator="" open="case id" close="end">
+      when #{id} then #{index}
+    </foreach>
+    WHERE id IN
+    <foreach collection="ids" open="(" close=")" item="id" index="index" separator=",">
+      #{id}
+    </foreach>
+  </update>
+
+  <select id="selectSysBusinessModuleByPid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from sys_business_module where pid = #{pid,jdbcType=VARCHAR} order by order_index
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business_module
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_business_module
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.hxoim.support.sysBusinessModule.entity.SysBusinessModule">
+    insert into sys_business_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="nodeName != null">
+          node_name,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="bmIcon != null">
+        bm_icon,
+      </if>
+      <if test="bmUrl != null">
+        bm_url,
+      </if>
+      <if test="orderIndex != null">
+        order_index,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="bmType != null">
+        bm_type,
+      </if>
+      <if test="bmArguments != null">
+        bm_arguments,
+      </if>
+      <if test="bmUseTable != null">
+        bm_use_table,
+      </if>
+      <if test="bmPrimark != null">
+          bm_primark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nodeName != null">
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="bmIcon != null">
+        #{bmIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="bmUrl != null">
+        #{bmUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIndex != null">
+        #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="bmType != null">
+        #{bmType,jdbcType=CHAR},
+      </if>
+      <if test="bmArguments != null">
+        #{bmArguments,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bmUseTable != null">
+        #{bmUseTable,jdbcType=VARCHAR},
+      </if>
+      <if test="bmPrimark != null">
+        #{bmPrimark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.sysBusinessModule.entity.SysBusinessModule">
+    update sys_business_module
+    <set>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nodeName != null">
+          node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="bmIcon != null">
+        bm_icon = #{bmIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="bmUrl != null">
+        bm_url = #{bmUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIndex != null">
+        order_index = #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="bmType != null">
+        bm_type = #{bmType,jdbcType=CHAR},
+      </if>
+      <if test="bmArguments != null">
+        bm_arguments = #{bmArguments,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bmUseTable != null">
+        bm_use_table = #{bmUseTable,jdbcType=CHAR},
+      </if>
+      <if test="bmPrimark != null">
+        bm_primark = #{bmPrimark,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

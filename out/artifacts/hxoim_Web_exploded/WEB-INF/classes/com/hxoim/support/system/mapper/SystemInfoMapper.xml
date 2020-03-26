@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.system.mapper.SystemInfoMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.system.entity.SystemInfo">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="system_name" jdbcType="VARCHAR" property="systemName" />
+        <result column="login_url" jdbcType="VARCHAR" property="loginUrl" />
+        <result column="home_url" jdbcType="VARCHAR" property="homeUrl" />
+        <result column="p_id" jdbcType="VARCHAR" property="pId" />
+        <result column="system_type" jdbcType="CHAR" property="systemType" />
+        <result column="is_remodel" jdbcType="CHAR" property="isRemodel" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="order_index" jdbcType="INTEGER" property="orderIndex" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, system_name, login_url, home_url, p_id, system_type, is_remodel, modify_user,
+    modify_time, order_index
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cf_system
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cf_system
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.system.entity.SystemInfo">
+    insert into cf_system (id, system_name, login_url,
+      home_url, p_id, system_type,
+      is_remodel, modify_user, modify_time,
+      order_index)
+    values (#{id,jdbcType=VARCHAR}, #{systemName,jdbcType=VARCHAR}, #{loginUrl,jdbcType=VARCHAR},
+      #{homeUrl,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, #{systemType,jdbcType=CHAR},
+      #{isRemodel,jdbcType=CHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{orderIndex,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.system.entity.SystemInfo">
+        insert into cf_system
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="systemName != null">
+                system_name,
+            </if>
+            <if test="loginUrl != null">
+                login_url,
+            </if>
+            <if test="homeUrl != null">
+                home_url,
+            </if>
+            <if test="pId != null">
+                p_id,
+            </if>
+            <if test="systemType != null">
+                system_type,
+            </if>
+            <if test="isRemodel != null">
+                is_remodel,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="orderIndex != null">
+                order_index,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="systemName != null">
+                #{systemName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginUrl != null">
+                #{loginUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="homeUrl != null">
+                #{homeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pId != null">
+                #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="systemType != null">
+                #{systemType,jdbcType=CHAR},
+            </if>
+            <if test="isRemodel != null">
+                #{isRemodel,jdbcType=CHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.system.entity.SystemInfo">
+        update cf_system
+        <set>
+            <if test="systemName != null">
+                system_name = #{systemName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginUrl != null">
+                login_url = #{loginUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="homeUrl != null">
+                home_url = #{homeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pId != null">
+                p_id = #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="systemType != null">
+                system_type = #{systemType,jdbcType=CHAR},
+            </if>
+            <if test="isRemodel != null">
+                is_remodel = #{isRemodel,jdbcType=CHAR},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.system.entity.SystemInfo">
+    update cf_system
+    set system_name = #{systemName,jdbcType=VARCHAR},
+      login_url = #{loginUrl,jdbcType=VARCHAR},
+      home_url = #{homeUrl,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR},
+      system_type = #{systemType,jdbcType=CHAR},
+      is_remodel = #{isRemodel,jdbcType=CHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      order_index = #{orderIndex,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--通过业务系统id查询名称-->
+    <select id="selectSystemNamePid" parameterType="String" resultMap="BaseResultMap">
+    SELECT system_name,p_id FROM cf_system WHERE id=#{id}
+    </select>
+
+    <!--查询上级业务系统名称-->
+    <select id="selectSystemNameByPid" parameterType="String" resultType="String">
+    SELECT system_name FROM cf_system WHERE id=#{pid}
+    </select>
+
+    <!--查询系统树-->
+    <select id="selectSystemInfoTree" resultType="com.hxoim.common.tree.Tree">
+        SELECT id as "id",system_name as "label",p_id as "pId" FROM cf_system order by order_index
+    </select>
+    <!--查询所有子节点-->
+    <select id="selectKidsSysInfo" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM cf_system t WHERE t.p_id=#{id} ORDER BY t.order_index
+    </select>
+    <select id="selectMaxIndex" resultType="java.lang.Integer">
+        SELECT IFNULL(max(t.order_index),0) + 1 FROM cf_system t
+    </select>
+
+    <select id="selectOrgGrantSystemInfo" resultMap="BaseResultMap">
+        select s.* from Cf_org_system os
+        inner join cf_system s on os.system_id = s.id and os.b0111=#{orgId} and s.system_type!='1'
+        order by s.order_index
+    </select>
+    <select id="selectUserGrantSystemInfo" resultMap="BaseResultMap">
+        select s.* from user_role_view urv
+        inner join cf_role_system crs
+        on urv.role_id=crs.role_id
+        inner join cf_system s
+        on crs.system_id=s.id
+        inner join cf_org_system cos
+        on cos.system_id=s.id
+        inner join cf_user u
+        on cos.b0111=u.org_id and u.id=#{userId}
+        where urv.user_id=#{userId}
+        order by s.order_index
+    </select>
+</mapper>

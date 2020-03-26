@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.b01.mapper.B01Mapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.b01.entity.B01">
+        <result column="b0101" jdbcType="VARCHAR" property="b0101"/>
+        <result column="b0104" jdbcType="VARCHAR" property="b0104"/>
+        <result column="b0107" jdbcType="VARCHAR" property="b0107"/>
+        <result column="b0111" jdbcType="VARCHAR" property="b0111"/>
+        <result column="b0114" jdbcType="VARCHAR" property="b0114"/>
+        <result column="b0117" jdbcType="VARCHAR" property="b0117"/>
+        <result column="b0124" jdbcType="VARCHAR" property="b0124"/>
+        <result column="b0127" jdbcType="VARCHAR" property="b0127"/>
+        <result column="b0131" jdbcType="VARCHAR" property="b0131"/>
+        <result column="b0134" jdbcType="VARCHAR" property="b0134"/>
+        <result column="b0137" jdbcType="VARCHAR" property="b0137"/>
+        <result column="b0144a" jdbcType="VARCHAR" property="b0144a"/>
+        <result column="b0144b" jdbcType="VARCHAR" property="b0144b"/>
+        <result column="b0151a" jdbcType="VARCHAR" property="b0151a"/>
+        <result column="b0151b" jdbcType="VARCHAR" property="b0151b"/>
+        <result column="b0154a" jdbcType="VARCHAR" property="b0154a"/>
+        <result column="b0154b" jdbcType="VARCHAR" property="b0154b"/>
+        <result column="b0157a" jdbcType="VARCHAR" property="b0157a"/>
+        <result column="b0157b" jdbcType="VARCHAR" property="b0157b"/>
+        <result column="b0161" jdbcType="VARCHAR" property="b0161"/>
+        <result column="b0164" jdbcType="VARCHAR" property="b0164"/>
+        <result column="B0167" jdbcType="VARCHAR" property="b0167"/>
+        <result column="b0171a" jdbcType="VARCHAR" property="b0171a"/>
+        <result column="b0171b" jdbcType="VARCHAR" property="b0171b"/>
+        <result column="b0174" jdbcType="VARCHAR" property="b0174"/>
+        <result column="b0177" jdbcType="VARCHAR" property="b0177"/>
+        <result column="b0181" jdbcType="VARCHAR" property="b0181"/>
+        <result column="b0183" jdbcType="INTEGER" property="b0183"/>
+        <result column="b0184" jdbcType="VARCHAR" property="b0184"/>
+        <result column="b0185" jdbcType="INTEGER" property="b0185"/>
+        <result column="b0187a" jdbcType="VARCHAR" property="b0187a"/>
+        <result column="b0187b" jdbcType="VARCHAR" property="b0187b"/>
+        <result column="b0188" jdbcType="VARCHAR" property="b0188"/>
+        <result column="b0189" jdbcType="VARCHAR" property="b0189"/>
+        <result column="b0190" jdbcType="VARCHAR" property="b0190"/>
+        <result column="b0191" jdbcType="VARCHAR" property="b0191"/>
+        <result column="b0191a" jdbcType="VARCHAR" property="b0191a"/>
+        <result column="b0192" jdbcType="VARCHAR" property="b0192"/>
+        <result column="b0193" jdbcType="VARCHAR" property="b0193"/>
+        <result column="b0194" jdbcType="VARCHAR" property="b0194"/>
+        <result column="b0197" jdbcType="VARCHAR" property="b0197"/>
+        <result column="b0198" jdbcType="VARCHAR" property="b0198"/>
+        <result column="b0227" jdbcType="INTEGER" property="b0227"/>
+        <result column="b0232" jdbcType="INTEGER" property="b0232"/>
+        <result column="b0233" jdbcType="INTEGER" property="b0233"/>
+        <result column="b0238" jdbcType="VARCHAR" property="b0238"/>
+        <result column="b0239" jdbcType="VARCHAR" property="b0239"/>
+        <result column="b0240" jdbcType="VARCHAR" property="b0240"/>
+        <result column="sortid" jdbcType="INTEGER" property="orderIndex"/>
+        <result column="pad_as_unit" jdbcType="VARCHAR" property="padAsOrg"/>
+        <result column="b0199" jdbcType="VARCHAR" property="b0199"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="level_index" jdbcType="VARCHAR" property="levelIndex"/>
+        <result column="b0140" jdbcType="VARCHAR" property="b0140"/>
+        <result column="b0141" jdbcType="VARCHAR" property="b0141"/>
+        <result column="b0142" jdbcType="VARCHAR" property="b0142"/>
+        <result column="b0143" jdbcType="VARCHAR" property="b0143"/>
+        <result column="b0150" jdbcType="INTEGER" property="b0150"/>
+        <result column="b0236" jdbcType="INTEGER" property="b0236"/>
+        <result column="b0234" jdbcType="INTEGER" property="b0234"/>
+        <result column="b0121" jdbcType="VARCHAR" property="b0121"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.support.b01.entity.B01">
+        <result column="b0180" jdbcType="LONGVARCHAR" property="b0180"/>
+        <result column="job_number_desc" jdbcType="LONGVARCHAR" property="jobNumberDesc"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+        b0180, job_number_desc
+    </sql>
+    <insert id="insert" parameterType="com.hxoim.support.b01.entity.B01">
+        insert into b01 (b0101, b0104, b0107,
+        b0111, b0114, b0117,
+        b0124, b0127, b0131,
+        b0134, b0137, b0144a,
+        b0144b, b0151a, b0151b,
+        b0154a, b0154b, b0157a,
+        b0157b, b0161, b0164,
+        b0167, b0171a, b0171b,
+        b0174, b0177, b0181,
+        b0183, b0184, b0185,
+        b0187a, b0187b, b0188,
+        b0189, b0190, b0191,
+        b0191a, b0192, b0193,
+        b0194, b0197, b0198,
+        b0227, b0232, b0233,
+        b0238, b0239, b0240,
+        sortid, pad_as_unit, b0199,
+        modify_user, modify_time,
+        level_index, b0140, b0141,
+        b0142, b0143, b0150,
+        b0236, b0234, b0121,
+        b0180,job_number_desc)
+        values (#{b0101,jdbcType=VARCHAR}, #{b0104,jdbcType=VARCHAR}, #{b0107,jdbcType=VARCHAR},
+        #{b0111,jdbcType=VARCHAR}, #{b0114,jdbcType=VARCHAR}, #{b0117,jdbcType=VARCHAR},
+        #{b0124,jdbcType=VARCHAR}, #{b0127,jdbcType=VARCHAR}, #{b0131,jdbcType=VARCHAR},
+        #{b0134,jdbcType=VARCHAR}, #{b0137,jdbcType=VARCHAR}, #{b0144a,jdbcType=VARCHAR},
+        #{b0144b,jdbcType=VARCHAR}, #{b0151a,jdbcType=VARCHAR}, #{b0151b,jdbcType=VARCHAR},
+        #{b0154a,jdbcType=VARCHAR}, #{b0154b,jdbcType=VARCHAR}, #{b0157a,jdbcType=VARCHAR},
+        #{b0157b,jdbcType=VARCHAR}, #{b0161,jdbcType=VARCHAR}, #{b0164,jdbcType=VARCHAR},
+        #{b0167,jdbcType=VARCHAR}, #{b0171a,jdbcType=VARCHAR}, #{b0171b,jdbcType=VARCHAR},
+        #{b0174,jdbcType=VARCHAR}, #{b0177,jdbcType=VARCHAR}, #{b0181,jdbcType=VARCHAR},
+        #{b0183,jdbcType=INTEGER}, #{b0184,jdbcType=VARCHAR}, #{b0185,jdbcType=INTEGER},
+        #{b0187a,jdbcType=VARCHAR}, #{b0187b,jdbcType=VARCHAR}, #{b0188,jdbcType=VARCHAR},
+        #{b0189,jdbcType=VARCHAR}, #{b0190,jdbcType=VARCHAR}, #{b0191,jdbcType=VARCHAR},
+        #{b0191a,jdbcType=VARCHAR}, #{b0192,jdbcType=VARCHAR}, #{b0193,jdbcType=VARCHAR},
+        #{b0194,jdbcType=VARCHAR}, #{b0197,jdbcType=VARCHAR}, #{b0198,jdbcType=VARCHAR},
+        #{b0227,jdbcType=INTEGER}, #{b0232,jdbcType=INTEGER}, #{b0233,jdbcType=INTEGER},
+        #{b0238,jdbcType=VARCHAR}, #{b0239,jdbcType=VARCHAR}, #{b0240,jdbcType=VARCHAR},
+        #{orderIndex,jdbcType=INTEGER}, #{padAsOrg,jdbcType=VARCHAR}, #{b0199,jdbcType=VARCHAR},
+        #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+        #{levelIndex,jdbcType=VARCHAR}, #{b0140,jdbcType=VARCHAR}, #{b0141,jdbcType=VARCHAR},
+        #{b0142,jdbcType=VARCHAR}, #{b0143,jdbcType=VARCHAR}, #{b0150,jdbcType=INTEGER},
+        #{b0236,jdbcType=INTEGER}, #{b0234,jdbcType=INTEGER}, #{b0121,jdbcType=VARCHAR},
+        #{b0180,jdbcType=LONGVARCHAR},#{jobNumberDesc,jdbcType=LONGVARCHAR})
+    </insert>
+    <!--添加机构-->
+    <insert id="insertOrg" parameterType="com.hxoim.support.b01.entity.B01">
+        insert into b01
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="b0101 != null">
+                b0101,
+            </if>
+            <if test="b0104 != null">
+                b0104,
+            </if>
+            <if test="b0107 != null">
+                b0107,
+            </if>
+            <if test="b0111 != null">
+                b0111,
+            </if>
+            <if test="b0114 != null">
+                b0114,
+            </if>
+            <if test="b0117 != null">
+                b0117,
+            </if>
+            <if test="b0124 != null">
+                b0124,
+            </if>
+            <if test="b0127 != null">
+                b0127,
+            </if>
+            <if test="b0131 != null">
+                b0131,
+            </if>
+            <if test="b0134 != null">
+                b0134,
+            </if>
+            <if test="b0137 != null">
+                b0137,
+            </if>
+            <if test="b0144a != null">
+                b0144a,
+            </if>
+            <if test="b0144b != null">
+                b0144b,
+            </if>
+            <if test="b0151a != null">
+                b0151a,
+            </if>
+            <if test="b0151b != null">
+                b0151b,
+            </if>
+            <if test="b0154a != null">
+                b0154a,
+            </if>
+            <if test="b0154b != null">
+                b0154b,
+            </if>
+            <if test="b0157a != null">
+                b0157a,
+            </if>
+            <if test="b0157b != null">
+                b0157b,
+            </if>
+            <if test="b0161 != null">
+                b0161,
+            </if>
+            <if test="b0164 != null">
+                b0164,
+            </if>
+            <if test="b0167 != null">
+                B0167,
+            </if>
+            <if test="b0171a != null">
+                b0171a,
+            </if>
+            <if test="b0171b != null">
+                b0171b,
+            </if>
+            <if test="b0174 != null">
+                b0174,
+            </if>
+            <if test="b0177 != null">
+                b0177,
+            </if>
+            <if test="b0181 != null">
+                b0181,
+            </if>
+            <if test="b0183 != null">
+                b0183,
+            </if>
+            <if test="b0184 != null">
+                b0184,
+            </if>
+            <if test="b0185 != null">
+                b0185,
+            </if>
+            <if test="b0187a != null">
+                b0187a,
+            </if>
+            <if test="b0187b != null">
+                b0187b,
+            </if>
+            <if test="b0188 != null">
+                b0188,
+            </if>
+            <if test="b0189 != null">
+                b0189,
+            </if>
+            <if test="b0190 != null">
+                b0190,
+            </if>
+            <if test="b0191 != null">
+                b0191,
+            </if>
+            <if test="b0191a != null">
+                b0191a,
+            </if>
+            <if test="b0192 != null">
+                b0192,
+            </if>
+            <if test="b0193 != null">
+                b0193,
+            </if>
+            <if test="b0194 != null">
+                b0194,
+            </if>
+            <if test="b0197 != null">
+                b0197,
+            </if>
+            <if test="b0198 != null">
+                b0198,
+            </if>
+            <if test="b0227 != null">
+                b0227,
+            </if>
+            <if test="b0232 != null">
+                b0232,
+            </if>
+            <if test="b0233 != null">
+                b0233,
+            </if>
+            <if test="b0238 != null">
+                b0238,
+            </if>
+            <if test="b0239 != null">
+                b0239,
+            </if>
+            <if test="b0240 != null">
+                b0240,
+            </if>
+            <if test="orderIndex != null">
+                sortid,
+            </if>
+            <if test="padAsOrg != null">
+                pad_as_unit,
+            </if>
+            <if test="b0199 != null">
+                b0199,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="levelIndex != null">
+                level_index,
+            </if>
+            <if test="b0140 != null">
+                b0140,
+            </if>
+            <if test="b0141 != null">
+                b0141,
+            </if>
+            <if test="b0142 != null">
+                b0142,
+            </if>
+            <if test="b0143 != null">
+                b0143,
+            </if>
+            <if test="b0150 != null">
+                b0150,
+            </if>
+            <if test="b0236 != null">
+                b0236,
+            </if>
+            <if test="b0234 != null">
+                b0234,
+            </if>
+            <if test="b0121 != null">
+                b0121,
+            </if>
+            <if test="b0180 != null">
+                b0180,
+            </if>
+            <if test="jobNumberDesc != null">
+                job_number_desc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="b0101 != null">
+                #{b0101,jdbcType=VARCHAR},
+            </if>
+            <if test="b0104 != null">
+                #{b0104,jdbcType=VARCHAR},
+            </if>
+            <if test="b0107 != null">
+                #{b0107,jdbcType=VARCHAR},
+            </if>
+            <if test="b0111 != null">
+                #{b0111,jdbcType=VARCHAR},
+            </if>
+            <if test="b0114 != null">
+                #{b0114,jdbcType=VARCHAR},
+            </if>
+            <if test="b0117 != null">
+                #{b0117,jdbcType=VARCHAR},
+            </if>
+            <if test="b0124 != null">
+                #{b0124,jdbcType=VARCHAR},
+            </if>
+            <if test="b0127 != null">
+                #{b0127,jdbcType=VARCHAR},
+            </if>
+            <if test="b0131 != null">
+                #{b0131,jdbcType=VARCHAR},
+            </if>
+            <if test="b0134 != null">
+                #{b0134,jdbcType=VARCHAR},
+            </if>
+            <if test="b0137 != null">
+                #{b0137,jdbcType=VARCHAR},
+            </if>
+            <if test="b0144a != null">
+                #{b0144a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0144b != null">
+                #{b0144b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0151a != null">
+                #{b0151a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0151b != null">
+                #{b0151b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0154a != null">
+                #{b0154a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0154b != null">
+                #{b0154b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0157a != null">
+                #{b0157a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0157b != null">
+                #{b0157b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0161 != null">
+                #{b0161,jdbcType=VARCHAR},
+            </if>
+            <if test="b0164 != null">
+                #{b0164,jdbcType=VARCHAR},
+            </if>
+            <if test="b0167 != null">
+                #{b0167,jdbcType=VARCHAR},
+            </if>
+            <if test="b0171a != null">
+                #{b0171a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0171b != null">
+                #{b0171b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0174 != null">
+                #{b0174,jdbcType=VARCHAR},
+            </if>
+            <if test="b0177 != null">
+                #{b0177,jdbcType=VARCHAR},
+            </if>
+            <if test="b0181 != null">
+                #{b0181,jdbcType=VARCHAR},
+            </if>
+            <if test="b0183 != null">
+                #{b0183,jdbcType=INTEGER},
+            </if>
+            <if test="b0184 != null">
+                #{b0184,jdbcType=VARCHAR},
+            </if>
+            <if test="b0185 != null">
+                #{b0185,jdbcType=INTEGER},
+            </if>
+            <if test="b0187a != null">
+                #{b0187a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0187b != null">
+                #{b0187b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0188 != null">
+                #{b0188,jdbcType=VARCHAR},
+            </if>
+            <if test="b0189 != null">
+                #{b0189,jdbcType=VARCHAR},
+            </if>
+            <if test="b0190 != null">
+                #{b0190,jdbcType=VARCHAR},
+            </if>
+            <if test="b0191 != null">
+                #{b0191,jdbcType=VARCHAR},
+            </if>
+            <if test="b0191a != null">
+                #{b0191a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0192 != null">
+                #{b0192,jdbcType=VARCHAR},
+            </if>
+            <if test="b0193 != null">
+                #{b0193,jdbcType=VARCHAR},
+            </if>
+            <if test="b0194 != null">
+                #{b0194,jdbcType=VARCHAR},
+            </if>
+            <if test="b0197 != null">
+                #{b0197,jdbcType=VARCHAR},
+            </if>
+            <if test="b0198 != null">
+                #{b0198,jdbcType=VARCHAR},
+            </if>
+            <if test="b0227 != null">
+                #{b0227,jdbcType=INTEGER},
+            </if>
+            <if test="b0232 != null">
+                #{b0232,jdbcType=INTEGER},
+            </if>
+            <if test="b0233 != null">
+                #{b0233,jdbcType=INTEGER},
+            </if>
+            <if test="b0238 != null">
+                #{b0238,jdbcType=VARCHAR},
+            </if>
+            <if test="b0239 != null">
+                #{b0239,jdbcType=VARCHAR},
+            </if>
+            <if test="b0240 != null">
+                #{b0240,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="padAsOrg != null">
+                #{padAsOrg,jdbcType=VARCHAR},
+            </if>
+            <if test="b0199 != null">
+                #{b0199,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="levelIndex != null">
+                #{levelIndex,jdbcType=VARCHAR},
+            </if>
+            <if test="b0140 != null">
+                #{b0140,jdbcType=VARCHAR},
+            </if>
+            <if test="b0141 != null">
+                #{b0141,jdbcType=VARCHAR},
+            </if>
+            <if test="b0142 != null">
+                #{b0142,jdbcType=VARCHAR},
+            </if>
+            <if test="b0143 != null">
+                #{b0143,jdbcType=VARCHAR},
+            </if>
+            <if test="b0150 != null">
+                #{b0150,jdbcType=INTEGER},
+            </if>
+            <if test="b0236 != null">
+                #{b0236,jdbcType=INTEGER},
+            </if>
+            <if test="b0234 != null">
+                #{b0234,jdbcType=INTEGER},
+            </if>
+            <if test="b0121 != null">
+                #{b0121,jdbcType=VARCHAR},
+            </if>
+            <if test="b0180 != null">
+                #{b0180,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="jobNumberDesc != null">
+                #{jobNumberDesc,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询机构id和名称-->
+    <select id="selectAllB01" resultMap="BaseResultMap">
+    SELECT b0101,b0111 FROM b01
+    </select>
+
+    <!--修改机构-->
+    <update id="updateOrg" parameterType="com.hxoim.support.b01.entity.B01">
+    UPDATE b01 SET b0101=#{b0101},b0104=#{b0104},b0107=#{b0107},b0114=#{b0114},b0117=#{b0117},
+    b0124=#{b0124},b0127=#{b0127},b0131=#{b0131},b0134=#{b0134},b0137=#{b0137},b0144a=#{b0144a},
+    b0144b=#{b0144b},b0151a=#{b0151a},b0151b=#{b0151b},b0154a=#{b0154a},b0154b=#{b0154b},
+    b0157a=#{b0157a},b0157b=#{b0157b},b0161=#{b0161},b0164=#{b0164},b0167=#{b0167},b0171a=#{b0171a},
+    b0171b=#{b0171b},b0174=#{b0174},b0177=#{b0177},b0181=#{b0181},b0183=#{b0183},b0184=#{b0184},
+    b0185=#{b0185},b0187a=#{b0187a},b0187b=#{b0187b},b0188=#{b0188},b0189=#{b0189},b0190=#{b0190},
+    b0191=#{b0191},b0191a=#{b0191a},b0192=#{b0192},b0193=#{b0193},b0194=#{b0194},b0197=#{b0197},
+    b0198=#{b0198},b0227=#{b0227},b0232=#{b0232},b0233=#{b0233},b0238=#{b0238},b0239=#{b0239},
+    b0240=#{b0240},sortid=#{orderIndex},pad_as_unit=#{padAsOrg},b0199=#{b0199},
+    modify_user=#{modifyUser}, modify_time=#{modifyTime},level_index=#{levelIndex},
+    b0140=#{b0140},b0141=#{b0141},b0142=#{b0142},b0143=#{b0143},b0150=#{b0150},b0180=#{b0180},
+    b0236=#{b0236},b0234=#{b0234},b0121=#{b0121},job_number_desc=#{jobNumberDesc}
+    WHERE b0111=#{b0111}
+    </update>
+
+    <!--机构搜索查询-->
+    <select id="selectOrg" parameterType="com.hxoim.support.b01.entity.B01" resultMap="BaseResultMap">
+    SELECT b0101,b0104,b0107,b0111,b0114,b0117,b0124,b0127,b0131,b0134,b0137,b0144a,b0144b,b0151a,
+    b0151b,b0154a,b0154b,b0157a,b0157b,b0161,b0164,b0167,b0171a,b0171b,b0174,b0177,b0181,b0183,
+    b0184,b0185,b0187a,b0187b,b0188,b0189,b0190,b0191,b0191a,b0192,b0193,b0194,b0197,b0198,b0227,
+    b0232,b0233,b0238,b0239,b0240,sortid,pad_as_unit,b0199,modify_user,modify_time,level_index,
+    b0140,b0141,b0142,b0143,b0150,b0180,b0236,b0234,b0121,job_number_desc
+    FROM b01 WHERE b0101 LIKE "%"#{b0101}"%"
+    </select>
+
+    <!--删除机构-->
+    <delete id="deleteOrg" parameterType="String">
+    DELETE FROM b01 WHERE b0111=#{b0111}
+    </delete>
+
+    <!--查询下级机构-->
+    <select id="selectOrgByPid" parameterType="String" resultType="Integer">
+    SELECT COUNT(*) FROM b01 WHERE b0121=#{b0111}
+    </select>
+
+    <!--排序-->
+    <update id="sortOrg" parameterType="java.util.List">
+        UPDATE b01 SET  sortid=
+        <foreach collection="array"  item="b0111" index="index" separator=" " open="case b0111" close="end">
+            when #{b0111} then #{index}
+        </foreach>
+        WHERE b0111 IN
+        <foreach collection="array" open="(" close=")" item="b0111" index="index" separator=",">
+            #{b0111}
+        </foreach>
+    </update>
+
+    <!--查询下级机构列表-->
+    <select id="selectOrgById" parameterType="com.hxoim.support.b01.entity.B01" resultMap="BaseResultMap">
+    SELECT b0111,b0101,b0114,sortid FROM b01 WHERE b0121=#{b0111} ORDER BY sortid
+    </select>
+
+    <!--通过标识编码查询机构-->
+    <select id="selectOrgByB0111" parameterType="String" resultMap="BaseResultMap">
+    SELECT b0111,b0101,b0104,b0107,b0114,b0117,b0124,b0127,b0131,b0134,b0137,b0144a,
+    b0144b,b0151a,b0151b,b0154a,b0154b,b0157a,b0157b,b0161,b0164,b0167,b0171a,
+    b0171b,b0174,b0177,b0181,b0183,b0184, b0185,b0187a,b0187b,b0188,b0189,b0190,
+    b0191,b0191a,b0192,b0193,b0194,b0197,b0198,b0227,b0232,b0233,b0238,b0239,
+    b0240,sortid,pad_as_unit,b0199,modify_user, modify_time,level_index,
+    b0140,b0141,b0142,b0143,b0150,b0180,b0236,b0234,b0121,job_number_desc
+    FROM  b01 WHERE b0111=#{b0111}
+    </select>
+
+    <!--获得下一个b0111-->
+    <select id="getNextOrgCode" parameterType="java.lang.String" resultType="java.lang.String">
+        select FUN_B_GETB0111(#{pid}) from dual
+    </select>
+
+    <select id="selectOrgAllList" resultMap="BaseResultMap">
+        select b0111, b0121,b0101 from b01 ORDER BY sortid
+    </select>
+
+    <!--验证机构名称是否重复-->
+    <select id="doubleOrgName" resultType="Integer"
+        parameterType="com.hxoim.support.b01.entity.B01">
+        SELECT COUNT(*) FROM b01 WHERE b0101=#{b0101}
+        <if test="b0111!=null and b0111!=''">
+            AND b0111!=#{b0111}
+        </if>
+    </select>
+
+    <!--验证机构编码是否重复-->
+    <select id="doubleOrgCode" resultType="Integer"
+        parameterType="com.hxoim.support.b01.entity.B01">
+        SELECT COUNT(*) FROM b01 WHERE b0114=#{b0114}
+        <if test="b0111!=null and b0111!=''">
+            AND b0111!=#{b0111}
+        </if>
+    </select>
+
+    <select id="selectOrgGrantTree" resultType="com.hxoim.common.tree.Tree">
+        select b.b0111 as "id",b.b0101 as "label", b.b0121 as "pId" from cf_org_sub os
+        inner join b01 b
+        on os.managed_org=b.b0111
+        where os.b0111=#{orgId} order by b.sortid
+    </select>
+    <select id="selectUserGrantTree" resultType="com.hxoim.common.tree.Tree">
+        select b.b0111 as "id",b.b0101 as "label", b.b0121 as "pId"  from user_role_view urv
+        inner join cf_roleb01 rb
+        on urv.role_id=rb.role_id
+        and urv.user_id=#{orgId}
+        inner join b01 b
+        on rb.org_id=b.b0111
+        inner join cf_org_sub os
+        on b.b0111=os.managed_org
+        inner join cf_user u
+        on os.b0111=u.org_id and u.id=#{orgId}
+        order by b.sortid
+    </select>
+    <select id="selectAllOrgTree" resultType="com.hxoim.common.tree.Tree">
+        select b.b0111 as "id",b.b0101 as "label", b.b0121 as "pId" from  b01 b
+        where b.is_deleted='0' order by b.sortid
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxoim.general.select.mapper.SelectMapper" >
+    <select id="select" parameterType="java.lang.String" resultType="java.util.LinkedHashMap">
+      ${sql}
+    </select>
+
+    <insert id="insert" parameterType="java.lang.String">
+    ${sql}
+  </insert>
+
+    <update id="update" parameterType="java.lang.String">
+    ${sql}
+  </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+    ${sql}
+  </delete>
+
+    <select id="selectTree" parameterType="java.lang.String" resultType="com.hxoim.common.tree.Tree">
+      ${sql}
+    </select>
+</mapper>

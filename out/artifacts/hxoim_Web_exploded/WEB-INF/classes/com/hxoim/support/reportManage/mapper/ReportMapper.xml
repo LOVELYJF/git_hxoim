@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.reportManage.mapper.ReportMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.reportManage.entity.ReportManage">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="order_index" jdbcType="INTEGER" property="orderIndex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, modify_user, modify_time, pid, node_name, order_index, da_sql
+  </sql>
+
+  <!--查询目录结构树-->
+  <select id="selectReportTree" resultType="com.hxoim.common.tree.Tree">
+    select id,pid,node_name as "label" from sys_report ORDER BY order_index
+  </select>
+
+  <!--查询配置项结构树-->
+  <select id="selectConfigTree" resultType="com.hxoim.common.tree.Tree">
+    select id,pid,json as "label" from decision_show where show_way = #{showWay}
+  </select>
+
+  <!--查询分析下有无分析-->
+  <select id="selectTreeNode1" resultType="java.lang.Integer">
+    select count(*) from sys_report where pid=#{id}
+  </select>
+
+  <!--删除分析-->
+  <select id="deleteTreeNode1" parameterType="java.lang.String">
+    delete from sys_report where id = #{id}
+  </select>
+
+    <!--查询配置项下有无配置-->
+  <select id="selectTreeNode2" parameterType="java.lang.String" resultType="integer">
+    select count(*) from decision_show where pid = #{id}
+  </select>
+
+  <!--配置项删除配置-->
+  <delete id="deleteTreeNode2" parameterType="java.lang.String">
+    delete from decision_show where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectAllColumn" resultType="java.util.LinkedHashMap">
+    select * from decision_show where pid = #{id}
+  </select>
+
+  <select id="selectColumn" resultType="java.util.LinkedHashMap">
+    select * from decision_show where id = #{id}
+  </select>
+</mapper>

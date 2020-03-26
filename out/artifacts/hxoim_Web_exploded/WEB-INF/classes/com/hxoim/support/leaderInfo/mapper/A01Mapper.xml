@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.leaderInfo.mapper.A01Mapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.leaderInfo.entity.A01">
+    <id column="a0100" jdbcType="VARCHAR" property="a0100" />
+    <result column="a0101" jdbcType="VARCHAR" property="a0101" />
+    <result column="a0102" jdbcType="VARCHAR" property="a0102" />
+    <result column="a0104" jdbcType="VARCHAR" property="a0104" />
+    <result column="a0117_a" jdbcType="VARCHAR" property="a0117A" />
+    <result column="a0117" jdbcType="VARCHAR" property="a0117" />
+    <result column="a0104_a" jdbcType="VARCHAR" property="a0104A" />
+    <result column="a0111b" jdbcType="VARCHAR" property="a0111b" />
+    <result column="a0111a" jdbcType="VARCHAR" property="a0111a" />
+    <result column="a0107" jdbcType="VARCHAR" property="a0107" />
+    <result column="a0114a" jdbcType="VARCHAR" property="a0114a" />
+    <result column="a0114b" jdbcType="VARCHAR" property="a0114b" />
+    <result column="a0115b" jdbcType="VARCHAR" property="a0115b" />
+    <result column="a0115a" jdbcType="VARCHAR" property="a0115a" />
+    <result column="a0120" jdbcType="VARCHAR" property="a0120" />
+    <result column="a0128" jdbcType="VARCHAR" property="a0128" />
+    <result column="a0144" jdbcType="TIMESTAMP" property="a0144" />
+    <result column="a0121" jdbcType="VARCHAR" property="a0121" />
+    <result column="a0122" jdbcType="VARCHAR" property="a0122" />
+    <result column="a0127" jdbcType="VARCHAR" property="a0127" />
+    <result column="a0160" jdbcType="VARCHAR" property="a0160" />
+    <result column="a0163" jdbcType="VARCHAR" property="a0163" />
+    <result column="a0165" jdbcType="VARCHAR" property="a0165" />
+    <result column="a0180" jdbcType="VARCHAR" property="a0180" />
+    <result column="a0141" jdbcType="VARCHAR" property="a0141" />
+    <result column="a0187a" jdbcType="VARCHAR" property="a0187a" />
+    <result column="a0195" jdbcType="VARCHAR" property="a0195" />
+    <result column="a0192a" jdbcType="VARCHAR" property="a0192a" />
+    <result column="a0194" jdbcType="VARCHAR" property="a0194" />
+    <result column="a0197" jdbcType="VARCHAR" property="a0197" />
+    <result column="a0196" jdbcType="VARCHAR" property="a0196" />
+    <result column="a2949" jdbcType="VARCHAR" property="a2949" />
+    <result column="a0140" jdbcType="VARCHAR" property="a0140" />
+    <result column="qrzxl" jdbcType="VARCHAR" property="qrzxl" />
+    <result column="qrzxw" jdbcType="VARCHAR" property="qrzxw" />
+    <result column="qrzxlxx" jdbcType="VARCHAR" property="qrzxlxx" />
+    <result column="qrzxwxx" jdbcType="VARCHAR" property="qrzxwxx" />
+    <result column="zzxl" jdbcType="VARCHAR" property="zzxl" />
+    <result column="zzxw" jdbcType="VARCHAR" property="zzxw" />
+    <result column="zzxlxx" jdbcType="VARCHAR" property="zzxlxx" />
+    <result column="zzxwxx" jdbcType="VARCHAR" property="zzxwxx" />
+    <result column="cbdw" jdbcType="VARCHAR" property="cbdw" />
+    <result column="jsnlsj" jdbcType="VARCHAR" property="jsnlsj" />
+    <result column="nrzw" jdbcType="VARCHAR" property="nrzw" />
+    <result column="nmzw" jdbcType="VARCHAR" property="nmzw" />
+    <result column="rmly" jdbcType="VARCHAR" property="rmly" />
+    <result column="rxz_date" jdbcType="TIMESTAMP" property="rxzDate" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="a0184" jdbcType="VARCHAR" property="a0184" />
+    <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+    <result column="a3921" jdbcType="VARCHAR" property="a3921" />
+    <result column="a3927" jdbcType="VARCHAR" property="a3927" />
+    <result column="a01x01" jdbcType="BIGINT" property="a01x01" />
+    <result column="a01x02" jdbcType="DECIMAL" property="a01x02" />
+    <result column="zzxx" jdbcType="VARCHAR" property="zzxx" />
+    <result column="qrzxx" jdbcType="VARCHAR" property="qrzxx" />
+    <result column="a0134" jdbcType="TIMESTAMP" property="a0134" />
+    <result column="a0140_lrmx" jdbcType="VARCHAR" property="a0140Lrmx" />
+    <result column="photodetail" jdbcType="VARCHAR" property="photodetail" />
+    <result column="a0194a" jdbcType="VARCHAR" property="a0194a" />
+    <result column="a0221" jdbcType="VARCHAR" property="a0221" />
+    <result column="a0288" jdbcType="TIMESTAMP" property="a0288" />
+    <result column="a0192e" jdbcType="VARCHAR" property="a0192e" />
+    <result column="a0192c" jdbcType="TIMESTAMP" property="a0192c" />
+    <result column="leadertype" jdbcType="INTEGER" property="leadertype" />
+    <result column="tbr" jdbcType="VARCHAR" property="tbr" />
+    <result column="tbsj" jdbcType="VARCHAR" property="tbsj" />
+    <result column="qrzxlb" jdbcType="VARCHAR" property="qrzxlb" />
+    <result column="zzxlb" jdbcType="VARCHAR" property="zzxlb" />
+    <result column="a0221a" jdbcType="VARCHAR" property="a0221a" />
+    <result column="a1701_a" jdbcType="VARCHAR" property="a1701A" />
+    <result column="is_normal" jdbcType="VARCHAR" property="isNormal" />
+    <result column="operate_batch" jdbcType="VARCHAR" property="operateBatch" />
+    <result column="zgxl" jdbcType="VARCHAR" property="zgxl" />
+    <result column="zgxlb" jdbcType="VARCHAR" property="zgxlb" />
+    <result column="zgxlxx" jdbcType="VARCHAR" property="zgxlxx" />
+    <result column="zgxw" jdbcType="VARCHAR" property="zgxw" />
+    <result column="zgxwxx" jdbcType="VARCHAR" property="zgxwxx" />
+    <result column="gsfaqk" jdbcType="VARCHAR" property="gsfaqk" />
+    <result column="cfqn" jdbcType="VARCHAR" property="cfqn" />
+    <result column="age_2" jdbcType="VARCHAR" property="age2" />
+    <result column="a0196b" jdbcType="VARCHAR" property="a0196b" />
+    <result column="a0192d" jdbcType="VARCHAR" property="a0192d" />
+    <result column="a0229" jdbcType="VARCHAR" property="a0229" />
+    <result column="change_state" jdbcType="VARCHAR" property="changeState" />
+    <result column="zj_type" jdbcType="VARCHAR" property="zjType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.support.leaderInfo.entity.A01WithBLOBs">
+    <result column="a0192" jdbcType="LONGVARCHAR" property="a0192" />
+    <result column="a14z101" jdbcType="LONGVARCHAR" property="a14z101" />
+    <result column="a15z101" jdbcType="LONGVARCHAR" property="a15z101" />
+    <result column="time_stamp" jdbcType="LONGVARBINARY" property="timeStamp" />
+    <result column="a1701" jdbcType="LONGVARCHAR" property="a1701" />
+    <result column="rxz_dates" jdbcType="LONGVARCHAR" property="rxzDates" />
+    <result column="a17z1" jdbcType="LONGVARCHAR" property="a17z1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a0100, a0101, a0102, a0104, a0117_a, a0117, a0104_a, a0111b, a0111a, a0107, a0114a,
+    a0114b, a0115b, a0115a, a0120, a0128, a0144, a0121, a0122, a0127, a0160, a0163, a0165, 
+    a0180, a0141, a0187a, a0195, a0192a, a0194, a0197, a0196, a2949, a0140, qrzxl, qrzxw, 
+    qrzxlxx, qrzxwxx, zzxl, zzxw, zzxlxx, zzxwxx, cbdw, jsnlsj, nrzw, nmzw, rmly, rxz_date, 
+    id, is_deleted, modify_user, modify_time, a0184, node_id, a3921, a3927, a01x01, a01x02, 
+    zzxx, qrzxx, a0134, a0140_lrmx, photodetail, a0194a, a0221, a0288, a0192e, a0192c, 
+    leadertype, tbr, tbsj, qrzxlb, zzxlb, a0221a, a1701_a, is_normal, operate_batch, 
+    zgxl, zgxlb, zgxlxx, zgxw, zgxwxx, gsfaqk, cfqn, age_2, a0196b, a0192d, a0229, change_state, 
+    zj_type
+  </sql>
+  <sql id="Blob_Column_List">
+    a0192, a14z101, a15z101, time_stamp, a1701, rxz_dates, a17z1
+  </sql>
+
+  <!--查询所有信息-->
+  <select id="selectAllInfo" resultType="java.util.LinkedHashMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from a01
+  </select>
+
+  <!--根据机构ID查询-->
+  <select id="selectByOrgId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    DISTINCT c.*
+    from a01 c inner join  a02 d
+    on c.a0100 = d.a0100
+    INNER JOIN
+    (select b0111 from b01) e
+    ON
+    d.a0201b=e.b0111
+    where
+    e.b0111 = #{orgId,jdbcType=VARCHAR} and d.a0255='1'
+  </select>
+
+  <!--查询数据信息集-->
+  <select id="selectLeaderInfoData" parameterType="java.lang.String" resultType="com.hxoim.support.leaderInfo.util.LowerKeyMap">
+    select * from ${arg0} where a0100 = #{arg1,jdbcType=VARCHAR}
+  </select>
+
+  <!--查询家庭成员-->
+  <select id="selectFamilyMember" parameterType="java.lang.String" resultType="java.util.Map">
+	SELECT
+	a.A3601 as a3601,
+    a.A3604A as a3604a,
+    a.A3607 as a3607,
+    a.A3611 as a3611, (
+		SELECT
+			b.item_name
+		FROM
+			sys_dict_item b
+		WHERE
+			b.dict_code = 'GB4762'
+		AND a.a3627 = b.item_code
+	)
+	AS a3627
+    FROM
+	a36 a
+    WHERE
+	a.a0100 = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!--导出任免表家庭成员情况-->
+  <select id="selectFamily" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+    a.A3601 as xingMing,
+    a.A3604A as chengWei,
+    a.A3607 as chuShengRiQi,
+    a.A3611 as gongZuoDanWeiJiZhiWu, (
+    SELECT
+    b.item_name
+    FROM
+    sys_dict_item b
+    WHERE
+    b.dict_code = 'GB4762'
+    AND a.a3627 = b.item_code
+    )
+    AS zhengZhiMianMao
+    FROM
+    a36 a
+    WHERE
+    a.a0100 = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!--查询信息列-->
+  <select id="selectInfoLine" resultType="java.util.Map">
+    select
+    TAB_CODE,TAB_NAME
+    from
+    data_table
+    where
+    CatalogId = 'AAA300BD-9DEC-460D-A462-41B084AF8C7A'
+    order by
+    TAB_CODE asc
+  </select>
+
+  <!--查询表信息-->
+  <select id="selectTableInfo" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+	*
+    FROM
+	data_table
+	where
+    TAB_CODE = #{arg0,jdbcType=VARCHAR}
+  </select>
+
+  <!--查询表列名-->
+  <select id="selectTableCol" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+	LOWER(a.COL_CODE) as LOWER_CODE,a.*
+    FROM
+	data_table_col a
+	where
+    TAB_CODE = #{arg0,jdbcType=VARCHAR}
+    ORDER BY
+	col_code asc
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a01
+    where a0100 = #{a0100,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.leaderInfo.entity.A01WithBLOBs">
+    insert into a01 (a0100, a0101, a0102,
+      a0104, a0117_a, a0117, 
+      a0104_a, a0111b, a0111a, 
+      a0107, a0114a, a0114b, 
+      a0115b, a0115a, a0120, 
+      a0128, a0144, a0121, 
+      a0122, a0127, a0160, 
+      a0163, a0165, a0180, 
+      a0141, a0187a, a0195, 
+      a0192a, a0194, a0197, 
+      a0196, a2949, a0140, 
+      qrzxl, qrzxw, qrzxlxx, 
+      qrzxwxx, zzxl, zzxw, 
+      zzxlxx, zzxwxx, cbdw, 
+      jsnlsj, nrzw, nmzw, 
+      rmly, rxz_date, id, 
+      is_deleted, modify_user, modify_time, 
+      a0184, node_id, a3921, 
+      a3927, a01x01, a01x02, 
+      zzxx, qrzxx, a0134, 
+      a0140_lrmx, photodetail, a0194a, 
+      a0221, a0288, a0192e, 
+      a0192c, leadertype, tbr, 
+      tbsj, qrzxlb, zzxlb, 
+      a0221a, a1701_a, is_normal, 
+      operate_batch, zgxl, zgxlb, 
+      zgxlxx, zgxw, zgxwxx, 
+      gsfaqk, cfqn, age_2, 
+      a0196b, a0192d, a0229, 
+      change_state, zj_type, a0192, 
+      a14z101, a15z101, time_stamp, 
+      a1701, rxz_dates, a17z1
+      )
+    values (#{a0100,jdbcType=VARCHAR}, #{a0101,jdbcType=VARCHAR}, #{a0102,jdbcType=VARCHAR},
+      #{a0104,jdbcType=VARCHAR}, #{a0117A,jdbcType=VARCHAR}, #{a0117,jdbcType=VARCHAR}, 
+      #{a0104A,jdbcType=VARCHAR}, #{a0111b,jdbcType=VARCHAR}, #{a0111a,jdbcType=VARCHAR}, 
+      #{a0107,jdbcType=VARCHAR}, #{a0114a,jdbcType=VARCHAR}, #{a0114b,jdbcType=VARCHAR}, 
+      #{a0115b,jdbcType=VARCHAR}, #{a0115a,jdbcType=VARCHAR}, #{a0120,jdbcType=VARCHAR}, 
+      #{a0128,jdbcType=VARCHAR}, #{a0144,jdbcType=TIMESTAMP}, #{a0121,jdbcType=VARCHAR}, 
+      #{a0122,jdbcType=VARCHAR}, #{a0127,jdbcType=VARCHAR}, #{a0160,jdbcType=VARCHAR}, 
+      #{a0163,jdbcType=VARCHAR}, #{a0165,jdbcType=VARCHAR}, #{a0180,jdbcType=VARCHAR}, 
+      #{a0141,jdbcType=VARCHAR}, #{a0187a,jdbcType=VARCHAR}, #{a0195,jdbcType=VARCHAR}, 
+      #{a0192a,jdbcType=VARCHAR}, #{a0194,jdbcType=VARCHAR}, #{a0197,jdbcType=VARCHAR}, 
+      #{a0196,jdbcType=VARCHAR}, #{a2949,jdbcType=VARCHAR}, #{a0140,jdbcType=VARCHAR}, 
+      #{qrzxl,jdbcType=VARCHAR}, #{qrzxw,jdbcType=VARCHAR}, #{qrzxlxx,jdbcType=VARCHAR}, 
+      #{qrzxwxx,jdbcType=VARCHAR}, #{zzxl,jdbcType=VARCHAR}, #{zzxw,jdbcType=VARCHAR}, 
+      #{zzxlxx,jdbcType=VARCHAR}, #{zzxwxx,jdbcType=VARCHAR}, #{cbdw,jdbcType=VARCHAR}, 
+      #{jsnlsj,jdbcType=VARCHAR}, #{nrzw,jdbcType=VARCHAR}, #{nmzw,jdbcType=VARCHAR}, 
+      #{rmly,jdbcType=VARCHAR}, #{rxzDate,jdbcType=TIMESTAMP}, #{id,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{a0184,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{a3921,jdbcType=VARCHAR}, 
+      #{a3927,jdbcType=VARCHAR}, #{a01x01,jdbcType=BIGINT}, #{a01x02,jdbcType=DECIMAL}, 
+      #{zzxx,jdbcType=VARCHAR}, #{qrzxx,jdbcType=VARCHAR}, #{a0134,jdbcType=TIMESTAMP}, 
+      #{a0140Lrmx,jdbcType=VARCHAR}, #{photodetail,jdbcType=VARCHAR}, #{a0194a,jdbcType=VARCHAR}, 
+      #{a0221,jdbcType=VARCHAR}, #{a0288,jdbcType=TIMESTAMP}, #{a0192e,jdbcType=VARCHAR}, 
+      #{a0192c,jdbcType=TIMESTAMP}, #{leadertype,jdbcType=INTEGER}, #{tbr,jdbcType=VARCHAR}, 
+      #{tbsj,jdbcType=VARCHAR}, #{qrzxlb,jdbcType=VARCHAR}, #{zzxlb,jdbcType=VARCHAR}, 
+      #{a0221a,jdbcType=VARCHAR}, #{a1701A,jdbcType=VARCHAR}, #{isNormal,jdbcType=VARCHAR}, 
+      #{operateBatch,jdbcType=VARCHAR}, #{zgxl,jdbcType=VARCHAR}, #{zgxlb,jdbcType=VARCHAR}, 
+      #{zgxlxx,jdbcType=VARCHAR}, #{zgxw,jdbcType=VARCHAR}, #{zgxwxx,jdbcType=VARCHAR}, 
+      #{gsfaqk,jdbcType=VARCHAR}, #{cfqn,jdbcType=VARCHAR}, #{age2,jdbcType=VARCHAR}, 
+      #{a0196b,jdbcType=VARCHAR}, #{a0192d,jdbcType=VARCHAR}, #{a0229,jdbcType=VARCHAR}, 
+      #{changeState,jdbcType=VARCHAR}, #{zjType,jdbcType=VARCHAR}, #{a0192,jdbcType=LONGVARCHAR}, 
+      #{a14z101,jdbcType=LONGVARCHAR}, #{a15z101,jdbcType=LONGVARCHAR}, #{timeStamp,jdbcType=LONGVARBINARY}, 
+      #{a1701,jdbcType=LONGVARCHAR}, #{rxzDates,jdbcType=LONGVARCHAR}, #{a17z1,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.leaderInfo.entity.A01WithBLOBs">
+    insert into a01
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="a0100 != null">
+        a0100,
+      </if>
+      <if test="a0101 != null">
+        a0101,
+      </if>
+      <if test="a0102 != null">
+        a0102,
+      </if>
+      <if test="a0104 != null">
+        a0104,
+      </if>
+      <if test="a0117A != null">
+        a0117_a,
+      </if>
+      <if test="a0117 != null">
+        a0117,
+      </if>
+      <if test="a0104A != null">
+        a0104_a,
+      </if>
+      <if test="a0111b != null">
+        a0111b,
+      </if>
+      <if test="a0111a != null">
+        a0111a,
+      </if>
+      <if test="a0107 != null">
+        a0107,
+      </if>
+      <if test="a0114a != null">
+        a0114a,
+      </if>
+      <if test="a0114b != null">
+        a0114b,
+      </if>
+      <if test="a0115b != null">
+        a0115b,
+      </if>
+      <if test="a0115a != null">
+        a0115a,
+      </if>
+      <if test="a0120 != null">
+        a0120,
+      </if>
+      <if test="a0128 != null">
+        a0128,
+      </if>
+      <if test="a0144 != null">
+        a0144,
+      </if>
+      <if test="a0121 != null">
+        a0121,
+      </if>
+      <if test="a0122 != null">
+        a0122,
+      </if>
+      <if test="a0127 != null">
+        a0127,
+      </if>
+      <if test="a0160 != null">
+        a0160,
+      </if>
+      <if test="a0163 != null">
+        a0163,
+      </if>
+      <if test="a0165 != null">
+        a0165,
+      </if>
+      <if test="a0180 != null">
+        a0180,
+      </if>
+      <if test="a0141 != null">
+        a0141,
+      </if>
+      <if test="a0187a != null">
+        a0187a,
+      </if>
+      <if test="a0195 != null">
+        a0195,
+      </if>
+      <if test="a0192a != null">
+        a0192a,
+      </if>
+      <if test="a0194 != null">
+        a0194,
+      </if>
+      <if test="a0197 != null">
+        a0197,
+      </if>
+      <if test="a0196 != null">
+        a0196,
+      </if>
+      <if test="a2949 != null">
+        a2949,
+      </if>
+      <if test="a0140 != null">
+        a0140,
+      </if>
+      <if test="qrzxl != null">
+        qrzxl,
+      </if>
+      <if test="qrzxw != null">
+        qrzxw,
+      </if>
+      <if test="qrzxlxx != null">
+        qrzxlxx,
+      </if>
+      <if test="qrzxwxx != null">
+        qrzxwxx,
+      </if>
+      <if test="zzxl != null">
+        zzxl,
+      </if>
+      <if test="zzxw != null">
+        zzxw,
+      </if>
+      <if test="zzxlxx != null">
+        zzxlxx,
+      </if>
+      <if test="zzxwxx != null">
+        zzxwxx,
+      </if>
+      <if test="cbdw != null">
+        cbdw,
+      </if>
+      <if test="jsnlsj != null">
+        jsnlsj,
+      </if>
+      <if test="nrzw != null">
+        nrzw,
+      </if>
+      <if test="nmzw != null">
+        nmzw,
+      </if>
+      <if test="rmly != null">
+        rmly,
+      </if>
+      <if test="rxzDate != null">
+        rxz_date,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="a0184 != null">
+        a0184,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="a3921 != null">
+        a3921,
+      </if>
+      <if test="a3927 != null">
+        a3927,
+      </if>
+      <if test="a01x01 != null">
+        a01x01,
+      </if>
+      <if test="a01x02 != null">
+        a01x02,
+      </if>
+      <if test="zzxx != null">
+        zzxx,
+      </if>
+      <if test="qrzxx != null">
+        qrzxx,
+      </if>
+      <if test="a0134 != null">
+        a0134,
+      </if>
+      <if test="a0140Lrmx != null">
+        a0140_lrmx,
+      </if>
+      <if test="photodetail != null">
+        photodetail,
+      </if>
+      <if test="a0194a != null">
+        a0194a,
+      </if>
+      <if test="a0221 != null">
+        a0221,
+      </if>
+      <if test="a0288 != null">
+        a0288,
+      </if>
+      <if test="a0192e != null">
+        a0192e,
+      </if>
+      <if test="a0192c != null">
+        a0192c,
+      </if>
+      <if test="leadertype != null">
+        leadertype,
+      </if>
+      <if test="tbr != null">
+        tbr,
+      </if>
+      <if test="tbsj != null">
+        tbsj,
+      </if>
+      <if test="qrzxlb != null">
+        qrzxlb,
+      </if>
+      <if test="zzxlb != null">
+        zzxlb,
+      </if>
+      <if test="a0221a != null">
+        a0221a,
+      </if>
+      <if test="a1701A != null">
+        a1701_a,
+      </if>
+      <if test="isNormal != null">
+        is_normal,
+      </if>
+      <if test="operateBatch != null">
+        operate_batch,
+      </if>
+      <if test="zgxl != null">
+        zgxl,
+      </if>
+      <if test="zgxlb != null">
+        zgxlb,
+      </if>
+      <if test="zgxlxx != null">
+        zgxlxx,
+      </if>
+      <if test="zgxw != null">
+        zgxw,
+      </if>
+      <if test="zgxwxx != null">
+        zgxwxx,
+      </if>
+      <if test="gsfaqk != null">
+        gsfaqk,
+      </if>
+      <if test="cfqn != null">
+        cfqn,
+      </if>
+      <if test="age2 != null">
+        age_2,
+      </if>
+      <if test="a0196b != null">
+        a0196b,
+      </if>
+      <if test="a0192d != null">
+        a0192d,
+      </if>
+      <if test="a0229 != null">
+        a0229,
+      </if>
+      <if test="changeState != null">
+        change_state,
+      </if>
+      <if test="zjType != null">
+        zj_type,
+      </if>
+      <if test="a0192 != null">
+        a0192,
+      </if>
+      <if test="a14z101 != null">
+        a14z101,
+      </if>
+      <if test="a15z101 != null">
+        a15z101,
+      </if>
+      <if test="timeStamp != null">
+        time_stamp,
+      </if>
+      <if test="a1701 != null">
+        a1701,
+      </if>
+      <if test="rxzDates != null">
+        rxz_dates,
+      </if>
+      <if test="a17z1 != null">
+        a17z1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="a0100 != null">
+        #{a0100,jdbcType=VARCHAR},
+      </if>
+      <if test="a0101 != null">
+        #{a0101,jdbcType=VARCHAR},
+      </if>
+      <if test="a0102 != null">
+        #{a0102,jdbcType=VARCHAR},
+      </if>
+      <if test="a0104 != null">
+        #{a0104,jdbcType=VARCHAR},
+      </if>
+      <if test="a0117A != null">
+        #{a0117A,jdbcType=VARCHAR},
+      </if>
+      <if test="a0117 != null">
+        #{a0117,jdbcType=VARCHAR},
+      </if>
+      <if test="a0104A != null">
+        #{a0104A,jdbcType=VARCHAR},
+      </if>
+      <if test="a0111b != null">
+        #{a0111b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0111a != null">
+        #{a0111a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0107 != null">
+        #{a0107,jdbcType=VARCHAR},
+      </if>
+      <if test="a0114a != null">
+        #{a0114a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0114b != null">
+        #{a0114b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0115b != null">
+        #{a0115b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0115a != null">
+        #{a0115a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0120 != null">
+        #{a0120,jdbcType=VARCHAR},
+      </if>
+      <if test="a0128 != null">
+        #{a0128,jdbcType=VARCHAR},
+      </if>
+      <if test="a0144 != null">
+        #{a0144,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0121 != null">
+        #{a0121,jdbcType=VARCHAR},
+      </if>
+      <if test="a0122 != null">
+        #{a0122,jdbcType=VARCHAR},
+      </if>
+      <if test="a0127 != null">
+        #{a0127,jdbcType=VARCHAR},
+      </if>
+      <if test="a0160 != null">
+        #{a0160,jdbcType=VARCHAR},
+      </if>
+      <if test="a0163 != null">
+        #{a0163,jdbcType=VARCHAR},
+      </if>
+      <if test="a0165 != null">
+        #{a0165,jdbcType=VARCHAR},
+      </if>
+      <if test="a0180 != null">
+        #{a0180,jdbcType=VARCHAR},
+      </if>
+      <if test="a0141 != null">
+        #{a0141,jdbcType=VARCHAR},
+      </if>
+      <if test="a0187a != null">
+        #{a0187a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0195 != null">
+        #{a0195,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192a != null">
+        #{a0192a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0194 != null">
+        #{a0194,jdbcType=VARCHAR},
+      </if>
+      <if test="a0197 != null">
+        #{a0197,jdbcType=VARCHAR},
+      </if>
+      <if test="a0196 != null">
+        #{a0196,jdbcType=VARCHAR},
+      </if>
+      <if test="a2949 != null">
+        #{a2949,jdbcType=VARCHAR},
+      </if>
+      <if test="a0140 != null">
+        #{a0140,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxl != null">
+        #{qrzxl,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxw != null">
+        #{qrzxw,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxlxx != null">
+        #{qrzxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxwxx != null">
+        #{qrzxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxl != null">
+        #{zzxl,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxw != null">
+        #{zzxw,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxlxx != null">
+        #{zzxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxwxx != null">
+        #{zzxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="cbdw != null">
+        #{cbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnlsj != null">
+        #{jsnlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="nrzw != null">
+        #{nrzw,jdbcType=VARCHAR},
+      </if>
+      <if test="nmzw != null">
+        #{nmzw,jdbcType=VARCHAR},
+      </if>
+      <if test="rmly != null">
+        #{rmly,jdbcType=VARCHAR},
+      </if>
+      <if test="rxzDate != null">
+        #{rxzDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0184 != null">
+        #{a0184,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="a3921 != null">
+        #{a3921,jdbcType=VARCHAR},
+      </if>
+      <if test="a3927 != null">
+        #{a3927,jdbcType=VARCHAR},
+      </if>
+      <if test="a01x01 != null">
+        #{a01x01,jdbcType=BIGINT},
+      </if>
+      <if test="a01x02 != null">
+        #{a01x02,jdbcType=DECIMAL},
+      </if>
+      <if test="zzxx != null">
+        #{zzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxx != null">
+        #{qrzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="a0134 != null">
+        #{a0134,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0140Lrmx != null">
+        #{a0140Lrmx,jdbcType=VARCHAR},
+      </if>
+      <if test="photodetail != null">
+        #{photodetail,jdbcType=VARCHAR},
+      </if>
+      <if test="a0194a != null">
+        #{a0194a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0221 != null">
+        #{a0221,jdbcType=VARCHAR},
+      </if>
+      <if test="a0288 != null">
+        #{a0288,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0192e != null">
+        #{a0192e,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192c != null">
+        #{a0192c,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leadertype != null">
+        #{leadertype,jdbcType=INTEGER},
+      </if>
+      <if test="tbr != null">
+        #{tbr,jdbcType=VARCHAR},
+      </if>
+      <if test="tbsj != null">
+        #{tbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxlb != null">
+        #{qrzxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxlb != null">
+        #{zzxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="a0221a != null">
+        #{a0221a,jdbcType=VARCHAR},
+      </if>
+      <if test="a1701A != null">
+        #{a1701A,jdbcType=VARCHAR},
+      </if>
+      <if test="isNormal != null">
+        #{isNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBatch != null">
+        #{operateBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxl != null">
+        #{zgxl,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxlb != null">
+        #{zgxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxlxx != null">
+        #{zgxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxw != null">
+        #{zgxw,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxwxx != null">
+        #{zgxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="gsfaqk != null">
+        #{gsfaqk,jdbcType=VARCHAR},
+      </if>
+      <if test="cfqn != null">
+        #{cfqn,jdbcType=VARCHAR},
+      </if>
+      <if test="age2 != null">
+        #{age2,jdbcType=VARCHAR},
+      </if>
+      <if test="a0196b != null">
+        #{a0196b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192d != null">
+        #{a0192d,jdbcType=VARCHAR},
+      </if>
+      <if test="a0229 != null">
+        #{a0229,jdbcType=VARCHAR},
+      </if>
+      <if test="changeState != null">
+        #{changeState,jdbcType=VARCHAR},
+      </if>
+      <if test="zjType != null">
+        #{zjType,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192 != null">
+        #{a0192,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a14z101 != null">
+        #{a14z101,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a15z101 != null">
+        #{a15z101,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="timeStamp != null">
+        #{timeStamp,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="a1701 != null">
+        #{a1701,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rxzDates != null">
+        #{rxzDates,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a17z1 != null">
+        #{a17z1,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.leaderInfo.entity.A01WithBLOBs">
+    update a01
+    <set>
+      <if test="a0101 != null">
+        a0101 = #{a0101,jdbcType=VARCHAR},
+      </if>
+      <if test="a0102 != null">
+        a0102 = #{a0102,jdbcType=VARCHAR},
+      </if>
+      <if test="a0104 != null">
+        a0104 = #{a0104,jdbcType=VARCHAR},
+      </if>
+      <if test="a0117A != null">
+        a0117_a = #{a0117A,jdbcType=VARCHAR},
+      </if>
+      <if test="a0117 != null">
+        a0117 = #{a0117,jdbcType=VARCHAR},
+      </if>
+      <if test="a0104A != null">
+        a0104_a = #{a0104A,jdbcType=VARCHAR},
+      </if>
+      <if test="a0111b != null">
+        a0111b = #{a0111b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0111a != null">
+        a0111a = #{a0111a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0107 != null">
+        a0107 = #{a0107,jdbcType=VARCHAR},
+      </if>
+      <if test="a0114a != null">
+        a0114a = #{a0114a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0114b != null">
+        a0114b = #{a0114b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0115b != null">
+        a0115b = #{a0115b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0115a != null">
+        a0115a = #{a0115a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0120 != null">
+        a0120 = #{a0120,jdbcType=VARCHAR},
+      </if>
+      <if test="a0128 != null">
+        a0128 = #{a0128,jdbcType=VARCHAR},
+      </if>
+      <if test="a0144 != null">
+        a0144 = #{a0144,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0121 != null">
+        a0121 = #{a0121,jdbcType=VARCHAR},
+      </if>
+      <if test="a0122 != null">
+        a0122 = #{a0122,jdbcType=VARCHAR},
+      </if>
+      <if test="a0127 != null">
+        a0127 = #{a0127,jdbcType=VARCHAR},
+      </if>
+      <if test="a0160 != null">
+        a0160 = #{a0160,jdbcType=VARCHAR},
+      </if>
+      <if test="a0163 != null">
+        a0163 = #{a0163,jdbcType=VARCHAR},
+      </if>
+      <if test="a0165 != null">
+        a0165 = #{a0165,jdbcType=VARCHAR},
+      </if>
+      <if test="a0180 != null">
+        a0180 = #{a0180,jdbcType=VARCHAR},
+      </if>
+      <if test="a0141 != null">
+        a0141 = #{a0141,jdbcType=VARCHAR},
+      </if>
+      <if test="a0187a != null">
+        a0187a = #{a0187a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0195 != null">
+        a0195 = #{a0195,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192a != null">
+        a0192a = #{a0192a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0194 != null">
+        a0194 = #{a0194,jdbcType=VARCHAR},
+      </if>
+      <if test="a0197 != null">
+        a0197 = #{a0197,jdbcType=VARCHAR},
+      </if>
+      <if test="a0196 != null">
+        a0196 = #{a0196,jdbcType=VARCHAR},
+      </if>
+      <if test="a2949 != null">
+        a2949 = #{a2949,jdbcType=VARCHAR},
+      </if>
+      <if test="a0140 != null">
+        a0140 = #{a0140,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxl != null">
+        qrzxl = #{qrzxl,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxw != null">
+        qrzxw = #{qrzxw,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxlxx != null">
+        qrzxlxx = #{qrzxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxwxx != null">
+        qrzxwxx = #{qrzxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxl != null">
+        zzxl = #{zzxl,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxw != null">
+        zzxw = #{zzxw,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxlxx != null">
+        zzxlxx = #{zzxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxwxx != null">
+        zzxwxx = #{zzxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="cbdw != null">
+        cbdw = #{cbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnlsj != null">
+        jsnlsj = #{jsnlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="nrzw != null">
+        nrzw = #{nrzw,jdbcType=VARCHAR},
+      </if>
+      <if test="nmzw != null">
+        nmzw = #{nmzw,jdbcType=VARCHAR},
+      </if>
+      <if test="rmly != null">
+        rmly = #{rmly,jdbcType=VARCHAR},
+      </if>
+      <if test="rxzDate != null">
+        rxz_date = #{rxzDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0184 != null">
+        a0184 = #{a0184,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="a3921 != null">
+        a3921 = #{a3921,jdbcType=VARCHAR},
+      </if>
+      <if test="a3927 != null">
+        a3927 = #{a3927,jdbcType=VARCHAR},
+      </if>
+      <if test="a01x01 != null">
+        a01x01 = #{a01x01,jdbcType=BIGINT},
+      </if>
+      <if test="a01x02 != null">
+        a01x02 = #{a01x02,jdbcType=DECIMAL},
+      </if>
+      <if test="zzxx != null">
+        zzxx = #{zzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxx != null">
+        qrzxx = #{qrzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="a0134 != null">
+        a0134 = #{a0134,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0140Lrmx != null">
+        a0140_lrmx = #{a0140Lrmx,jdbcType=VARCHAR},
+      </if>
+      <if test="photodetail != null">
+        photodetail = #{photodetail,jdbcType=VARCHAR},
+      </if>
+      <if test="a0194a != null">
+        a0194a = #{a0194a,jdbcType=VARCHAR},
+      </if>
+      <if test="a0221 != null">
+        a0221 = #{a0221,jdbcType=VARCHAR},
+      </if>
+      <if test="a0288 != null">
+        a0288 = #{a0288,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a0192e != null">
+        a0192e = #{a0192e,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192c != null">
+        a0192c = #{a0192c,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leadertype != null">
+        leadertype = #{leadertype,jdbcType=INTEGER},
+      </if>
+      <if test="tbr != null">
+        tbr = #{tbr,jdbcType=VARCHAR},
+      </if>
+      <if test="tbsj != null">
+        tbsj = #{tbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="qrzxlb != null">
+        qrzxlb = #{qrzxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zzxlb != null">
+        zzxlb = #{zzxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="a0221a != null">
+        a0221a = #{a0221a,jdbcType=VARCHAR},
+      </if>
+      <if test="a1701A != null">
+        a1701_a = #{a1701A,jdbcType=VARCHAR},
+      </if>
+      <if test="isNormal != null">
+        is_normal = #{isNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBatch != null">
+        operate_batch = #{operateBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxl != null">
+        zgxl = #{zgxl,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxlb != null">
+        zgxlb = #{zgxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxlxx != null">
+        zgxlxx = #{zgxlxx,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxw != null">
+        zgxw = #{zgxw,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxwxx != null">
+        zgxwxx = #{zgxwxx,jdbcType=VARCHAR},
+      </if>
+      <if test="gsfaqk != null">
+        gsfaqk = #{gsfaqk,jdbcType=VARCHAR},
+      </if>
+      <if test="cfqn != null">
+        cfqn = #{cfqn,jdbcType=VARCHAR},
+      </if>
+      <if test="age2 != null">
+        age_2 = #{age2,jdbcType=VARCHAR},
+      </if>
+      <if test="a0196b != null">
+        a0196b = #{a0196b,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192d != null">
+        a0192d = #{a0192d,jdbcType=VARCHAR},
+      </if>
+      <if test="a0229 != null">
+        a0229 = #{a0229,jdbcType=VARCHAR},
+      </if>
+      <if test="changeState != null">
+        change_state = #{changeState,jdbcType=VARCHAR},
+      </if>
+      <if test="zjType != null">
+        zj_type = #{zjType,jdbcType=VARCHAR},
+      </if>
+      <if test="a0192 != null">
+        a0192 = #{a0192,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a14z101 != null">
+        a14z101 = #{a14z101,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a15z101 != null">
+        a15z101 = #{a15z101,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="timeStamp != null">
+        time_stamp = #{timeStamp,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="a1701 != null">
+        a1701 = #{a1701,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rxzDates != null">
+        rxz_dates = #{rxzDates,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="a17z1 != null">
+        a17z1 = #{a17z1,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where a0100 = #{a0100,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.support.leaderInfo.entity.A01WithBLOBs">
+    update a01
+    set a0101 = #{a0101,jdbcType=VARCHAR},
+      a0102 = #{a0102,jdbcType=VARCHAR},
+      a0104 = #{a0104,jdbcType=VARCHAR},
+      a0117_a = #{a0117A,jdbcType=VARCHAR},
+      a0117 = #{a0117,jdbcType=VARCHAR},
+      a0104_a = #{a0104A,jdbcType=VARCHAR},
+      a0111b = #{a0111b,jdbcType=VARCHAR},
+      a0111a = #{a0111a,jdbcType=VARCHAR},
+      a0107 = #{a0107,jdbcType=VARCHAR},
+      a0114a = #{a0114a,jdbcType=VARCHAR},
+      a0114b = #{a0114b,jdbcType=VARCHAR},
+      a0115b = #{a0115b,jdbcType=VARCHAR},
+      a0115a = #{a0115a,jdbcType=VARCHAR},
+      a0120 = #{a0120,jdbcType=VARCHAR},
+      a0128 = #{a0128,jdbcType=VARCHAR},
+      a0144 = #{a0144,jdbcType=TIMESTAMP},
+      a0121 = #{a0121,jdbcType=VARCHAR},
+      a0122 = #{a0122,jdbcType=VARCHAR},
+      a0127 = #{a0127,jdbcType=VARCHAR},
+      a0160 = #{a0160,jdbcType=VARCHAR},
+      a0163 = #{a0163,jdbcType=VARCHAR},
+      a0165 = #{a0165,jdbcType=VARCHAR},
+      a0180 = #{a0180,jdbcType=VARCHAR},
+      a0141 = #{a0141,jdbcType=VARCHAR},
+      a0187a = #{a0187a,jdbcType=VARCHAR},
+      a0195 = #{a0195,jdbcType=VARCHAR},
+      a0192a = #{a0192a,jdbcType=VARCHAR},
+      a0194 = #{a0194,jdbcType=VARCHAR},
+      a0197 = #{a0197,jdbcType=VARCHAR},
+      a0196 = #{a0196,jdbcType=VARCHAR},
+      a2949 = #{a2949,jdbcType=VARCHAR},
+      a0140 = #{a0140,jdbcType=VARCHAR},
+      qrzxl = #{qrzxl,jdbcType=VARCHAR},
+      qrzxw = #{qrzxw,jdbcType=VARCHAR},
+      qrzxlxx = #{qrzxlxx,jdbcType=VARCHAR},
+      qrzxwxx = #{qrzxwxx,jdbcType=VARCHAR},
+      zzxl = #{zzxl,jdbcType=VARCHAR},
+      zzxw = #{zzxw,jdbcType=VARCHAR},
+      zzxlxx = #{zzxlxx,jdbcType=VARCHAR},
+      zzxwxx = #{zzxwxx,jdbcType=VARCHAR},
+      cbdw = #{cbdw,jdbcType=VARCHAR},
+      jsnlsj = #{jsnlsj,jdbcType=VARCHAR},
+      nrzw = #{nrzw,jdbcType=VARCHAR},
+      nmzw = #{nmzw,jdbcType=VARCHAR},
+      rmly = #{rmly,jdbcType=VARCHAR},
+      rxz_date = #{rxzDate,jdbcType=TIMESTAMP},
+      id = #{id,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      a0184 = #{a0184,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      a3921 = #{a3921,jdbcType=VARCHAR},
+      a3927 = #{a3927,jdbcType=VARCHAR},
+      a01x01 = #{a01x01,jdbcType=BIGINT},
+      a01x02 = #{a01x02,jdbcType=DECIMAL},
+      zzxx = #{zzxx,jdbcType=VARCHAR},
+      qrzxx = #{qrzxx,jdbcType=VARCHAR},
+      a0134 = #{a0134,jdbcType=TIMESTAMP},
+      a0140_lrmx = #{a0140Lrmx,jdbcType=VARCHAR},
+      photodetail = #{photodetail,jdbcType=VARCHAR},
+      a0194a = #{a0194a,jdbcType=VARCHAR},
+      a0221 = #{a0221,jdbcType=VARCHAR},
+      a0288 = #{a0288,jdbcType=TIMESTAMP},
+      a0192e = #{a0192e,jdbcType=VARCHAR},
+      a0192c = #{a0192c,jdbcType=TIMESTAMP},
+      leadertype = #{leadertype,jdbcType=INTEGER},
+      tbr = #{tbr,jdbcType=VARCHAR},
+      tbsj = #{tbsj,jdbcType=VARCHAR},
+      qrzxlb = #{qrzxlb,jdbcType=VARCHAR},
+      zzxlb = #{zzxlb,jdbcType=VARCHAR},
+      a0221a = #{a0221a,jdbcType=VARCHAR},
+      a1701_a = #{a1701A,jdbcType=VARCHAR},
+      is_normal = #{isNormal,jdbcType=VARCHAR},
+      operate_batch = #{operateBatch,jdbcType=VARCHAR},
+      zgxl = #{zgxl,jdbcType=VARCHAR},
+      zgxlb = #{zgxlb,jdbcType=VARCHAR},
+      zgxlxx = #{zgxlxx,jdbcType=VARCHAR},
+      zgxw = #{zgxw,jdbcType=VARCHAR},
+      zgxwxx = #{zgxwxx,jdbcType=VARCHAR},
+      gsfaqk = #{gsfaqk,jdbcType=VARCHAR},
+      cfqn = #{cfqn,jdbcType=VARCHAR},
+      age_2 = #{age2,jdbcType=VARCHAR},
+      a0196b = #{a0196b,jdbcType=VARCHAR},
+      a0192d = #{a0192d,jdbcType=VARCHAR},
+      a0229 = #{a0229,jdbcType=VARCHAR},
+      change_state = #{changeState,jdbcType=VARCHAR},
+      zj_type = #{zjType,jdbcType=VARCHAR},
+      a0192 = #{a0192,jdbcType=LONGVARCHAR},
+      a14z101 = #{a14z101,jdbcType=LONGVARCHAR},
+      a15z101 = #{a15z101,jdbcType=LONGVARCHAR},
+      time_stamp = #{timeStamp,jdbcType=LONGVARBINARY},
+      a1701 = #{a1701,jdbcType=LONGVARCHAR},
+      rxz_dates = #{rxzDates,jdbcType=LONGVARCHAR},
+      a17z1 = #{a17z1,jdbcType=LONGVARCHAR}
+    where a0100 = #{a0100,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.leaderInfo.entity.A01">
+    update a01
+    set a0101 = #{a0101,jdbcType=VARCHAR},
+      a0102 = #{a0102,jdbcType=VARCHAR},
+      a0104 = #{a0104,jdbcType=VARCHAR},
+      a0117_a = #{a0117A,jdbcType=VARCHAR},
+      a0117 = #{a0117,jdbcType=VARCHAR},
+      a0104_a = #{a0104A,jdbcType=VARCHAR},
+      a0111b = #{a0111b,jdbcType=VARCHAR},
+      a0111a = #{a0111a,jdbcType=VARCHAR},
+      a0107 = #{a0107,jdbcType=VARCHAR},
+      a0114a = #{a0114a,jdbcType=VARCHAR},
+      a0114b = #{a0114b,jdbcType=VARCHAR},
+      a0115b = #{a0115b,jdbcType=VARCHAR},
+      a0115a = #{a0115a,jdbcType=VARCHAR},
+      a0120 = #{a0120,jdbcType=VARCHAR},
+      a0128 = #{a0128,jdbcType=VARCHAR},
+      a0144 = #{a0144,jdbcType=TIMESTAMP},
+      a0121 = #{a0121,jdbcType=VARCHAR},
+      a0122 = #{a0122,jdbcType=VARCHAR},
+      a0127 = #{a0127,jdbcType=VARCHAR},
+      a0160 = #{a0160,jdbcType=VARCHAR},
+      a0163 = #{a0163,jdbcType=VARCHAR},
+      a0165 = #{a0165,jdbcType=VARCHAR},
+      a0180 = #{a0180,jdbcType=VARCHAR},
+      a0141 = #{a0141,jdbcType=VARCHAR},
+      a0187a = #{a0187a,jdbcType=VARCHAR},
+      a0195 = #{a0195,jdbcType=VARCHAR},
+      a0192a = #{a0192a,jdbcType=VARCHAR},
+      a0194 = #{a0194,jdbcType=VARCHAR},
+      a0197 = #{a0197,jdbcType=VARCHAR},
+      a0196 = #{a0196,jdbcType=VARCHAR},
+      a2949 = #{a2949,jdbcType=VARCHAR},
+      a0140 = #{a0140,jdbcType=VARCHAR},
+      qrzxl = #{qrzxl,jdbcType=VARCHAR},
+      qrzxw = #{qrzxw,jdbcType=VARCHAR},
+      qrzxlxx = #{qrzxlxx,jdbcType=VARCHAR},
+      qrzxwxx = #{qrzxwxx,jdbcType=VARCHAR},
+      zzxl = #{zzxl,jdbcType=VARCHAR},
+      zzxw = #{zzxw,jdbcType=VARCHAR},
+      zzxlxx = #{zzxlxx,jdbcType=VARCHAR},
+      zzxwxx = #{zzxwxx,jdbcType=VARCHAR},
+      cbdw = #{cbdw,jdbcType=VARCHAR},
+      jsnlsj = #{jsnlsj,jdbcType=VARCHAR},
+      nrzw = #{nrzw,jdbcType=VARCHAR},
+      nmzw = #{nmzw,jdbcType=VARCHAR},
+      rmly = #{rmly,jdbcType=VARCHAR},
+      rxz_date = #{rxzDate,jdbcType=TIMESTAMP},
+      id = #{id,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      a0184 = #{a0184,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      a3921 = #{a3921,jdbcType=VARCHAR},
+      a3927 = #{a3927,jdbcType=VARCHAR},
+      a01x01 = #{a01x01,jdbcType=BIGINT},
+      a01x02 = #{a01x02,jdbcType=DECIMAL},
+      zzxx = #{zzxx,jdbcType=VARCHAR},
+      qrzxx = #{qrzxx,jdbcType=VARCHAR},
+      a0134 = #{a0134,jdbcType=TIMESTAMP},
+      a0140_lrmx = #{a0140Lrmx,jdbcType=VARCHAR},
+      photodetail = #{photodetail,jdbcType=VARCHAR},
+      a0194a = #{a0194a,jdbcType=VARCHAR},
+      a0221 = #{a0221,jdbcType=VARCHAR},
+      a0288 = #{a0288,jdbcType=TIMESTAMP},
+      a0192e = #{a0192e,jdbcType=VARCHAR},
+      a0192c = #{a0192c,jdbcType=TIMESTAMP},
+      leadertype = #{leadertype,jdbcType=INTEGER},
+      tbr = #{tbr,jdbcType=VARCHAR},
+      tbsj = #{tbsj,jdbcType=VARCHAR},
+      qrzxlb = #{qrzxlb,jdbcType=VARCHAR},
+      zzxlb = #{zzxlb,jdbcType=VARCHAR},
+      a0221a = #{a0221a,jdbcType=VARCHAR},
+      a1701_a = #{a1701A,jdbcType=VARCHAR},
+      is_normal = #{isNormal,jdbcType=VARCHAR},
+      operate_batch = #{operateBatch,jdbcType=VARCHAR},
+      zgxl = #{zgxl,jdbcType=VARCHAR},
+      zgxlb = #{zgxlb,jdbcType=VARCHAR},
+      zgxlxx = #{zgxlxx,jdbcType=VARCHAR},
+      zgxw = #{zgxw,jdbcType=VARCHAR},
+      zgxwxx = #{zgxwxx,jdbcType=VARCHAR},
+      gsfaqk = #{gsfaqk,jdbcType=VARCHAR},
+      cfqn = #{cfqn,jdbcType=VARCHAR},
+      age_2 = #{age2,jdbcType=VARCHAR},
+      a0196b = #{a0196b,jdbcType=VARCHAR},
+      a0192d = #{a0192d,jdbcType=VARCHAR},
+      a0229 = #{a0229,jdbcType=VARCHAR},
+      change_state = #{changeState,jdbcType=VARCHAR},
+      zj_type = #{zjType,jdbcType=VARCHAR}
+    where a0100 = #{a0100,jdbcType=VARCHAR}
+  </update>
+</mapper>

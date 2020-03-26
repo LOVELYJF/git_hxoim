@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="hxoim:Web exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list id="3cbc6a9e-9bcb-42b4-9b2e-8eeaa1a4bf7a" name="not submit" comment="不提交">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webRoot/META-INF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webRoot/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.resources/db.properties" afterPath="$PROJECT_DIR$/src.resources/db.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.resources/kettle.properties" afterPath="$PROJECT_DIR$/src.resources/kettle.properties" />
+    </list>
+    <list default="true" readonly="true" id="1d8c48c6-5e06-4f87-8d58-c812a153cac6" name="Default" comment="修改 排列顺序">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webRoot/WEB-INF/lib/Dm7JdbcDriver17.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.common/com/hxoim/common/rmbKit/models/A17.java" afterPath="$PROJECT_DIR$/src.common/com/hxoim/common/rmbKit/models/A17.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/mapper/FullSearchSettingMapper.xml" afterPath="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/mapper/FullSearchSettingMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/service/impl/FullTextSearchServiceImpl.java" afterPath="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/service/impl/FullTextSearchServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.java" afterPath="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.xml" afterPath="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.resources/config/mybatis-config-dao.xml" afterPath="$PROJECT_DIR$/src.resources/config/mybatis-config-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.resources/generatorConfig.xml" afterPath="$PROJECT_DIR$/src.resources/generatorConfig.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/mapper/QueryPlanMapper.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/mapper/QueryPlanMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/service/impl/PersonCustomQueryServiceImpl.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/service/impl/PersonCustomQueryServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.xml" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/entity/A01.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/entity/A01.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/mapper/A01Mapper.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/mapper/A01Mapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/mapper/A01Mapper.xml" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/mapper/A01Mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/module/mapper/ModuleMapper.xml" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/module/mapper/ModuleMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/parameter/entity/Parameter.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/parameter/entity/Parameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/parameter/mapper/ParameterMapper.xml" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/parameter/mapper/ParameterMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/user/entity/User.java" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/user/entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.support/com/hxoim/support/user/mapper/UserMapper.xml" afterPath="$PROJECT_DIR$/src.support/com/hxoim/support/user/mapper/UserMapper.xml" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <file path="$PROJECT_DIR$/src.resources/db.properties" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="DataTableColMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="599" column="20" lean-forward="true" selection-start-line="599" selection-start-column="20" selection-end-line="599" selection-end-column="20" />
+              <folding>
+                <marker date="1585128649025" expanded="true" signature="5907:6017" ph="select from data_table_col" />
+                <marker date="1585128649025" expanded="true" signature="6102:6166" ph="delete from " />
+                <marker date="1585128649025" expanded="true" signature="6273:8252" ph="insert into data_table_col... " />
+                <marker date="1585128649025" expanded="true" signature="14961:19033" ph="update data_... " />
+                <marker date="1585128649025" expanded="true" signature="19152:21215" ph="update data_... " />
+                <marker date="1585128649025" expanded="true" signature="21297:21372" ph="delete from " />
+                <marker date="1585128649025" expanded="true" signature="21501:21567" ph="UPDATE data_... " />
+                <marker date="1585128649025" expanded="true" signature="21738:21807" ph="SELECT MAX(O... data_table_col" />
+                <marker date="1585128649025" expanded="true" signature="22776:22840" ph="alter table ${tabCode}... " />
+                <marker date="1585128649025" expanded="true" signature="23282:23296" ph="(${length1})... " />
+                <marker date="1585128649025" expanded="true" signature="23338:23368" ph="(${length1},... " />
+                <marker date="1585128649025" expanded="true" signature="23528:23574" ph="alter table ${tabCode}... " />
+                <marker date="1585128649025" expanded="true" signature="24001:24181" ph="select from data_table_col" />
+                <marker date="1585128649025" expanded="true" signature="24311:24431" ph="select from data_table_col" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableColMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/DataTableService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="74" column="8" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/impl/DataTableServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="154" column="33" lean-forward="true" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/controller/DataTableController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableColController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/controller/DataTableColController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableColService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/DataTableColService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataTableColServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/impl/DataTableColServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="148" column="15" lean-forward="false" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>selectInfoByNodeId</find>
+      <find>selectMcByPid</find>
+      <find>deleteById</find>
+      <find>McMarkedcadreMapper</find>
+      <find>cf_datachangedlog</find>
+      <find>loginManage</find>
+      <find>password</find>
+      <find>0</find>
+      <find>cf_parameter</find>
+      <find>CF_PARAMETER</find>
+      <find>checkToken</find>
+      <find>userPassword</find>
+      <find>user_role_view</find>
+      <find>user_code</find>
+      <find>BaseResultMap</find>
+      <find>Operatelog</find>
+      <find>insertSelective</find>
+      <find>selectSysTempModule</find>
+      <find>selectOrgTree</find>
+      <find>FROM mc_a01 a LEFT JOIN a01 b</find>
+      <find>FROM mc_a01</find>
+      <find>a01000</find>
+      <find>selectModuleTree</find>
+      <find>222</find>
+      <find>selectGrantModuleTree</find>
+      <find>selectOneByPrimaryKey</find>
+      <find>if</find>
+      <find>id=&quot;updateColumn&quot;</find>
+      <find>updateByPrimaryKeySelective</find>
+      <find>DataTableCol</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>userPassword</replace>
+      <replace>password</replace>
+      <replace>a0100</replace>
+    </replaceStrings>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/service/impl/FullTextSearchServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.common/com/hxoim/common/interceptor/MybatisExecutorInterceptor.java" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/mapper/QueryPlanMapper.xml" />
+        <option value="$PROJECT_DIR$/src.notice/com/hxoim/notice/content/mapper/NoticeContentMapper.xml" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/mapper/QueryPlanMapper.java" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/customquery/service/impl/PersonCustomQueryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.work/com/hxoim/work/workinfo/mapper/WorkResponsibleMapper.xml" />
+        <option value="$PROJECT_DIR$/src.work/com/hxoim/work/workinfo/service/impl/WorkInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.work/com/hxoim/work/workinfo/mapper/WorkInfoMapper.java" />
+        <option value="$PROJECT_DIR$/src.resources/work.properties" />
+        <option value="$PROJECT_DIR$/src.resources/kettle.properties" />
+        <option value="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/service/impl/McMarkedCadreServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.java" />
+        <option value="$PROJECT_DIR$/src.resources/db.properties" />
+        <option value="$PROJECT_DIR$/src.common/com/hxoim/common/interceptor/ClientRequestInterceptor.java" />
+        <option value="$PROJECT_DIR$/src.common/com/hxoim/common/shiro/UserRealm.java" />
+        <option value="$PROJECT_DIR$/src.common/com/hxoim/common/utils/JWTUtil.java" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/user/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/user/mapper/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/user/entity/User.java" />
+        <option value="$PROJECT_DIR$/src.resources/config/mybatis-config-dao.xml" />
+        <option value="$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.xml" />
+        <option value="$PROJECT_DIR$/src.common/com/hxoim/common/rmbKit/models/A17.java" />
+        <option value="$PROJECT_DIR$/src.resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/module/mapper/ModuleMapper.xml" />
+        <option value="$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/mapper/FullSearchSettingMapper.xml" />
+        <option value="$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="2" />
+    <option name="width" value="1918" />
+    <option name="height" value="1030" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.common" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.fulltextsearch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.fulltextsearch" type="462c0819:PsiDirectoryNode" />
+              <item name="search" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.fulltextsearch" type="462c0819:PsiDirectoryNode" />
+              <item name="search" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.resources" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="indexTemp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="indexTemp" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="inforesource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="inforesource" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="inforesource" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hxoim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hxoim" type="462c0819:PsiDirectoryNode" />
+              <item name="src.support" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="nodejs_interpreter_path" value="D:/tools/nodejs/node" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="F:/TestProject/jdbc" />
+    <property name="SearchEverywhereHistoryKey" value="selectOrgGrantModule&#9;PSI&#9;JAVA://com.hxoim.support.module.mapper.ModuleMapper#selectOrgGrantModule&#10;login&#9;PSI&#9;JAVA://com.hxoim.support.DataChangedLog.entity.OperatorType#Login&#10;lo&#9;FILE&#9;file://F:/统一平台 数据交换/plaftproject/hxoim/src.sso/com/hxoim/sso/login/controller/LoginController.java&#10;selectRouterList&#9;PSI&#9;JAVA://com.hxoim.sso.login.controller.LoginController#selectRouterList&#10;workI&#9;FILE&#9;file://F:/统一平台 数据交换/plaftproject/hxoim/src.work/com/hxoim/work/workinfo/entity/WorkInfo.java&#10;ITEM&#9;FILE&#9;file://F:/统一平台 数据交换/plaftproject/hxoim/src.support/com/hxoim/support/indexTemp/entity/IndexTemp.java&#10;Sys&#9;FILE&#9;file://F:/统一平台 数据交换/plaftproject/hxoim/src.support/com/hxoim/support/indexTemp/entity/SysTempModule.java" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\统一平台 数据交换\plaftproject\hxoim\webRoot\WEB-INF\lib" />
+      <recent name="F:\统一平台 数据交换\plaftproject\hxoim\src.resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Unnamed">
+    <configuration name="Unnamed" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.31" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="hxoim:Web exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_hxoim_2" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58438" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="hxoim:Web exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\统一平台 数据交换\plaftproject\hxoim" />
+          <option name="myCopyRoot" value="F:\统一平台 数据交换\plaftproject\hxoim" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\统一平台 数据交换\plaftproject\hxoim" />
+          <option name="myCopyRoot" value="F:\统一平台 数据交换\plaftproject\hxoim" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d8c48c6-5e06-4f87-8d58-c812a153cac6" name="Default" comment="" />
+      <changelist id="3cbc6a9e-9bcb-42b4-9b2e-8eeaa1a4bf7a" name="not submit" comment="不提交" />
+      <created>1577181092965</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577181092965</updated>
+      <workItem from="1577181094532" duration="1013000" />
+      <workItem from="1577184043162" duration="4614000" />
+      <workItem from="1577238422524" duration="23544000" />
+      <workItem from="1577409432377" duration="3307000" />
+      <workItem from="1577925439568" duration="22250000" />
+      <workItem from="1578293454130" duration="9725000" />
+      <workItem from="1578357445269" duration="11975000" />
+      <workItem from="1578634554873" duration="9859000" />
+      <workItem from="1578876363954" duration="55092000" />
+      <workItem from="1579394099177" duration="17859000" />
+      <workItem from="1579430985838" duration="6917000" />
+      <workItem from="1581661968431" duration="992000" />
+      <workItem from="1584524449921" duration="1273000" />
+      <workItem from="1584578643432" duration="17104000" />
+      <workItem from="1584665423944" duration="9320000" />
+      <workItem from="1584923734747" duration="29880000" />
+      <workItem from="1585124250804" duration="6370000" />
+    </task>
+    <task id="LOCAL-00001" summary="修改 排列顺序">
+      <created>1578033184301</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578033184301</updated>
+    </task>
+    <task id="LOCAL-00002" summary="首页 我的工作">
+      <created>1579070457985</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1579070457985</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改 人员名单 排列顺序">
+      <created>1579174442948</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1579174442948</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修改 我的名单查询问题">
+      <created>1579253159947</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1579253159947</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="231094000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30543318" sideWeight="0.50259066" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32966322" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42143905" sideWeight="0.4974093" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50367105" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.77826726" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45227605" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38179147" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19948186" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61967695" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改 排列顺序" />
+    <MESSAGE value="首页 我的工作" />
+    <MESSAGE value="修改 人员名单 排列顺序" />
+    <MESSAGE value="修改 我的名单查询问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改 我的名单查询问题" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.notice/com/hxoim/notice/content/controller/NoticeContentController.java</url>
+          <line>58</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/controller/IndexTempController.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.work/com/hxoim/work/workinfo/controller/WorkInfoController.java</url>
+          <line>87</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java</url>
+          <line>216</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java</url>
+          <line>230</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java</url>
+          <line>459</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/controller/McMarkedcadreController.java</url>
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/controller/McMarkedcadreController.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/dataServeAuth/service/impl/DataServeAuthServiceImpl.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/service/impl/McMarkedCadreServiceImpl.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.message/com/hxoim/message/websocket/WebSocket.java</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.message/com/hxoim/message/websocket/WebSocketManager.java</url>
+          <line>109</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.sso/com/hxoim/sso/login/controller/LoginController.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.sso/com/hxoim/sso/login/controller/LoginController.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/controller/CfOperatelogController.java</url>
+          <line>59</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/module/controller/ModuleController.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/controller/DataTableColController.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="42" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/user/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.resources/config/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#967#987#0" expanded="false" />
+            <element signature="e#1506#1525#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.resources/config/mybatis-config-dao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/mapper/CfOperatemethodMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/service/CfOperatelogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/service/impl/CfOperatelogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="67" column="17" lean-forward="false" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/entity/CfOperatelog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.common/com/hxoim/common/utils/UserInfoUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.common/com/hxoim/common/interceptor/MybatisExecutorInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="158" column="48" lean-forward="true" selection-start-line="158" selection-start-column="48" selection-end-line="158" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.generalsql/com/hxoim/general/select/mapper/SelectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/service/impl/IndexTempServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="101" column="67" lean-forward="false" selection-start-line="101" selection-start-column="67" selection-end-line="101" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/mapper/IndexTempMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2178">
+          <caret line="39" column="21" lean-forward="false" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="21" />
+          <folding>
+            <marker date="1575961047935" expanded="true" signature="2418:2612" ph="select t.*,m... index_temp" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/mapper/IndexTempMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/mapper/SysTempModuleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/indexTemp/mapper/SysTempModuleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="31" />
+          <folding>
+            <marker date="1572398190339" expanded="true" signature="900:969" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/b01/controller/OrgController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/b01/service/OrgService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/b01/service/impl/OrgServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/b01/mapper/B01Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="93" column="15" lean-forward="false" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/b01/mapper/B01Mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="633" column="9" lean-forward="true" selection-start-line="633" selection-start-column="9" selection-end-line="633" selection-end-column="9" />
+          <folding>
+            <marker date="1572398189674" expanded="true" signature="5094:7738" ph="insert into b01... " />
+            <marker date="1572398189674" expanded="true" signature="19702:19729" ph="SELECT b0101... b01" />
+            <marker date="1572398189674" expanded="true" signature="19842:20974" ph="UPDATE b01 S... " />
+            <marker date="1572398189674" expanded="true" signature="21115:21618" ph="SELECT b0101... b01" />
+            <marker date="1572398189674" expanded="true" signature="21705:21741" ph="DELETE FROM " />
+            <marker date="1572398189674" expanded="true" signature="21856:21901" ph="SELECT COUNT... b01" />
+            <marker date="1572398189674" expanded="true" signature="21996:22019" ph="UPDATE b01 S... " />
+            <marker date="1572398189674" expanded="true" signature="22494:22571" ph="SELECT b0111... b01" />
+            <marker date="1572398189674" expanded="true" signature="22697:23197" ph="SELECT b0111... b01" />
+            <marker date="1572398189674" expanded="true" signature="23339:23378" ph="select FUN_B... dual" />
+            <marker date="1572398189674" expanded="true" signature="23463:23513" ph="select b0111... b01" />
+            <marker date="1572398189674" expanded="true" signature="24200:24387" ph="select b.b01... cf_org_sub" />
+            <marker date="1572398189674" expanded="true" signature="24488:24895" ph="select b.b01... user_role_view" />
+            <marker date="1572398189674" expanded="true" signature="24993:25113" ph="select b.b01... b01" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.person/com/hxoim/person/markedcadre/mapper/McMarkedcadreMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding>
+            <marker date="1584933959734" expanded="true" signature="2724:2834" ph="select from mc_markedcadre" />
+            <marker date="1584933959734" expanded="true" signature="2955:3104" ph="select b.id,... mc_markedcadre" />
+            <marker date="1584933959734" expanded="true" signature="3625:3689" ph="SELECT * FRO... mc_markedcadre" />
+            <marker date="1584933959734" expanded="true" signature="3826:3903" ph="SELECT * FRO... mc_markedcadre" />
+            <marker date="1584933959734" expanded="true" signature="4068:4503" ph="SELECT a.id,... *" />
+            <marker date="1584933959734" expanded="true" signature="4142:4441" ph="SELECT * FRO... mc_a01" />
+            <marker date="1584933959734" expanded="true" signature="4628:4711" ph="SELECT a.id,... mc_a01" />
+            <marker date="1584933959734" expanded="true" signature="4845:5245" ph="SELECT tab_c... data_table_col" />
+            <marker date="1584933959734" expanded="true" signature="5342:5397" ph="select GROUP... a01" />
+            <marker date="1584933959734" expanded="true" signature="5496:5524" ph="select name person_word" />
+            <marker date="1584933959734" expanded="true" signature="5662:5764" ph="select a0101... a01" />
+            <marker date="1584933959734" expanded="true" signature="5905:7199" ph="SELECT a.a01... a01" />
+            <marker date="1584933959734" expanded="true" signature="6081:6446" ph="SELECT( ROUN... a01" />
+            <marker date="1584933959734" expanded="true" signature="6512:7170" ph="SELECT c.a01... a05" />
+            <marker date="1584933959734" expanded="true" signature="6782:7160" ph="SELECT dict_... sys_dict" />
+            <marker date="1584933959734" expanded="true" signature="6928:7142" ph="SELECT dic_c... data_table_col" />
+            <marker date="1584933959734" expanded="true" signature="7339:7401" ph="select a0801... a0809" />
+            <marker date="1584933959734" expanded="true" signature="7538:7581" ph="select a15z1... a01" />
+            <marker date="1584933959734" expanded="true" signature="7723:7776" ph="select a1701... a17" />
+            <marker date="1584933959734" expanded="true" signature="7919:7990" ph="select count... mc_a01" />
+            <marker date="1584933959734" expanded="true" signature="8122:9419" ph="SELECT a0101... a01" />
+            <marker date="1584933959734" expanded="true" signature="9566:9754" ph="select a1700... a17" />
+            <marker date="1584933959734" expanded="true" signature="9723:9754" ph="select a1700... a17" />
+            <marker date="1584933959734" expanded="true" signature="9850:9885" ph="update mc_ma... " />
+            <marker date="1584933959734" expanded="true" signature="10247:10311" ph="delete from " />
+            <marker date="1584933959734" expanded="true" signature="10652:10987" ph="insert into mc_markedcadre... " />
+            <marker date="1584933959734" expanded="true" signature="12410:12479" ph="insert into mc_a01... " />
+            <marker date="1584933959734" expanded="true" signature="12611:13265" ph="update mc_ma... " />
+            <marker date="1584933959734" expanded="true" signature="13383:13725" ph="update mc_ma... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/leaderInfo/entity/A01.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.common/com/hxoim/common/rmbKit/models/A17.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/operateLog/controller/CfOperatelogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/module/controller/ModuleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/module/service/ModuleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.common/com/hxoim/common/tree/TreeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.resources/work.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.resources/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/module/service/impl/ModuleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2020">
+          <caret line="122" column="56" lean-forward="false" selection-start-line="122" selection-start-column="56" selection-end-line="122" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/module/mapper/ModuleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="52" column="17" lean-forward="false" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/module/mapper/ModuleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+          <folding>
+            <marker date="1584672326983" expanded="true" signature="1544:1662" ph="select from cf_module" />
+            <marker date="1584672326983" expanded="true" signature="1752:1814" ph="delete from " />
+            <marker date="1584672326983" expanded="true" signature="1911:2478" ph="insert into cf_module... " />
+            <marker date="1584672326983" expanded="true" signature="3821:5162" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="3856:3914" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="3953:4015" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4054:4116" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4155:4217" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4256:4318" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4358:4421" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4460:4522" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4558:4617" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4653:4712" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4755:4821" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4864:4930" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="4973:5041" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5082:5146" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5277:6746" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5287:6733" ph="update cf_mo... " />
+            <marker date="1584672326983" expanded="true" signature="5316:6690" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5355:5427" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5466:5538" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5577:5649" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5688:5760" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5800:5874" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="5913:5985" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6021:6087" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6123:6188" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6231:6311" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6354:6434" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6477:6559" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6600:6675" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6838:7466" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="6844:7455" ph="update cf_mo... " />
+            <marker date="1584672326983" expanded="true" signature="7559:7667" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="7565:7656" ph="select id as... cf_module" />
+            <marker date="1584672326983" expanded="true" signature="7728:7845" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="7738:7832" ph="select from cf_module" />
+            <marker date="1584672326983" expanded="true" signature="7909:8046" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="7919:8033" ph="select from cf_module" />
+            <marker date="1584672326983" expanded="true" signature="8114:8502" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="8124:8489" ph="select disti... user_role_view" />
+            <marker date="1584672326983" expanded="true" signature="8568:8834" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="8578:8821" ph="SELECT m.id,... cf_module" />
+            <marker date="1584672326983" expanded="true" signature="8895:9146" ph="..." />
+            <marker date="1584672326983" expanded="true" signature="8905:9133" ph="select t.MU_... cf_module" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.generalsql/com/hxoim/general/select/controller/SelectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2960">
+          <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/mapper/FullSearchSettingMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/service/impl/FullTextSearchServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1340">
+          <caret line="86" column="51" lean-forward="false" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.fulltextsearch/com/hxoim/full/search/mapper/FullSearchSettingMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-220">
+          <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="15" />
+          <folding>
+            <marker date="1584941970496" expanded="true" signature="816:941" ph="select from full_search_setting" />
+            <marker date="1584941970496" expanded="true" signature="1030:1099" ph="delete from " />
+            <marker date="1584941970496" expanded="true" signature="1204:1421" ph="insert into full_search_setting... " />
+            <marker date="1584941970496" expanded="true" signature="2614:3077" ph="update full_... " />
+            <marker date="1584941970496" expanded="true" signature="3196:3415" ph="update full_... " />
+            <marker date="1584941970496" expanded="true" signature="3533:3736" ph="SELECT dt.ta... info_resource" />
+            <marker date="1584941970496" expanded="true" signature="3830:3986" ph="select dtc.c... data_table_col" />
+            <marker date="1584941970496" expanded="true" signature="4085:4195" ph="select colum... full_search_setting" />
+            <marker date="1584941970496" expanded="true" signature="4790:4911" ph="select from full_search_setting" />
+            <marker date="1584941970496" expanded="true" signature="4987:5038" ph="select disti... full_search_setting" />
+            <marker date="1584941970496" expanded="true" signature="6060:6129" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.sso/com/hxoim/sso/login/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/entity/DataTableCol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.kettle/com/hxoim/kettle/jobscheduler/controller/KJobschedulerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/DataTableService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="74" column="8" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/impl/DataTableServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="154" column="33" lean-forward="true" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="278" column="4" lean-forward="false" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/impl/DataTableColServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="148" column="15" lean-forward="false" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/service/DataTableColService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/webRoot/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/controller/DataTableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/controller/DataTableColController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src.support/com/hxoim/support/inforesource/mapper/DataTableColMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="599" column="20" lean-forward="true" selection-start-line="599" selection-start-column="20" selection-end-line="599" selection-end-column="20" />
+          <folding>
+            <marker date="1585128649025" expanded="true" signature="5907:6017" ph="select from data_table_col" />
+            <marker date="1585128649025" expanded="true" signature="6102:6166" ph="delete from " />
+            <marker date="1585128649025" expanded="true" signature="6273:8252" ph="insert into data_table_col... " />
+            <marker date="1585128649025" expanded="true" signature="14961:19033" ph="update data_... " />
+            <marker date="1585128649025" expanded="true" signature="19152:21215" ph="update data_... " />
+            <marker date="1585128649025" expanded="true" signature="21297:21372" ph="delete from " />
+            <marker date="1585128649025" expanded="true" signature="21501:21567" ph="UPDATE data_... " />
+            <marker date="1585128649025" expanded="true" signature="21738:21807" ph="SELECT MAX(O... data_table_col" />
+            <marker date="1585128649025" expanded="true" signature="22776:22840" ph="alter table ${tabCode}... " />
+            <marker date="1585128649025" expanded="true" signature="23282:23296" ph="(${length1})... " />
+            <marker date="1585128649025" expanded="true" signature="23338:23368" ph="(${length1},... " />
+            <marker date="1585128649025" expanded="true" signature="23528:23574" ph="alter table ${tabCode}... " />
+            <marker date="1585128649025" expanded="true" signature="24001:24181" ph="select from data_table_col" />
+            <marker date="1585128649025" expanded="true" signature="24311:24431" ph="select from data_table_col" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>hxoim:Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web (hxoim)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>hxoim</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

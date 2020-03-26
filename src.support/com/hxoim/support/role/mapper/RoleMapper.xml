@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.role.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.role.entity.Role">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_type" jdbcType="VARCHAR" property="roleType"/>
+        <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+        <result column="role_state" jdbcType="VARCHAR" property="roleState"/>
+        <result column="order_index" jdbcType="INTEGER" property="orderIndex"/>
+        <result column="org_id" jdbcType="VARCHAR" property="orgId"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, role_code, role_name, role_type, role_desc, role_state, order_index, org_id,
+    modify_user, modify_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_role
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cf_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.role.entity.Role">
+    insert into cf_role (id, role_code, role_name,
+      role_type, role_desc, role_state,
+      order_index, org_id, modify_user,
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR},
+      #{roleType,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, #{roleState,jdbcType=VARCHAR},
+      #{orderIndex,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR},
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.role.entity.Role">
+        insert into cf_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="roleCode != null">
+                role_code,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleType != null">
+                role_type,
+            </if>
+            <if test="roleDesc != null">
+                role_desc,
+            </if>
+            <if test="roleState != null">
+                role_state,
+            </if>
+            <if test="orderIndex != null">
+                order_index,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleType != null">
+                #{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="roleState != null">
+                #{roleState,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.role.entity.Role">
+        update cf_role
+        <set>
+            <if test="roleCode != null">
+                role_code = #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleType != null">
+                role_type = #{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                role_desc = #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="roleState != null">
+                role_state = #{roleState,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.role.entity.Role">
+    update cf_role
+    set role_code = #{roleCode,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      role_state = #{roleState,jdbcType=VARCHAR},
+      order_index = #{orderIndex,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--业务...-->
+    <select id="selectByRoleCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    count(1)
+    from cf_role
+    where ROLE_CODE = #{userCode,jdbcType=VARCHAR}
+  </select>
+
+    <select id="findMaxOrderno" resultType="java.lang.Integer">
+		select IFNULL(max(order_index) +1,1) from cf_role
+	</select>
+
+    <update id="changeRoleState" parameterType="com.hxoim.support.role.entity.Role">
+		update cf_role
+		set
+		role_state=#{roleState}
+		where
+		role_code=#{roleCode}
+	</update>
+    <select id="selectRoleList" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        cf_role
+        <where>
+            <if test='orgId != null and orgId != ""'>
+                and ORG_ID = #{orgId}
+            </if>
+            <if test='roleName != null and roleName != ""'>
+                and (ROLE_NAME LIKE concat('%',#{roleName},'%') OR role_code LIKE concat('%',#{roleName},'%') )
+            </if>
+            <if test="orgId==null and roleName==null">
+                1 != 1
+            </if>
+        </where>
+        order by ORDER_INDEX
+    </select>
+
+    <select id="selectUserGroupAssignRoles" resultMap="BaseResultMap">
+        select r.* from cf_usergroup_roles ugr
+        inner join cf_role r
+        on ugr.role_id=r.id
+        where ugr.ug_id=#{id}
+    </select>
+    <select id="selectUserAssignRoles" resultMap="BaseResultMap">
+        select r.*,'false' as "extend"  from cf_user u
+        inner join cf_user_roles ur
+        on u.id=ur.user_id
+        inner join cf_role r
+        on ur.role_id=r.id
+        where u.id=#{id}
+        union
+        select r.*,'true' as "extend" from cf_usergroup_user ugu
+        inner join cf_usergroup_roles ugr
+        on ugu.ug_id=ugr.ug_id
+        inner join cf_role r
+        on ugr.role_id=r.id
+        where ugu.user_id=#{id}
+    </select>
+
+    <update id="executeCUDSql">
+        ${_parameter}
+    </update>
+
+    <select id="executeSelectSql" resultType="java.util.Map">
+        ${_parameter}
+    </select>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.inforesource.mapper.InformationMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.inforesource.entity.Information">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="english_name" jdbcType="VARCHAR" property="englishName" />
+        <result column="chinese_name" jdbcType="VARCHAR" property="chineseName" />
+        <result column="data_type" jdbcType="VARCHAR" property="dataType" />
+        <result column="info_length" jdbcType="INTEGER" property="infoLength" />
+        <result column="info_decimal" jdbcType="INTEGER" property="infoDecimal" />
+        <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+        <result column="orderindex" jdbcType="VARCHAR" property="orderindex" />
+    </resultMap>
+
+    <!--表添加列-->
+    <update id="insertColumn" parameterType="com.hxoim.support.inforesource.entity.Information">
+    ALTER TABLE ${tableName} ADD COLUMN ${englishName} ${dataType}
+        <choose>
+        <when test="infoLength==null and infoDecimal==null">
+        COMMENT #{chineseName}
+        </when>
+        <when test="infoDecimal==null">
+        (${infoLength}) COMMENT #{chineseName}
+        </when>
+        <otherwise>
+        (${infoLength},${infoDecimal}) COMMENT #{chineseName}
+        </otherwise>
+    </choose>
+    </update>
+
+    <!--添加信息项-->
+    <insert id="insertInformation" parameterType="com.hxoim.support.inforesource.entity.Information">
+    INSERT  INTO information(id,english_name,chinese_name,data_type,info_length,info_decimal,
+    dict_code,table_name,orderindex)
+    VALUES(#{id},#{englishName},#{chineseName},#{dataType},#{infoLength},#{infoDecimal},#{dictCode},
+    #{tableName},#{orderindex})
+    </insert>
+
+    <!--修改列-->
+    <update id="updateColumn" parameterType="com.hxoim.support.inforesource.entity.Information">
+    ALTER TABLE ${tableName} CHANGE ${oldEnglishName} ${englishName} ${dataType}
+        <choose>
+            <when test="infoLength==null and infoDecimal==null">
+                 COMMENT #{chineseName}
+            </when>
+            <when test="infoDecimal==null">
+                (${infoLength}) COMMENT #{chineseName}
+            </when>
+            <otherwise>
+                 (${infoLength},${infoDecimal}) COMMENT #{chineseName}
+            </otherwise>
+        </choose>
+    </update>
+
+    <!--修改信息项-->
+    <update id="updateInformation" parameterType="com.hxoim.support.inforesource.entity.Information">
+    UPDATE information SET english_name=#{englishName},chinese_name=#{chineseName},
+    data_type=#{dataType},info_length=#{infoLength},info_decimal=#{infoDecimal},dict_code=#{dictCode},
+    modify_user=#{modifyUser},modify_time=#{modifyTime} WHERE id=#{id}
+    </update>
+
+    <!--删除列-->
+    <update id="dropColumn" parameterType="com.hxoim.support.inforesource.entity.Information">
+    alter table ${tableName} drop column  ${englishName}
+    </update>
+
+    <!--删除信息项-->
+    <delete id="deleteInformation" parameterType="com.hxoim.support.inforesource.entity.Information">
+    DELETE FROM information WHERE id =#{id}
+    </delete>
+
+    <!--验证列名是否存在-->
+    <select id="selectColumnName" parameterType="com.hxoim.support.inforesource.entity.Information" resultType="Integer">
+    SELECT COUNT(*) FROM information WHERE english_name=#{englishName} AND table_name=#{tableName}
+    <if test="id!=null and id!=''">
+       AND id!=#{id}
+    </if>
+    </select>
+
+    <!--点击信息项维护显示页面-->
+    <select id="selectInformation" parameterType="String" resultMap="BaseResultMap">
+    SELECT id,english_name,chinese_name,data_type,info_length,info_decimal,dict_code,table_name
+    FROM information WHERE table_name=#{tableName} ORDER BY orderindex
+    </select>
+
+    <!--查询字段名-->
+    <select id="selectOldColumnName" parameterType="String" resultType="String">
+    SELECT english_name FROM information WHERE id=#{id}
+    </select>
+
+    <!--添加id-->
+    <insert id="insertInformationId" parameterType="com.hxoim.support.inforesource.entity.Information">
+    INSERT INTO information(id,english_name,chinese_name,data_type,info_length,table_name,orderindex)
+    VALUES(#{id},'id','主键','varchar',36,#{tableName},1)
+    </insert>
+
+    <!--添加修改人-->
+    <insert id="insertInformationModifyUser" parameterType="com.hxoim.support.inforesource.entity.Information">
+    INSERT INTO information(id,english_name,chinese_name,data_type,info_length,table_name,orderindex)
+    VALUES(#{id},'modify_user','修改人','varchar',36,#{tableName},2)
+    </insert>
+
+    <!--添加修改时间-->
+    <insert id="insertInformationModifyTime" parameterType="com.hxoim.support.inforesource.entity.Information">
+    INSERT INTO information(id,english_name,chinese_name,data_type,table_name,orderindex)
+    VALUES(#{id},'modify_time','修改时间','datetime',#{tableName},3)
+    </insert>
+
+    <!--排序-->
+    <update id="sortInformations" parameterType="com.hxoim.support.inforesource.entity.Information">
+    UPDATE information SET orderindex=#{orderindex} WHERE id=#{id}
+    </update>
+
+    <!--查询最大排序号-->
+    <select id="selectMaxOrderindex" parameterType="com.hxoim.support.inforesource.entity.Information" resultType="Integer">
+    SELECT MAX(orderindex) FROM information WHERE table_name=#{tableName}
+    </select>
+</mapper>

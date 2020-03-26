@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--引入db文件-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--配置dataSource-->
+    <bean id="centerDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.center.driver}"/>
+        <property name="url" value="${jdbc.center.url}"/>
+        <property name="username" value="${jdbc.center.username}"/>
+        <property name="password" value="${jdbc.center.password}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+    </bean>
+    <bean id="predbDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.predb.driver}"/>
+        <property name="url" value="${jdbc.predb.url}"/>
+        <property name="username" value="${jdbc.predb.username}"/>
+        <property name="password" value="${jdbc.predb.password}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+    </bean>
+    <!--动态数据源dataSource-->
+    <bean id="dataSource" class="com.hxoim.common.SQLMapper.DynamicDataSource" >
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!--通过不同的key决定用哪个dataSource-->
+                <entry value-ref="centerDataSource" key="centerDataSource"></entry>
+                <entry value-ref="predbDataSource" key="predbDataSource"></entry>
+            </map>
+        </property>
+        <!--设置默认的dataSource-->
+        <property name="defaultTargetDataSource" ref="centerDataSource">
+        </property>
+    </bean>
+    <!--sqlsession配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:config/mybatis.xml" />
+        <property name="mapperLocations" value="classpath:com/**/mapper/*.xml"/>
+    </bean>
+    <!--mapper映射-->
+    <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.**.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--事务管理-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--注解事务-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+</beans>

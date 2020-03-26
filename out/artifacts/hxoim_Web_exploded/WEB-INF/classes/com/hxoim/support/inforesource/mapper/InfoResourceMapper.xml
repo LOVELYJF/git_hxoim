@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.inforesource.mapper.InfoResourceMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.inforesource.entity.InfoResource">
+        <id column="Id" jdbcType="VARCHAR" property="id"/>
+        <result column="resource_name" jdbcType="VARCHAR" property="resourceName"/>
+        <result column="resource_code" jdbcType="VARCHAR" property="resourceCode"/>
+        <result column="resource_desc" jdbcType="VARCHAR" property="resourceDesc"/>
+        <result column="pid" jdbcType="VARCHAR" property="pid"/>
+        <result column="orderindex" jdbcType="INTEGER" property="orderindex"/>
+        <result column="resource_type" jdbcType="VARCHAR" property="resourceType"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    Id, resource_name, resource_code, resource_desc,
+    pid, orderindex,resource_type, modify_user, modify_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from info_resource
+        where Id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from info_resource
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <!--添加信息资源-->
+    <insert id="insert" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    insert into info_resource (Id, resource_name, resource_code,
+      resource_desc, pid, orderindex,resource_type,
+      modify_user, modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{resourceCode,jdbcType=VARCHAR},
+      #{resourceDesc,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{orderindex,jdbcType=INTEGER},
+      #{resourceType,jdbcType=VARCHAR},
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+    <!--添加信息资源-->
+    <insert id="insertSelective" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+        insert into info_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="resourceName != null">
+                resource_name,
+            </if>
+            <if test="resourceCode != null">
+                resource_code,
+            </if>
+            <if test="resourceDesc != null">
+                resource_desc,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="orderindex != null">
+                orderindex,
+            </if>
+            <if test="resourceType != null">
+                resource_type,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceName != null">
+                #{resourceName,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceCode != null">
+                #{resourceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceDesc != null">
+                #{resourceDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orderindex != null">
+                #{orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="resourceType != null">
+                #{resourceType,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+        update info_resource
+        <set>
+            <if test="resourceName != null">
+                resource_name = #{resourceName,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceCode != null">
+                resource_code = #{resourceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceDesc != null">
+                resource_desc = #{resourceDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="orderindex != null">
+                orderindex = #{orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="resourceType != null">
+                resource_type= #{resourceType,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    update info_resource
+    set resource_name = #{resourceName,jdbcType=VARCHAR},
+      resource_code = #{resourceCode,jdbcType=VARCHAR},
+      resource_desc = #{resourceDesc,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      orderindex = #{orderindex,jdbcType=INTEGER},
+      resource_type = #{resourceType,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--查询信息资源-->
+    <select id="selectInfoResourceById" resultMap="BaseResultMap"
+            parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    SELECT Id,resource_name,resource_code,resource_desc,
+    pid,orderindex,resource_type,modify_user,modify_time
+    FROM info_resource WHERE Id=#{id} ORDER  BY orderindex
+    </select>
+
+    <!--修改信息资源-->
+    <update id="updateInfoResource" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    UPDATE info_resource SET resource_name=#{resourceName},resource_code=#{resourceCode},
+     resource_desc=#{resourceDesc}, pid=#{pid},orderindex=#{orderindex},
+     resource_type = #{resourceType},modify_user=#{modifyUser}, modify_time=#{modifyTime}
+     WHERE Id=#{id}
+    </update>
+
+    <!--删除信息资源-->
+    <delete id="deleteInfoResource" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    DELETE FROM info_resource WHERE Id=#{id}
+    </delete>
+
+    <!--排序-->
+    <update id="sortOrderIndex" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    UPDATE info_resource SET orderindex=#{orderindex} WHERE Id=#{id}
+    </update>
+
+    <!--点击分类查询其下面的所有表-->
+    <select id="selectTableByPid" parameterType="com.hxoim.support.inforesource.entity.InfoResource"
+            resultMap="BaseResultMap">
+    SELECT resource_name,orderindex,Id FROM info_resource
+    WHERE pid=#{id}
+    ORDER BY orderindex
+    </select>
+
+    <!--修改表名-->
+    <update id="updateTableName" parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    alter table ${oldTableName} rename ${tableName}
+    </update>
+
+    <!--查询信息资源树-->
+    <select id="selectInfoResourceTree" resultType="com.hxoim.common.tree.Tree">
+    SELECT Id as "id",resource_name as "label",pid as "pId" FROM info_resource ORDER BY orderindex
+    </select>
+
+    <!--查询是否有子节点-->
+    <select id="selectCountIdByPid" resultType="Integer"
+            parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+    SELECT COUNT(*) FROM info_resource WHERE pid=#{id}
+    </select>
+
+    <!--验证资源编码是否重复-->
+    <select id="selectResourceCode" resultType="Integer"
+            parameterType="com.hxoim.support.inforesource.entity.InfoResource">
+        SELECT COUNT(*) FROM info_resource WHERE resource_code=#{resourceCode}
+        <if test="id!=null and id!=''">
+            AND Id!=#{id}
+        </if>
+    </select>
+
+    <!--查询所有分类-->
+    <select id="selectResourceType" resultMap="BaseResultMap">
+    SELECT Id,resource_name,pid FROM info_resource WHERE resource_type='0' ORDER  BY orderindex
+    </select>
+
+    <select id="selectInfoResourceByType" resultMap="BaseResultMap">
+        select * from info_resource where resource_type = #{resourceType} order by orderindex
+    </select>
+</mapper>

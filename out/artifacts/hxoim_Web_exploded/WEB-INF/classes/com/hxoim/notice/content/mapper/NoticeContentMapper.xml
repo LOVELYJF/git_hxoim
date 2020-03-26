@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.notice.content.mapper.NoticeContentMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.notice.content.entity.NoticeContent">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="column_id" jdbcType="VARCHAR" property="columnId"/>
+        <result column="is_topping" jdbcType="CHAR" property="isTopping"/>
+        <result column="is_publish" jdbcType="CHAR" property="isPublish"/>
+        <result column="is_share" jdbcType="CHAR" property="isShare"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
+        <result column="notice_name" jdbcType="VARCHAR" property="noticeName"/>
+        <result column="notice_title" jdbcType="VARCHAR" property="noticeTitle"/>
+        <result column="report_url" jdbcType="VARCHAR" property="reportUrl"/>
+        <result column="sort_id" jdbcType="INTEGER" property="sortId"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.notice.content.entity.NoticeContent">
+        <result column="notice_content" jdbcType="LONGVARCHAR" property="noticeContent"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, modify_user, modify_time, column_id, is_topping, is_publish, is_share, start_time,
+        end_time, publish_time, notice_name, notice_title, report_url, sort_id
+    </sql>
+    <sql id="Blob_Column_List">
+        notice_content
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        ,
+        publish_time publish_date
+        from notice_content
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from notice_content
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.hxoim.notice.content.entity.NoticeContent">
+        insert into notice_content (
+            id, modify_user, modify_time,
+            column_id, is_topping, is_publish,
+            is_share, start_time, end_time,
+            publish_time, notice_name, notice_title,
+            report_url, sort_id, notice_content
+        )
+        values (
+            #{id,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+            #{columnId,jdbcType=VARCHAR}, #{isTopping,jdbcType=CHAR}, #{isPublish,jdbcType=CHAR},
+            #{isShare,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
+            #{publishTime,jdbcType=TIMESTAMP}, #{noticeName,jdbcType=VARCHAR}, #{noticeTitle,jdbcType=VARCHAR},
+            #{reportUrl,jdbcType=VARCHAR}, #{sortId,jdbcType=INTEGER}, #{noticeContent,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.notice.content.entity.NoticeContent">
+        insert into notice_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="columnId != null">
+                column_id,
+            </if>
+            <if test="isTopping != null">
+                is_topping,
+            </if>
+            <if test="isPublish != null">
+                is_publish,
+            </if>
+            <if test="isShare != null">
+                is_share,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="publishTime != null">
+                publish_time,
+            </if>
+            <if test="noticeName != null">
+                notice_name,
+            </if>
+            <if test="noticeTitle != null">
+                notice_title,
+            </if>
+            <if test="reportUrl != null">
+                report_url,
+            </if>
+            <if test="sortId != null">
+                sort_id,
+            </if>
+            <if test="noticeContent != null">
+                notice_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="columnId != null">
+                #{columnId,jdbcType=VARCHAR},
+            </if>
+            <if test="isTopping != null">
+                #{isTopping,jdbcType=CHAR},
+            </if>
+            <if test="isPublish != null">
+                #{isPublish,jdbcType=CHAR},
+            </if>
+            <if test="isShare != null">
+                #{isShare,jdbcType=CHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="publishTime != null">
+                #{publishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="noticeName != null">
+                #{noticeName,jdbcType=VARCHAR},
+            </if>
+            <if test="noticeTitle != null">
+                #{noticeTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="reportUrl != null">
+                #{reportUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sortId != null">
+                #{sortId,jdbcType=INTEGER},
+            </if>
+            <if test="noticeContent != null">
+                #{noticeContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.notice.content.entity.NoticeContent">
+        update notice_content
+        <set>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="columnId != null">
+                column_id = #{columnId,jdbcType=VARCHAR},
+            </if>
+            <if test="isTopping != null">
+                is_topping = #{isTopping,jdbcType=CHAR},
+            </if>
+            <if test="isPublish != null">
+                is_publish = #{isPublish,jdbcType=CHAR},
+            </if>
+            <if test="isShare != null">
+                is_share = #{isShare,jdbcType=CHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="publishTime != null">
+                publish_time = #{publishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="noticeName != null">
+                notice_name = #{noticeName,jdbcType=VARCHAR},
+            </if>
+            <if test="noticeTitle != null">
+                notice_title = #{noticeTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="reportUrl != null">
+                report_url = #{reportUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sortId != null">
+                sort_id = #{sortId,jdbcType=INTEGER},
+            </if>
+            <if test="noticeContent != null">
+                notice_content = #{noticeContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.notice.content.entity.NoticeContent">
+    update notice_content
+    set modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      column_id = #{columnId,jdbcType=VARCHAR},
+      is_topping = #{isTopping,jdbcType=CHAR},
+      is_publish = #{isPublish,jdbcType=CHAR},
+      is_share = #{isShare,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      notice_name = #{noticeName,jdbcType=VARCHAR},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      report_url = #{reportUrl,jdbcType=VARCHAR},
+      sort_id = #{sortId,jdbcType=INTEGER},
+      notice_content = #{noticeContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.notice.content.entity.NoticeContent">
+    update notice_content
+    set modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      column_id = #{columnId,jdbcType=VARCHAR},
+      is_topping = #{isTopping,jdbcType=CHAR},
+      is_publish = #{isPublish,jdbcType=CHAR},
+      is_share = #{isShare,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      notice_name = #{noticeName,jdbcType=VARCHAR},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      report_url = #{reportUrl,jdbcType=VARCHAR},
+      sort_id = #{sortId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--新增sql-->
+    <select id="selectContentByColumnId" resultMap="ResultMapWithBLOBs">
+      select a.*,a.publish_time publish_date,u.name user_name
+      from notice_content a
+      left join cf_user u on a.modify_user = u.id
+      where a.modify_user = #{userId}
+      <if test="columnId != '' and columnId != null">
+        and a.column_id=#{columnId}
+      </if>
+      order by a.is_topping desc,a.sort_id
+  </select>
+
+    <select id="selectByPrimaryKeyNoContent" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        from notice_content
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectNoticeContentListByKeyWord" resultMap="ResultMapWithBLOBs">
+        select a.*,a.publish_time publish_date,u.name user_name
+        from notice_content a
+        left join cf_user u on a.modify_user = u.id
+        <where>
+            a.modify_user = #{userId}
+            <if test="keyWord != null and keyWord != ''">
+                and notice_title like "%"#{keyWord,jdbcType=VARCHAR}"%"
+            </if>
+            <if test="publishValue != null and publishValue != ''">
+                and is_publish = #{publishValue,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by a.is_topping desc,a.sort_id
+    </select>
+
+    <update id="saveSortContent">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update notice_content set sort_id = #{item.sortId}
+            where id = #{item.id}
+        </foreach>
+    </update>
+</mapper>

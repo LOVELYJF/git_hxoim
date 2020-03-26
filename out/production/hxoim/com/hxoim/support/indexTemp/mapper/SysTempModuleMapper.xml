@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.indexTemp.mapper.SysTempModuleMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.indexTemp.entity.SysTempModule">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="temp_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="module_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="module_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="module_style" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+      id, temp_id, module_id, module_name,module_style
+  </sql>
+
+  <delete id="deleteByPrimaryKey">
+    delete from sys_temp_module where temp_id =#{tempId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.hxoim.support.indexTemp.entity.SysTempModule">
+    insert into sys_temp_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tempId != null">
+        temp_id,
+      </if>
+      <if test="moduleId != null">
+        module_id,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="moduleStyle != null">
+        module_style,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tempId != null">
+        #{tempId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleStyle != null">
+        #{moduleStyle,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

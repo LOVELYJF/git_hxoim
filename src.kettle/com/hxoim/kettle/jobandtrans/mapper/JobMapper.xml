@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.kettle.jobandtrans.mapper.JobMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.kettle.jobandtrans.entity.Job">
+    <id column="ID_JOB" jdbcType="BIGINT" property="idJob" />
+    <result column="ID_DIRECTORY" jdbcType="INTEGER" property="idDirectory" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="JOB_VERSION" jdbcType="VARCHAR" property="jobVersion" />
+    <result column="JOB_STATUS" jdbcType="INTEGER" property="jobStatus" />
+    <result column="ID_DATABASE_LOG" jdbcType="INTEGER" property="idDatabaseLog" />
+    <result column="TABLE_NAME_LOG" jdbcType="VARCHAR" property="tableNameLog" />
+    <result column="CREATED_USER" jdbcType="VARCHAR" property="createdUser" />
+    <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="MODIFIED_USER" jdbcType="VARCHAR" property="modifiedUser" />
+    <result column="MODIFIED_DATE" jdbcType="TIMESTAMP" property="modifiedDate" />
+    <result column="USE_BATCH_ID" jdbcType="BIT" property="useBatchId" />
+    <result column="PASS_BATCH_ID" jdbcType="BIT" property="passBatchId" />
+    <result column="USE_LOGFIELD" jdbcType="BIT" property="useLogfield" />
+    <result column="SHARED_FILE" jdbcType="VARCHAR" property="sharedFile" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.kettle.jobandtrans.entity.JobWithBLOBs">
+    <result column="DESCRIPTION" jdbcType="LONGVARCHAR" property="description" />
+    <result column="EXTENDED_DESCRIPTION" jdbcType="LONGVARCHAR" property="extendedDescription" />
+  </resultMap>
+
+  <resultMap extends="BaseResultMap" id="ResultCustom" type="com.hxoim.kettle.jobandtrans.entity.custom.JobCustom">
+    <result column="successNum" jdbcType="INTEGER" property="successNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_JOB, ID_DIRECTORY, NAME, JOB_VERSION, JOB_STATUS, ID_DATABASE_LOG, TABLE_NAME_LOG, 
+    CREATED_USER, CREATED_DATE, MODIFIED_USER, MODIFIED_DATE, USE_BATCH_ID, PASS_BATCH_ID, 
+    USE_LOGFIELD, SHARED_FILE
+  </sql>
+  <sql id="Blob_Column_List">
+    DESCRIPTION, EXTENDED_DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from r_job
+    where ID_JOB = #{idJob,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from r_job
+    where ID_JOB = #{idJob,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.kettle.jobandtrans.entity.JobWithBLOBs">
+    insert into r_job (ID_JOB, ID_DIRECTORY, NAME, 
+      JOB_VERSION, JOB_STATUS, ID_DATABASE_LOG, 
+      TABLE_NAME_LOG, CREATED_USER, CREATED_DATE, 
+      MODIFIED_USER, MODIFIED_DATE, USE_BATCH_ID, 
+      PASS_BATCH_ID, USE_LOGFIELD, SHARED_FILE, 
+      DESCRIPTION, EXTENDED_DESCRIPTION
+      )
+    values (#{idJob,jdbcType=BIGINT}, #{idDirectory,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{jobVersion,jdbcType=VARCHAR}, #{jobStatus,jdbcType=INTEGER}, #{idDatabaseLog,jdbcType=INTEGER}, 
+      #{tableNameLog,jdbcType=VARCHAR}, #{createdUser,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{modifiedUser,jdbcType=VARCHAR}, #{modifiedDate,jdbcType=TIMESTAMP}, #{useBatchId,jdbcType=BIT}, 
+      #{passBatchId,jdbcType=BIT}, #{useLogfield,jdbcType=BIT}, #{sharedFile,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR}, #{extendedDescription,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.kettle.jobandtrans.entity.JobWithBLOBs">
+    insert into r_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idJob != null">
+        ID_JOB,
+      </if>
+      <if test="idDirectory != null">
+        ID_DIRECTORY,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="jobVersion != null">
+        JOB_VERSION,
+      </if>
+      <if test="jobStatus != null">
+        JOB_STATUS,
+      </if>
+      <if test="idDatabaseLog != null">
+        ID_DATABASE_LOG,
+      </if>
+      <if test="tableNameLog != null">
+        TABLE_NAME_LOG,
+      </if>
+      <if test="createdUser != null">
+        CREATED_USER,
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE,
+      </if>
+      <if test="modifiedUser != null">
+        MODIFIED_USER,
+      </if>
+      <if test="modifiedDate != null">
+        MODIFIED_DATE,
+      </if>
+      <if test="useBatchId != null">
+        USE_BATCH_ID,
+      </if>
+      <if test="passBatchId != null">
+        PASS_BATCH_ID,
+      </if>
+      <if test="useLogfield != null">
+        USE_LOGFIELD,
+      </if>
+      <if test="sharedFile != null">
+        SHARED_FILE,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="extendedDescription != null">
+        EXTENDED_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idJob != null">
+        #{idJob,jdbcType=BIGINT},
+      </if>
+      <if test="idDirectory != null">
+        #{idDirectory,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="jobVersion != null">
+        #{jobVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null">
+        #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="idDatabaseLog != null">
+        #{idDatabaseLog,jdbcType=INTEGER},
+      </if>
+      <if test="tableNameLog != null">
+        #{tableNameLog,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUser != null">
+        #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useBatchId != null">
+        #{useBatchId,jdbcType=BIT},
+      </if>
+      <if test="passBatchId != null">
+        #{passBatchId,jdbcType=BIT},
+      </if>
+      <if test="useLogfield != null">
+        #{useLogfield,jdbcType=BIT},
+      </if>
+      <if test="sharedFile != null">
+        #{sharedFile,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extendedDescription != null">
+        #{extendedDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.kettle.jobandtrans.entity.JobWithBLOBs">
+    update r_job
+    <set>
+      <if test="idDirectory != null">
+        ID_DIRECTORY = #{idDirectory,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="jobVersion != null">
+        JOB_VERSION = #{jobVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null">
+        JOB_STATUS = #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="idDatabaseLog != null">
+        ID_DATABASE_LOG = #{idDatabaseLog,jdbcType=INTEGER},
+      </if>
+      <if test="tableNameLog != null">
+        TABLE_NAME_LOG = #{tableNameLog,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        CREATED_USER = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUser != null">
+        MODIFIED_USER = #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null">
+        MODIFIED_DATE = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useBatchId != null">
+        USE_BATCH_ID = #{useBatchId,jdbcType=BIT},
+      </if>
+      <if test="passBatchId != null">
+        PASS_BATCH_ID = #{passBatchId,jdbcType=BIT},
+      </if>
+      <if test="useLogfield != null">
+        USE_LOGFIELD = #{useLogfield,jdbcType=BIT},
+      </if>
+      <if test="sharedFile != null">
+        SHARED_FILE = #{sharedFile,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extendedDescription != null">
+        EXTENDED_DESCRIPTION = #{extendedDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID_JOB = #{idJob,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.kettle.jobandtrans.entity.JobWithBLOBs">
+    update r_job
+    set ID_DIRECTORY = #{idDirectory,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      JOB_VERSION = #{jobVersion,jdbcType=VARCHAR},
+      JOB_STATUS = #{jobStatus,jdbcType=INTEGER},
+      ID_DATABASE_LOG = #{idDatabaseLog,jdbcType=INTEGER},
+      TABLE_NAME_LOG = #{tableNameLog,jdbcType=VARCHAR},
+      CREATED_USER = #{createdUser,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      MODIFIED_USER = #{modifiedUser,jdbcType=VARCHAR},
+      MODIFIED_DATE = #{modifiedDate,jdbcType=TIMESTAMP},
+      USE_BATCH_ID = #{useBatchId,jdbcType=BIT},
+      PASS_BATCH_ID = #{passBatchId,jdbcType=BIT},
+      USE_LOGFIELD = #{useLogfield,jdbcType=BIT},
+      SHARED_FILE = #{sharedFile,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      EXTENDED_DESCRIPTION = #{extendedDescription,jdbcType=LONGVARCHAR}
+    where ID_JOB = #{idJob,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.kettle.jobandtrans.entity.Job">
+    update r_job
+    set ID_DIRECTORY = #{idDirectory,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      JOB_VERSION = #{jobVersion,jdbcType=VARCHAR},
+      JOB_STATUS = #{jobStatus,jdbcType=INTEGER},
+      ID_DATABASE_LOG = #{idDatabaseLog,jdbcType=INTEGER},
+      TABLE_NAME_LOG = #{tableNameLog,jdbcType=VARCHAR},
+      CREATED_USER = #{createdUser,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      MODIFIED_USER = #{modifiedUser,jdbcType=VARCHAR},
+      MODIFIED_DATE = #{modifiedDate,jdbcType=TIMESTAMP},
+      USE_BATCH_ID = #{useBatchId,jdbcType=BIT},
+      PASS_BATCH_ID = #{passBatchId,jdbcType=BIT},
+      USE_LOGFIELD = #{useLogfield,jdbcType=BIT},
+      SHARED_FILE = #{sharedFile,jdbcType=VARCHAR}
+    where ID_JOB = #{idJob,jdbcType=BIGINT}
+  </update>
+  <!--作业数，运行中作业数-->
+  <select id="accountJob" resultType="java.util.Map">
+    select COUNT(0) jobNum,
+           (select count(0) from k_job_log kj, r_job rj where kj.jobname=rj.name
+                and kj.status='start' and rj.id_directory = #{idDirectory,jdbcType=INTEGER}) runJobNum,
+           (select COUNT(0) from r_job where job_status = 0 and id_directory = #{idDirectory,jdbcType=INTEGER}) finishJobNum
+    from r_job where id_directory = #{idDirectory,jdbcType=INTEGER}
+  </select>
+  <!--作业列表-->
+  <select id="selectJobList" resultMap="ResultCustom">
+    select
+    <include refid="Base_Column_List" /> ,
+           (select count(0) from k_job_log where jobname=r_job.`name`) successNum,
+    (select logdate
+    from k_job_log where jobname=r_job.`name` limit 0,1) as jobLogDate,
+    (select `status`
+    from k_job_log  where jobname=r_job.`name` limit 0,1) as jobLogStatus
+    from r_job
+    where 1=1
+    <if test="name != null and name != ''">
+      and name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="idDirectory != null and idDirectory != ''">
+      and id_directory = #{idDirectory,jdbcType=INTEGER}
+    </if>
+    order by created_date desc
+  </select>
+  <!--作业是否启动-->
+  <select id="selectIsStartJobByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(0) from k_job_log where jobname=#{jobName,jdbcType=VARCHAR} and status='start'
+  </select>
+</mapper>

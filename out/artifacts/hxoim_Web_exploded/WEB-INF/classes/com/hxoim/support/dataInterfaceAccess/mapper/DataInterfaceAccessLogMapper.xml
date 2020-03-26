@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.dataInterfaceAccess.mapper.DataInterfaceAccessLogMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.dataInterfaceAccess.entity.DataInterfaceAccessLog">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="interface_access_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="interface_access_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="access_condition" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, serve_ip, serve_username, serve_password, interface_access_type, interface_access_name,
+    access_condition, modify_time
+  </sql>
+  <insert id="insertSelective" parameterType="com.hxoim.support.dataInterfaceAccess.entity.DataInterfaceAccessLog">
+    insert into cf_dataInterface_accesslog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serveIp != null">
+        serve_ip,
+      </if>
+      <if test="serveUsername != null">
+        serve_username,
+      </if>
+      <if test="servePassword != null">
+        serve_password,
+      </if>
+      <if test="interfaceAccessType != null">
+        interface_access_type,
+      </if>
+      <if test="interfaceAccessName != null">
+        interface_access_name,
+      </if>
+      <if test="accessCondition != null">
+        access_condition,
+      </if>
+      <if test="modifyTime != null">
+        modify_time
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="serveIp != null">
+        #{serveIp,jdbcType=VARCHAR},
+      </if>
+      <if test="serveUsername != null">
+        #{serveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="servePassword != null">
+        #{servePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceAccessType != null">
+        #{interfaceAccessType,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceAccessName != null">
+        #{interfaceAccessName,jdbcType=CHAR},
+      </if>
+      <if test="accessCondition != null">
+        #{accessCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+
+  <select id="executeSql"  resultType="java.util.Map" parameterType="String">
+	${sql}
+  </select>
+
+</mapper>

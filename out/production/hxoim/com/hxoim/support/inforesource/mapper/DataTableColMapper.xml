@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.inforesource.mapper.DataTableColMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.inforesource.entity.DataTableCol">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TAB_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="COL_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="COL_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="COL_NAME_SHOW" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SYSTEM_FIELD" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="IS_SYSTEM_FIELD_READONLY" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="DATA_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DECIMAL_PLACE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_CALCULATE_FIELD" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="FORMULAS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SHOW" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="CONTROL_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SHOW_FORMAT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DIC_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEFAULT_VALUE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TIME_STAMP" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_DELETED" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="MODIFY_USER" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MODIFY_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ORDER_INDEX" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="A01_MAPPING" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SHOW_AT_FORM" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="COLSPAN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SHOW_AT_LIST" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="ALIGN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SORT_ABLE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SYSTEM" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="IS_NECESSARY" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="LENGTH_1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="WIDTH_1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="IS_PK" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="IS_RMB_OUT" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="LINK_ITEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_BATCH" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_SHOW_AT_PERSONITEM" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="LINK_TABLE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LINK_VALUECOLUMN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LINK_LABELCOLUMN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LINK_PARENTCOLUMN" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TAB_CODE, COL_CODE, COL_NAME, COL_NAME_SHOW, IS_SYSTEM_FIELD, IS_SYSTEM_FIELD_READONLY, 
+    DATA_TYPE, DECIMAL_PLACE, IS_CALCULATE_FIELD, FORMULAS, IS_SHOW, CONTROL_TYPE, SHOW_FORMAT, 
+    DIC_CODE, DEFAULT_VALUE, TIME_STAMP, IS_DELETED, MODIFY_USER, MODIFY_TIME, ORDER_INDEX, 
+    A01_MAPPING, IS_SHOW_AT_FORM, COLSPAN, IS_SHOW_AT_LIST, ALIGN, SORT_ABLE, IS_SYSTEM, 
+    IS_NECESSARY, LENGTH_1, WIDTH_1, IS_PK, IS_RMB_OUT, LINK_ITEM, IS_BATCH, IS_SHOW_AT_PERSONITEM, 
+    LINK_TABLE, LINK_VALUECOLUMN, LINK_LABELCOLUMN, LINK_PARENTCOLUMN
+  </sql>
+  <select id="selectByExample" parameterType="com.hxoim.support.inforesource.entity.DataTableColExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from data_table_col
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_table_col
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from data_table_col
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    insert into data_table_col (ID, TAB_CODE, COL_CODE, 
+      COL_NAME, COL_NAME_SHOW, IS_SYSTEM_FIELD, 
+      IS_SYSTEM_FIELD_READONLY, DATA_TYPE, DECIMAL_PLACE, 
+      IS_CALCULATE_FIELD, FORMULAS, IS_SHOW, 
+      CONTROL_TYPE, SHOW_FORMAT, DIC_CODE, 
+      DEFAULT_VALUE, TIME_STAMP, IS_DELETED, 
+      MODIFY_USER, MODIFY_TIME, ORDER_INDEX, 
+      A01_MAPPING, IS_SHOW_AT_FORM, COLSPAN, 
+      IS_SHOW_AT_LIST, ALIGN, SORT_ABLE, 
+      IS_SYSTEM, IS_NECESSARY, LENGTH_1, 
+      WIDTH_1, IS_PK, IS_RMB_OUT, LINK_ITEM, 
+      IS_BATCH, IS_SHOW_AT_PERSONITEM, LINK_TABLE, 
+      LINK_VALUECOLUMN, LINK_LABELCOLUMN, LINK_PARENTCOLUMN
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tabCode,jdbcType=VARCHAR}, #{colCode,jdbcType=VARCHAR}, 
+      #{colName,jdbcType=VARCHAR}, #{colNameShow,jdbcType=VARCHAR}, #{isSystemField,jdbcType=CHAR}, 
+      #{isSystemFieldReadonly,jdbcType=CHAR}, #{dataType,jdbcType=VARCHAR}, #{decimalPlace,jdbcType=VARCHAR}, 
+      #{isCalculateField,jdbcType=CHAR}, #{formulas,jdbcType=VARCHAR}, #{isShow,jdbcType=CHAR}, 
+      #{controlType,jdbcType=VARCHAR}, #{showFormat,jdbcType=VARCHAR}, #{dicCode,jdbcType=VARCHAR}, 
+      #{defaultValue,jdbcType=VARCHAR}, #{timeStamp,jdbcType=VARCHAR}, #{isDeleted,jdbcType=CHAR}, 
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{orderIndex,jdbcType=INTEGER}, 
+      #{a01Mapping,jdbcType=VARCHAR}, #{isShowAtForm,jdbcType=CHAR}, #{colspan,jdbcType=VARCHAR}, 
+      #{isShowAtList,jdbcType=CHAR}, #{align,jdbcType=VARCHAR}, #{sortAble,jdbcType=VARCHAR}, 
+      #{isSystem,jdbcType=CHAR}, #{isNecessary,jdbcType=CHAR}, #{length1,jdbcType=INTEGER}, 
+      #{width1,jdbcType=INTEGER}, #{isPk,jdbcType=CHAR}, #{isRmbOut,jdbcType=CHAR}, #{linkItem,jdbcType=VARCHAR}, 
+      #{isBatch,jdbcType=VARCHAR}, #{isShowAtPersonitem,jdbcType=CHAR}, #{linkTable,jdbcType=VARCHAR}, 
+      #{linkValuecolumn,jdbcType=VARCHAR}, #{linkLabelcolumn,jdbcType=VARCHAR}, #{linkParentcolumn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    insert into data_table_col
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="tabCode != null">
+        TAB_CODE,
+      </if>
+      <if test="colCode != null">
+        COL_CODE,
+      </if>
+      <if test="colName != null">
+        COL_NAME,
+      </if>
+      <if test="colNameShow != null">
+        COL_NAME_SHOW,
+      </if>
+      <if test="isSystemField != null">
+        IS_SYSTEM_FIELD,
+      </if>
+      <if test="isSystemFieldReadonly != null">
+        IS_SYSTEM_FIELD_READONLY,
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE,
+      </if>
+      <if test="decimalPlace != null">
+        DECIMAL_PLACE,
+      </if>
+      <if test="isCalculateField != null">
+        IS_CALCULATE_FIELD,
+      </if>
+      <if test="formulas != null">
+        FORMULAS,
+      </if>
+      <if test="isShow != null">
+        IS_SHOW,
+      </if>
+      <if test="controlType != null">
+        CONTROL_TYPE,
+      </if>
+      <if test="showFormat != null">
+        SHOW_FORMAT,
+      </if>
+      <if test="dicCode != null">
+        DIC_CODE,
+      </if>
+      <if test="defaultValue != null">
+        DEFAULT_VALUE,
+      </if>
+      <if test="timeStamp != null">
+        TIME_STAMP,
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+      <if test="modifyUser != null">
+        MODIFY_USER,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="orderIndex != null">
+        ORDER_INDEX,
+      </if>
+      <if test="a01Mapping != null">
+        A01_MAPPING,
+      </if>
+      <if test="isShowAtForm != null">
+        IS_SHOW_AT_FORM,
+      </if>
+      <if test="colspan != null">
+        COLSPAN,
+      </if>
+      <if test="isShowAtList != null">
+        IS_SHOW_AT_LIST,
+      </if>
+      <if test="align != null">
+        ALIGN,
+      </if>
+      <if test="sortAble != null">
+        SORT_ABLE,
+      </if>
+      <if test="isSystem != null">
+        IS_SYSTEM,
+      </if>
+      <if test="isNecessary != null">
+        IS_NECESSARY,
+      </if>
+      <if test="length1 != null">
+        LENGTH_1,
+      </if>
+      <if test="width1 != null">
+        WIDTH_1,
+      </if>
+      <if test="isPk != null">
+        IS_PK,
+      </if>
+      <if test="isRmbOut != null">
+        IS_RMB_OUT,
+      </if>
+      <if test="linkItem != null">
+        LINK_ITEM,
+      </if>
+      <if test="isBatch != null">
+        IS_BATCH,
+      </if>
+      <if test="isShowAtPersonitem != null">
+        IS_SHOW_AT_PERSONITEM,
+      </if>
+      <if test="linkTable != null">
+        LINK_TABLE,
+      </if>
+      <if test="linkValuecolumn != null">
+        LINK_VALUECOLUMN,
+      </if>
+      <if test="linkLabelcolumn != null">
+        LINK_LABELCOLUMN,
+      </if>
+      <if test="linkParentcolumn != null">
+        LINK_PARENTCOLUMN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tabCode != null">
+        #{tabCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colCode != null">
+        #{colCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null">
+        #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colNameShow != null">
+        #{colNameShow,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystemField != null">
+        #{isSystemField,jdbcType=CHAR},
+      </if>
+      <if test="isSystemFieldReadonly != null">
+        #{isSystemFieldReadonly,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalPlace != null">
+        #{decimalPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="isCalculateField != null">
+        #{isCalculateField,jdbcType=CHAR},
+      </if>
+      <if test="formulas != null">
+        #{formulas,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="controlType != null">
+        #{controlType,jdbcType=VARCHAR},
+      </if>
+      <if test="showFormat != null">
+        #{showFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCode != null">
+        #{dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null">
+        #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null">
+        #{timeStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIndex != null">
+        #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="a01Mapping != null">
+        #{a01Mapping,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtForm != null">
+        #{isShowAtForm,jdbcType=CHAR},
+      </if>
+      <if test="colspan != null">
+        #{colspan,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtList != null">
+        #{isShowAtList,jdbcType=CHAR},
+      </if>
+      <if test="align != null">
+        #{align,jdbcType=VARCHAR},
+      </if>
+      <if test="sortAble != null">
+        #{sortAble,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null">
+        #{isSystem,jdbcType=CHAR},
+      </if>
+      <if test="isNecessary != null">
+        #{isNecessary,jdbcType=CHAR},
+      </if>
+      <if test="length1 != null">
+        #{length1,jdbcType=INTEGER},
+      </if>
+      <if test="width1 != null">
+        #{width1,jdbcType=INTEGER},
+      </if>
+      <if test="isPk != null">
+        #{isPk,jdbcType=CHAR},
+      </if>
+      <if test="isRmbOut != null">
+        #{isRmbOut,jdbcType=CHAR},
+      </if>
+      <if test="linkItem != null">
+        #{linkItem,jdbcType=VARCHAR},
+      </if>
+      <if test="isBatch != null">
+        #{isBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtPersonitem != null">
+        #{isShowAtPersonitem,jdbcType=CHAR},
+      </if>
+      <if test="linkTable != null">
+        #{linkTable,jdbcType=VARCHAR},
+      </if>
+      <if test="linkValuecolumn != null">
+        #{linkValuecolumn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkLabelcolumn != null">
+        #{linkLabelcolumn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkParentcolumn != null">
+        #{linkParentcolumn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    update data_table_col
+    <set>
+      <if test="tabCode != null">
+        TAB_CODE = #{tabCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colCode != null">
+        COL_CODE = #{colCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null">
+        COL_NAME = #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colNameShow != null">
+        COL_NAME_SHOW = #{colNameShow,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystemField != null">
+        IS_SYSTEM_FIELD = #{isSystemField,jdbcType=CHAR},
+      </if>
+      <if test="isSystemFieldReadonly != null">
+        IS_SYSTEM_FIELD_READONLY = #{isSystemFieldReadonly,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalPlace != null">
+        DECIMAL_PLACE = #{decimalPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="isCalculateField != null">
+        IS_CALCULATE_FIELD = #{isCalculateField,jdbcType=CHAR},
+      </if>
+      <if test="formulas != null">
+        FORMULAS = #{formulas,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        IS_SHOW = #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="controlType != null">
+        CONTROL_TYPE = #{controlType,jdbcType=VARCHAR},
+      </if>
+      <if test="showFormat != null">
+        SHOW_FORMAT = #{showFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCode != null">
+        DIC_CODE = #{dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null">
+        DEFAULT_VALUE = #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStamp != null">
+        TIME_STAMP = #{timeStamp,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderIndex != null">
+        ORDER_INDEX = #{orderIndex,jdbcType=INTEGER},
+      </if>
+      <if test="a01Mapping != null">
+        A01_MAPPING = #{a01Mapping,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtForm != null">
+        IS_SHOW_AT_FORM = #{isShowAtForm,jdbcType=CHAR},
+      </if>
+      <if test="colspan != null">
+        COLSPAN = #{colspan,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtList != null">
+        IS_SHOW_AT_LIST = #{isShowAtList,jdbcType=CHAR},
+      </if>
+      <if test="align != null">
+        ALIGN = #{align,jdbcType=VARCHAR},
+      </if>
+      <if test="sortAble != null">
+        SORT_ABLE = #{sortAble,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null">
+        IS_SYSTEM = #{isSystem,jdbcType=CHAR},
+      </if>
+      <if test="isNecessary != null">
+        IS_NECESSARY = #{isNecessary,jdbcType=CHAR},
+      </if>
+      <if test="length1 != null">
+        LENGTH_1 = #{length1,jdbcType=INTEGER},
+      </if>
+      <if test="width1 != null">
+        WIDTH_1 = #{width1,jdbcType=INTEGER},
+      </if>
+      <if test="isPk != null">
+        IS_PK = #{isPk,jdbcType=CHAR},
+      </if>
+      <if test="isRmbOut != null">
+        IS_RMB_OUT = #{isRmbOut,jdbcType=CHAR},
+      </if>
+      <if test="linkItem != null">
+        LINK_ITEM = #{linkItem,jdbcType=VARCHAR},
+      </if>
+      <if test="isBatch != null">
+        IS_BATCH = #{isBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowAtPersonitem != null">
+        IS_SHOW_AT_PERSONITEM = #{isShowAtPersonitem,jdbcType=CHAR},
+      </if>
+      <if test="linkTable != null">
+        LINK_TABLE = #{linkTable,jdbcType=VARCHAR},
+      </if>
+      <if test="linkValuecolumn != null">
+        LINK_VALUECOLUMN = #{linkValuecolumn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkLabelcolumn != null">
+        LINK_LABELCOLUMN = #{linkLabelcolumn,jdbcType=VARCHAR},
+      </if>
+      <if test="linkParentcolumn != null">
+        LINK_PARENTCOLUMN = #{linkParentcolumn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    update data_table_col
+    set TAB_CODE = #{tabCode,jdbcType=VARCHAR},
+      COL_CODE = #{colCode,jdbcType=VARCHAR},
+      COL_NAME = #{colName,jdbcType=VARCHAR},
+      COL_NAME_SHOW = #{colNameShow,jdbcType=VARCHAR},
+      IS_SYSTEM_FIELD = #{isSystemField,jdbcType=CHAR},
+      IS_SYSTEM_FIELD_READONLY = #{isSystemFieldReadonly,jdbcType=CHAR},
+      DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+      DECIMAL_PLACE = #{decimalPlace,jdbcType=VARCHAR},
+      IS_CALCULATE_FIELD = #{isCalculateField,jdbcType=CHAR},
+      FORMULAS = #{formulas,jdbcType=VARCHAR},
+      IS_SHOW = #{isShow,jdbcType=CHAR},
+      CONTROL_TYPE = #{controlType,jdbcType=VARCHAR},
+      SHOW_FORMAT = #{showFormat,jdbcType=VARCHAR},
+      DIC_CODE = #{dicCode,jdbcType=VARCHAR},
+      DEFAULT_VALUE = #{defaultValue,jdbcType=VARCHAR},
+      TIME_STAMP = #{timeStamp,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=CHAR},
+      MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      ORDER_INDEX = #{orderIndex,jdbcType=INTEGER},
+      A01_MAPPING = #{a01Mapping,jdbcType=VARCHAR},
+      IS_SHOW_AT_FORM = #{isShowAtForm,jdbcType=CHAR},
+      COLSPAN = #{colspan,jdbcType=VARCHAR},
+      IS_SHOW_AT_LIST = #{isShowAtList,jdbcType=CHAR},
+      ALIGN = #{align,jdbcType=VARCHAR},
+      SORT_ABLE = #{sortAble,jdbcType=VARCHAR},
+      IS_SYSTEM = #{isSystem,jdbcType=CHAR},
+      IS_NECESSARY = #{isNecessary,jdbcType=CHAR},
+      LENGTH_1 = #{length1,jdbcType=INTEGER},
+      WIDTH_1 = #{width1,jdbcType=INTEGER},
+      IS_PK = #{isPk,jdbcType=CHAR},
+      IS_RMB_OUT = #{isRmbOut,jdbcType=CHAR},
+      LINK_ITEM = #{linkItem,jdbcType=VARCHAR},
+      IS_BATCH = #{isBatch,jdbcType=VARCHAR},
+      IS_SHOW_AT_PERSONITEM = #{isShowAtPersonitem,jdbcType=CHAR},
+      LINK_TABLE = #{linkTable,jdbcType=VARCHAR},
+      LINK_VALUECOLUMN = #{linkValuecolumn,jdbcType=VARCHAR},
+      LINK_LABELCOLUMN = #{linkLabelcolumn,jdbcType=VARCHAR},
+      LINK_PARENTCOLUMN = #{linkParentcolumn,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <delete id="deleteByTabCode" parameterType="java.lang.String">
+    delete from data_table_col
+    where TAB_CODE = #{tabCode,jdbcType=VARCHAR}
+  </delete>
+  <!--排序-->
+  <update id="sortInformations" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    UPDATE data_table_col SET ORDER_INDEX=#{orderIndex} WHERE id=#{id}
+    </update>
+
+  <!--查询最大排序号-->
+  <select id="selectMaxOrderindex" parameterType="com.hxoim.support.inforesource.entity.DataTableCol" resultType="java.lang.Integer">
+    SELECT MAX(ORDER_INDEX) FROM data_table_col WHERE TAB_CODE=#{tabCode}
+    </select>
+
+
+  <!--验证列名是否存在-->
+  <select id="selectColumnName" parameterType="com.hxoim.support.inforesource.entity.DataTableCol" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM data_table_col WHERE COL_CODE=#{colCode} AND TAB_CODE=#{tabCode}
+    <if test="id!=null and id!=''">
+      AND id!=#{id}
+    </if>
+  </select>
+
+  <!--表添加列-->
+  <update id="insertColumn" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    ALTER TABLE ${tabCode} ADD COLUMN ${colCode} ${dataType}
+    <choose>
+      <when test="dataType!='varchar' and dataType!='char'">
+        COMMENT #{colName}
+      </when>
+      <when test="dataType=='varchar' or dataType=='char'">
+        (${length1}) COMMENT #{colName}
+      </when>
+      <otherwise>
+        (${length1},${decimalPlace}) COMMENT #{colName}
+      </otherwise>
+    </choose>
+  </update>
+
+  <!--修改列-->
+  <update id="updateColumn" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+
+    alter table ${tabCode} rename column ${oldColCode} to ${colCode};
+    comment on column  ${tabCode}.${colCode}   is
+
+    <choose>
+      <when test="colName!='' and colName!=null ">
+        #{colName} ;
+      </when>
+
+      <otherwise>
+       " " ;
+      </otherwise>
+    </choose>
+    alter table ${tabCode} modify (${colCode} ${dataType}
+    <choose>
+      <when test="dataType!='varchar' and dataType!='char'">
+        );
+      </when>
+      <when test="dataType=='varchar' or dataType=='char'">
+        (${length1}) );
+      </when>
+      <otherwise>
+        (${length1},${decimalPlace}) );
+      </otherwise>
+    </choose>
+
+  </update>
+
+  <!--删除列-->
+  <update id="dropColumn" parameterType="com.hxoim.support.inforesource.entity.DataTableCol">
+    alter table ${tabCode} drop column  ${colCode}
+    </update>
+
+  <select id="selectDataTableColByIds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_table_col
+    where 1=1 and id in
+    <foreach close=")" collection="ids" item="id" open="(" separator=",">
+      #{id}
+    </foreach>
+  </select>
+
+  <!--通过表code与字段code查询字段-->
+  <select id="selectDataByCodeAndTabCode" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_table_col
+    where 1=1
+      and tab_code = #{tabCode,jdbcType=VARCHAR}
+      and col_code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <!--通过表code查询字段-->
+  <select id="selectByTabCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_table_col
+    where tab_code = #{tabCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

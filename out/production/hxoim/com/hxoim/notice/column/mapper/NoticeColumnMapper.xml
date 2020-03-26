@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.notice.column.mapper.NoticeColumnMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.notice.column.entity.NoticeColumn">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="p_id" jdbcType="VARCHAR" property="pId" />
+        <result column="column_name" jdbcType="VARCHAR" property="columnName" />
+        <result column="is_display" jdbcType="CHAR" property="isDisplay" />
+        <result column="is_system" jdbcType="CHAR" property="isSystem" />
+        <result column="is_share" jdbcType="CHAR" property="isShare" />
+        <result column="sort_id" jdbcType="INTEGER" property="sortId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, modify_user, modify_time, p_id, column_name, is_display, is_system, is_share,
+    sort_id
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from notice_column
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from notice_column
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.notice.column.entity.NoticeColumn">
+    insert into notice_column (id, modify_user, modify_time,
+      p_id, column_name, is_display,
+      is_system, is_share, sort_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{pId,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, #{isDisplay,jdbcType=CHAR},
+      #{isSystem,jdbcType=CHAR}, #{isShare,jdbcType=CHAR}, #{sortId,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.notice.column.entity.NoticeColumn">
+        insert into notice_column
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="pId != null">
+                p_id,
+            </if>
+            <if test="columnName != null">
+                column_name,
+            </if>
+            <if test="isDisplay != null">
+                is_display,
+            </if>
+            <if test="isSystem != null">
+                is_system,
+            </if>
+            <if test="isShare != null">
+                is_share,
+            </if>
+            <if test="sortId != null">
+                sort_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pId != null">
+                #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="columnName != null">
+                #{columnName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDisplay != null">
+                #{isDisplay,jdbcType=CHAR},
+            </if>
+            <if test="isSystem != null">
+                #{isSystem,jdbcType=CHAR},
+            </if>
+            <if test="isShare != null">
+                #{isShare,jdbcType=CHAR},
+            </if>
+            <if test="sortId != null">
+                #{sortId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.notice.column.entity.NoticeColumn">
+        update notice_column
+        <set>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pId != null">
+                p_id = #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="columnName != null">
+                column_name = #{columnName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDisplay != null">
+                is_display = #{isDisplay,jdbcType=CHAR},
+            </if>
+            <if test="isSystem != null">
+                is_system = #{isSystem,jdbcType=CHAR},
+            </if>
+            <if test="isShare != null">
+                is_share = #{isShare,jdbcType=CHAR},
+            </if>
+            <if test="sortId != null">
+                sort_id = #{sortId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.notice.column.entity.NoticeColumn">
+    update notice_column
+    set modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      p_id = #{pId,jdbcType=VARCHAR},
+      column_name = #{columnName,jdbcType=VARCHAR},
+      is_display = #{isDisplay,jdbcType=CHAR},
+      is_system = #{isSystem,jdbcType=CHAR},
+      is_share = #{isShare,jdbcType=CHAR},
+      sort_id = #{sortId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--新sql标签-->
+    <select id="selectMaxSortId" resultType="java.lang.Integer">
+        select ifnull(max(sort_id), 1)+1 from notice_column
+  </select>
+    <select id="selectColumnTree" resultType="com.hxoim.common.tree.Tree">
+        select id as "id",column_name as "label", p_id as "pId" from notice_column order by sort_id
+    </select>
+    <select id="selectColumnListByPId" resultMap="BaseResultMap">
+        select * from notice_column where p_id=#{pId} order by sort_id
+    </select>
+    <select id="selectColumnTypeTree" resultType="com.hxoim.common.tree.Tree">
+        select a.id as "id",a.p_id as "pId", a.column_name as "label"
+        from notice_column a
+        inner join notice_column b on
+        a.p_id = b.id
+        order by a.sort_id
+    </select>
+    <select id="selectColumnTypeList" resultMap="BaseResultMap">
+        select a.*
+        from notice_column a
+        inner join notice_column b on
+        a.p_id = b.id
+        order by a.sort_id
+    </select>
+    <update id="saveTableSort">
+      <foreach collection="list" separator=";" index="index" item="item" open="" close="">
+        update notice_column set sort_id=#{item.sortId} where id=#{item.id}
+      </foreach>
+    </update>
+</mapper>

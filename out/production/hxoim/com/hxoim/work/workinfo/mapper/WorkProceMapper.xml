@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.work.workinfo.mapper.WorkProceMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.work.workinfo.entity.WorkProce">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="work_responsible_id" jdbcType="VARCHAR" property="workResponsibleId"/>
+        <result column="proce" jdbcType="VARCHAR" property="proce"/>
+        <result column="proce_reason" jdbcType="VARCHAR" property="proceReason"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="proce_time" jdbcType="TIMESTAMP" property="proceTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, work_responsible_id, proce, proce_reason,user_id,proce_time
+    </sql>
+
+    <!-- 新增工作安排 -->
+    <insert id="insert" parameterType="com.hxoim.work.workinfo.entity.WorkProce">
+        insert into work_proce (
+            id, work_responsible_id, proce, proce_reason,user_id,proce_time
+        )
+        values
+        (
+            #{id,jdbcType=VARCHAR},
+            #{workResponsibleId,jdbcType=VARCHAR},
+            #{proce,jdbcType=VARCHAR},
+            #{proceReason,jdbcType=VARCHAR},
+            #{userId,jdbcType=VARCHAR},
+            now()
+        )
+    </insert>
+
+    <!--删除工作安排-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from work_proce
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <!--修改工作安排-->
+    <update id="update" parameterType="com.hxoim.work.workinfo.entity.WorkResponsible">
+        update work_proce
+        set work_responsible_id = #{workResponsibleId,jdbcType=VARCHAR},
+            proce = #{proce,jdbcType=VARCHAR},
+            proce_reason = #{proceReason,jdbcType=VARCHAR},
+            user_id = #{userId,jdbcType=VARCHAR},
+            proce_time = #{proceTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--查看工作安排列表(userId)-->
+    <select id="selectListById" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_proce t
+        left join cf_user u on t.user_id = u.id
+        where t.work_responsible_id = #{workResponsibleId}
+    </select>
+
+    <!--查看工作安排列表-->
+    <select id="selectWorkProceById" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_proce t
+        left join cf_user u on t.user_id = u.id
+        where t.user_id = #{userId}
+    </select>
+
+    <!-- <insert id="insertSelective" parameterType="com.hxoim.work.workinfo.entity.WorkInfo">
+        insert into work_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="contentId != null">
+                #{contentId,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>-->
+
+</mapper>

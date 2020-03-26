@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.work.workinfo.mapper.WorkInfoMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.work.workinfo.entity.WorkInfo">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="work_title" jdbcType="VARCHAR" property="workTitle"/>
+        <result column="work_content" jdbcType="VARCHAR" property="workContent"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="plan_finished_time" jdbcType="TIMESTAMP" property="planFinishedTime"/>
+        <result column="real_finished_time" jdbcType="TIMESTAMP" property="realFinishedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, modify_user, modify_time, p_id,work_title,work_content,user_id,status,start_time,plan_finished_time,real_finished_time
+    </sql>
+
+    <!-- 新增工作安排 -->
+    <insert id="insert" parameterType="com.hxoim.work.workinfo.entity.WorkInfo">
+        insert into work_info (
+            id, modify_user, modify_time, p_id,work_title,work_content,user_id,status,start_time,plan_finished_time,real_finished_time
+        )
+        values
+        (
+            #{id,jdbcType=VARCHAR},
+            #{modifyUser,jdbcType=VARCHAR},
+            #{modifyTime,jdbcType=TIMESTAMP},
+            #{pId,jdbcType=VARCHAR},
+            #{workTitle,jdbcType=VARCHAR},
+            #{workContent,jdbcType=VARCHAR},
+            #{userId,jdbcType=VARCHAR},
+            #{status,jdbcType=CHAR},
+            #{startTime,jdbcType=TIMESTAMP},
+            #{planFinishedTime,jdbcType=TIMESTAMP},
+            #{realFinishedTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <!--删除工作安排-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from work_info
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <!--修改工作安排-->
+    <update id="update" parameterType="com.hxoim.work.workinfo.entity.WorkInfo">
+        update work_info
+        set modify_user = #{modifyUser,jdbcType=VARCHAR},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            p_id = #{pId,jdbcType=VARCHAR},
+            work_title = #{workTitle,jdbcType=VARCHAR},
+            work_content = #{workContent,jdbcType=VARCHAR},
+            user_id = #{userId,jdbcType=VARCHAR},
+            status = #{status,jdbcType=CHAR},
+            start_time = #{startTime,jdbcType=TIMESTAMP},
+            plan_finished_time = #{planFinishedTime,jdbcType=TIMESTAMP},
+            real_finished_time = #{realFinishedTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.work.workinfo.entity.WorkInfo">
+        update work_info
+        <set>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pId != null">
+                p_id = #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="workTitle != null">
+                work_title = #{workTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="workContent != null">
+                work_content = #{workContent,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="planFinishedTime != null">
+                plan_finished_time = #{planFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realFinishedTime != null">
+                real_finished_time = #{realFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--查看工作安排列表-->
+    <select id="selectWorkInfoList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from work_info t
+        where t.user_id = #{userId}
+        <if test="workTitle != null and workTitle != ''">
+            and t.work_title like ${workTitle}
+        </if>
+        <if test="startTime != null and startTime != ''">
+            and t.start_time >= #{startTime}
+        </if>
+        <if test="status != null and status != ''">
+            and t.status = #{status}
+        </if>
+        order by t.start_time desc
+    </select>
+
+    <!--查看工作安排详情-->
+    <select id="selectWorkInfoById" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_info t
+        left join cf_user u on t.user_id = u.id
+        where t.id = #{id}
+    </select>
+
+    <!--查看工作安排详情-->
+    <select id="selectWorkInfoByPId" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_info t
+        left join cf_user u on t.user_id = u.id
+        where t.p_id = #{id}
+    </select>
+
+    <!-- <insert id="insertSelective" parameterType="com.hxoim.work.workinfo.entity.WorkInfo">
+        insert into work_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="contentId != null">
+                #{contentId,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>-->
+
+</mapper>

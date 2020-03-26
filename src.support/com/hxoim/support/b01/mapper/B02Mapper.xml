@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.b01.mapper.B02Mapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.b01.entity.B02">
+        <result column="b0111" jdbcType="VARCHAR" property="b0111" />
+        <result column="b0201" jdbcType="DATE" property="b0201" />
+        <result column="b0204" jdbcType="VARCHAR" property="b0204" />
+        <result column="b0207a" jdbcType="VARCHAR" property="b0207a" />
+        <result column="b0207b" jdbcType="VARCHAR" property="b0207b" />
+        <result column="b0211" jdbcType="INTEGER" property="b0211" />
+        <result column="b0214" jdbcType="VARCHAR" property="b0214" />
+        <result column="b0217" jdbcType="VARCHAR" property="b0217" />
+        <result column="b0221" jdbcType="VARCHAR" property="b0221" />
+        <result column="b0224" jdbcType="INTEGER" property="b0224" />
+        <result column="b0227" jdbcType="INTEGER" property="b0227" />
+        <result column="b0231" jdbcType="INTEGER" property="b0231" />
+        <result column="b0234" jdbcType="INTEGER" property="b0234" />
+        <result column="b0237" jdbcType="INTEGER" property="b0237" />
+        <result column="b0241" jdbcType="INTEGER" property="b0241" />
+        <result column="b0244" jdbcType="INTEGER" property="b0244" />
+        <result column="b0247" jdbcType="INTEGER" property="b0247" />
+        <result column="b0251" jdbcType="INTEGER" property="b0251" />
+        <result column="b0254" jdbcType="INTEGER" property="b0254" />
+        <result column="b0257" jdbcType="INTEGER" property="b0257" />
+        <result column="b0261" jdbcType="INTEGER" property="b0261" />
+        <result column="b0264" jdbcType="INTEGER" property="b0264" />
+        <result column="b0267" jdbcType="INTEGER" property="b0267" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.hxoim.support.b01.entity.B02">
+        insert into b02 (b0111, b0201, b0204,
+        b0207a, b0207b, b0211,
+        b0214, b0217, b0221,
+        b0224, b0227, b0231,
+        b0234, b0237, b0241,
+        b0244, b0247, b0251,
+        b0254, b0257, b0261,
+        b0264, b0267, modify_user,
+        modify_time)
+        values (#{b0111,jdbcType=VARCHAR}, #{b0201,jdbcType=DATE}, #{b0204,jdbcType=VARCHAR},
+        #{b0207a,jdbcType=VARCHAR}, #{b0207b,jdbcType=VARCHAR}, #{b0211,jdbcType=INTEGER},
+        #{b0214,jdbcType=VARCHAR}, #{b0217,jdbcType=VARCHAR}, #{b0221,jdbcType=VARCHAR},
+        #{b0224,jdbcType=INTEGER}, #{b0227,jdbcType=INTEGER}, #{b0231,jdbcType=INTEGER},
+        #{b0234,jdbcType=INTEGER}, #{b0237,jdbcType=INTEGER}, #{b0241,jdbcType=INTEGER},
+        #{b0244,jdbcType=INTEGER}, #{b0247,jdbcType=INTEGER}, #{b0251,jdbcType=INTEGER},
+        #{b0254,jdbcType=INTEGER}, #{b0257,jdbcType=INTEGER}, #{b0261,jdbcType=INTEGER},
+        #{b0264,jdbcType=INTEGER}, #{b0267,jdbcType=INTEGER}, #{modifyUser,jdbcType=VARCHAR},
+        #{modifyTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertB02" parameterType="com.hxoim.support.b01.entity.B02">
+        insert into b02
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="b0111 != null">
+                b0111,
+            </if>
+            <if test="b0201 != null">
+                b0201,
+            </if>
+            <if test="b0204 != null">
+                b0204,
+            </if>
+            <if test="b0207a != null">
+                b0207a,
+            </if>
+            <if test="b0207b != null">
+                b0207b,
+            </if>
+            <if test="b0211 != null">
+                b0211,
+            </if>
+            <if test="b0214 != null">
+                b0214,
+            </if>
+            <if test="b0217 != null">
+                b0217,
+            </if>
+            <if test="b0221 != null">
+                b0221,
+            </if>
+            <if test="b0224 != null">
+                b0224,
+            </if>
+            <if test="b0227 != null">
+                b0227,
+            </if>
+            <if test="b0231 != null">
+                b0231,
+            </if>
+            <if test="b0234 != null">
+                b0234,
+            </if>
+            <if test="b0237 != null">
+                b0237,
+            </if>
+            <if test="b0241 != null">
+                b0241,
+            </if>
+            <if test="b0244 != null">
+                b0244,
+            </if>
+            <if test="b0247 != null">
+                b0247,
+            </if>
+            <if test="b0251 != null">
+                b0251,
+            </if>
+            <if test="b0254 != null">
+                b0254,
+            </if>
+            <if test="b0257 != null">
+                b0257,
+            </if>
+            <if test="b0261 != null">
+                b0261,
+            </if>
+            <if test="b0264 != null">
+                b0264,
+            </if>
+            <if test="b0267 != null">
+                b0267,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="b0111 != null">
+                #{b0111,jdbcType=VARCHAR},
+            </if>
+            <if test="b0201 != null">
+                #{b0201,jdbcType=DATE},
+            </if>
+            <if test="b0204 != null">
+                #{b0204,jdbcType=VARCHAR},
+            </if>
+            <if test="b0207a != null">
+                #{b0207a,jdbcType=VARCHAR},
+            </if>
+            <if test="b0207b != null">
+                #{b0207b,jdbcType=VARCHAR},
+            </if>
+            <if test="b0211 != null">
+                #{b0211,jdbcType=INTEGER},
+            </if>
+            <if test="b0214 != null">
+                #{b0214,jdbcType=VARCHAR},
+            </if>
+            <if test="b0217 != null">
+                #{b0217,jdbcType=VARCHAR},
+            </if>
+            <if test="b0221 != null">
+                #{b0221,jdbcType=VARCHAR},
+            </if>
+            <if test="b0224 != null">
+                #{b0224,jdbcType=INTEGER},
+            </if>
+            <if test="b0227 != null">
+                #{b0227,jdbcType=INTEGER},
+            </if>
+            <if test="b0231 != null">
+                #{b0231,jdbcType=INTEGER},
+            </if>
+            <if test="b0234 != null">
+                #{b0234,jdbcType=INTEGER},
+            </if>
+            <if test="b0237 != null">
+                #{b0237,jdbcType=INTEGER},
+            </if>
+            <if test="b0241 != null">
+                #{b0241,jdbcType=INTEGER},
+            </if>
+            <if test="b0244 != null">
+                #{b0244,jdbcType=INTEGER},
+            </if>
+            <if test="b0247 != null">
+                #{b0247,jdbcType=INTEGER},
+            </if>
+            <if test="b0251 != null">
+                #{b0251,jdbcType=INTEGER},
+            </if>
+            <if test="b0254 != null">
+                #{b0254,jdbcType=INTEGER},
+            </if>
+            <if test="b0257 != null">
+                #{b0257,jdbcType=INTEGER},
+            </if>
+            <if test="b0261 != null">
+                #{b0261,jdbcType=INTEGER},
+            </if>
+            <if test="b0264 != null">
+                #{b0264,jdbcType=INTEGER},
+            </if>
+            <if test="b0267 != null">
+                #{b0267,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询编制信息-->
+    <select id="selectB02Byb0111" parameterType="String" resultMap="BaseResultMap">
+        SELECT b0111,b0201,b0204,b0207a,b0207b,b0211,b0214,b0217,b0221,b0224,b0227,b0231,b0234,
+        b0237,b0241,b0244,b0247,b0251,b0254,b0257,b0261,b0264,b0267,modify_user,modify_time
+        FROM b02 WHERE b0111=#{b0111}
+    </select>
+
+    <!--修改编制信息-->
+    <update id="updateB02" parameterType="com.hxoim.support.b01.entity.B02">
+        UPDATE b02 SET b0201=#{b0201},b0204=#{b0204},b0207a=#{b0207a},b0207b=#{b0207b},
+        b0211=#{b0211},b0214=#{b0214},b0217=#{b0217},
+        b0221=#{b0221},b0224=#{b0224},b0227=#{b0227},b0231=#{b0231},b0234=#{b0234},
+        b0237=#{b0237},b0241=#{b0241},b0244=#{b0244},b0247=#{b0247},b0251=#{b0251},
+        b0254=#{b0254},b0257=#{b0257},b0261=#{b0261},
+        b0264=#{b0264},b0267=#{b0267},modify_user=#{modifyUser},modify_time=#{modifyTime}
+        WHERE b0111=#{b0111}
+    </update>
+
+    <!--删除编制信息-->
+    <delete id="deleteB02" parameterType="String">
+        DELETE  FROM  b02 WHERE b0111=#{b0111}
+    </delete>
+</mapper>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.inforesource.mapper.DataTableMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.inforesource.entity.DataTable">
+        <constructor>
+            <idArg column="ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CatalogId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TAB_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TAB_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IS_MULTILY" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="LOAD_PAGE_METHOD" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="PID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="COMMENTS" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="ORDER_INDEX" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="RIGHT_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="NAME_SPACE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="CLASS_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TIME_STAMP" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IS_DELETED" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="MODIFY_USER" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="MODIFY_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="LIST_SETTING" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="FORM_SETTING" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TABLE_SAME_SQL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="BATCH_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="TABLE_TYPE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IS_FOR_QUERY" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IS_TREE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="IS_INDEX_TEMP" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, CatalogId, TAB_CODE, TAB_NAME, DESCRIPTION, IS_MULTILY, LOAD_PAGE_METHOD, PID, 
+    COMMENTS, ORDER_INDEX, URL, RIGHT_CODE, NAME_SPACE, CLASS_NAME, TIME_STAMP, IS_DELETED, 
+    MODIFY_USER, MODIFY_TIME, LIST_SETTING, FORM_SETTING, TABLE_SAME_SQL, BATCH_URL, 
+    TABLE_TYPE, IS_FOR_QUERY, IS_TREE, IS_INDEX_TEMP
+  </sql>
+    <select id="selectByExample" parameterType="com.hxoim.support.inforesource.entity.DataTableExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct''
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from data_table
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from data_table
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from data_table
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+    insert into data_table (ID, CatalogId, TAB_CODE, 
+      TAB_NAME, DESCRIPTION, IS_MULTILY, 
+      LOAD_PAGE_METHOD, PID, COMMENTS, 
+      ORDER_INDEX, URL, RIGHT_CODE, 
+      NAME_SPACE, CLASS_NAME, TIME_STAMP, 
+      IS_DELETED, MODIFY_USER, MODIFY_TIME, 
+      LIST_SETTING, FORM_SETTING, TABLE_SAME_SQL, 
+      BATCH_URL, TABLE_TYPE, IS_FOR_QUERY, IS_TREE, IS_INDEX_TEMP
+      )
+    values (#{id,jdbcType=VARCHAR}, #{catalogid,jdbcType=VARCHAR}, #{tabCode,jdbcType=VARCHAR}, 
+      #{tabName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isMultily,jdbcType=VARCHAR}, 
+      #{loadPageMethod,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+      #{orderIndex,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{rightCode,jdbcType=VARCHAR}, 
+      #{nameSpace,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, #{timeStamp,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{listSetting,jdbcType=VARCHAR}, #{formSetting,jdbcType=VARCHAR}, #{tableSameSql,jdbcType=VARCHAR}, 
+      #{batchUrl,jdbcType=VARCHAR}, #{tableType,jdbcType=VARCHAR}, #{isForQuery,jdbcType=VARCHAR},
+      #{isTree,jdbcType=VARCHAR},  #{isIndexTemp,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+        insert into data_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="catalogid != null">
+                CatalogId,
+            </if>
+            <if test="tabCode != null">
+                TAB_CODE,
+            </if>
+            <if test="tabName != null">
+                TAB_NAME,
+            </if>
+            <if test="description != null">
+                DESCRIPTION,
+            </if>
+            <if test="isMultily != null">
+                IS_MULTILY,
+            </if>
+            <if test="loadPageMethod != null">
+                LOAD_PAGE_METHOD,
+            </if>
+            <if test="pid != null">
+                PID,
+            </if>
+            <if test="comments != null">
+                COMMENTS,
+            </if>
+            <if test="orderIndex != null">
+                ORDER_INDEX,
+            </if>
+            <if test="url != null">
+                URL,
+            </if>
+            <if test="rightCode != null">
+                RIGHT_CODE,
+            </if>
+            <if test="nameSpace != null">
+                NAME_SPACE,
+            </if>
+            <if test="className != null">
+                CLASS_NAME,
+            </if>
+            <if test="timeStamp != null">
+                TIME_STAMP,
+            </if>
+            <if test="isDeleted != null">
+                IS_DELETED,
+            </if>
+            <if test="modifyUser != null">
+                MODIFY_USER,
+            </if>
+            <if test="modifyTime != null">
+                MODIFY_TIME,
+            </if>
+            <if test="listSetting != null">
+                LIST_SETTING,
+            </if>
+            <if test="formSetting != null">
+                FORM_SETTING,
+            </if>
+            <if test="tableSameSql != null">
+                TABLE_SAME_SQL,
+            </if>
+            <if test="batchUrl != null">
+                BATCH_URL,
+            </if>
+            <if test="tableType != null">
+                TABLE_TYPE,
+            </if>
+            <if test="isForQuery != null">
+                IS_FOR_QUERY,
+            </if>
+            <if test="isTree!= null">
+                IS_TREE,
+            </if>
+            <if test="isIndexTemp!= null">
+                IS_INDEX_TEMP,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="catalogid != null">
+                #{catalogid,jdbcType=VARCHAR},
+            </if>
+            <if test="tabCode != null">
+                #{tabCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tabName != null">
+                #{tabName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isMultily != null">
+                #{isMultily,jdbcType=VARCHAR},
+            </if>
+            <if test="loadPageMethod != null">
+                #{loadPageMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null">
+                #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="rightCode != null">
+                #{rightCode,jdbcType=VARCHAR},
+            </if>
+            <if test="nameSpace != null">
+                #{nameSpace,jdbcType=VARCHAR},
+            </if>
+            <if test="className != null">
+                #{className,jdbcType=VARCHAR},
+            </if>
+            <if test="timeStamp != null">
+                #{timeStamp,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="listSetting != null">
+                #{listSetting,jdbcType=VARCHAR},
+            </if>
+            <if test="formSetting != null">
+                #{formSetting,jdbcType=VARCHAR},
+            </if>
+            <if test="tableSameSql != null">
+                #{tableSameSql,jdbcType=VARCHAR},
+            </if>
+            <if test="batchUrl != null">
+                #{batchUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tableType != null">
+                #{tableType,jdbcType=VARCHAR},
+            </if>
+            <if test="isForQuery != null">
+                #{isForQuery,jdbcType=VARCHAR},
+            </if>
+            <if test="isTree != null">
+                #{isTree,jdbcType=VARCHAR},
+            </if>
+            <if test="isIndexTemp != null">
+                #{isIndexTemp,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+        update data_table
+        <set>
+            <if test="catalogid != null">
+                CatalogId = #{catalogid,jdbcType=VARCHAR},
+            </if>
+            <if test="tabCode != null">
+                TAB_CODE = #{tabCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tabName != null">
+                TAB_NAME = #{tabName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isMultily != null">
+                IS_MULTILY = #{isMultily,jdbcType=VARCHAR},
+            </if>
+            <if test="loadPageMethod != null">
+                LOAD_PAGE_METHOD = #{loadPageMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                PID = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null">
+                COMMENTS = #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                ORDER_INDEX = #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="url != null">
+                URL = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="rightCode != null">
+                RIGHT_CODE = #{rightCode,jdbcType=VARCHAR},
+            </if>
+            <if test="nameSpace != null">
+                NAME_SPACE = #{nameSpace,jdbcType=VARCHAR},
+            </if>
+            <if test="className != null">
+                CLASS_NAME = #{className,jdbcType=VARCHAR},
+            </if>
+            <if test="timeStamp != null">
+                TIME_STAMP = #{timeStamp,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleted != null">
+                IS_DELETED = #{isDeleted,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="listSetting != null">
+                LIST_SETTING = #{listSetting,jdbcType=VARCHAR},
+            </if>
+            <if test="formSetting != null">
+                FORM_SETTING = #{formSetting,jdbcType=VARCHAR},
+            </if>
+            <if test="tableSameSql != null">
+                TABLE_SAME_SQL = #{tableSameSql,jdbcType=VARCHAR},
+            </if>
+            <if test="batchUrl != null">
+                BATCH_URL = #{batchUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tableType != null">
+                TABLE_TYPE = #{tableType,jdbcType=VARCHAR},
+            </if>
+            <if test="isForQuery != null">
+                IS_FOR_QUERY = #{isForQuery,jdbcType=VARCHAR},
+            </if>
+            <if test="isTree != null">
+                IS_TREE = #{isTree,jdbcType=VARCHAR},
+            </if>
+            <if test="isIndexTemp != null">
+                IS_INDEX_TEMP = #{isIndexTemp,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+    update data_table
+    set CatalogId = #{catalogid,jdbcType=VARCHAR},
+      TAB_CODE = #{tabCode,jdbcType=VARCHAR},
+      TAB_NAME = #{tabName,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      IS_MULTILY = #{isMultily,jdbcType=VARCHAR},
+      LOAD_PAGE_METHOD = #{loadPageMethod,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      ORDER_INDEX = #{orderIndex,jdbcType=INTEGER},
+      URL = #{url,jdbcType=VARCHAR},
+      RIGHT_CODE = #{rightCode,jdbcType=VARCHAR},
+      NAME_SPACE = #{nameSpace,jdbcType=VARCHAR},
+      CLASS_NAME = #{className,jdbcType=VARCHAR},
+      TIME_STAMP = #{timeStamp,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=VARCHAR},
+      MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      LIST_SETTING = #{listSetting,jdbcType=VARCHAR},
+      FORM_SETTING = #{formSetting,jdbcType=VARCHAR},
+      TABLE_SAME_SQL = #{tableSameSql,jdbcType=VARCHAR},
+      BATCH_URL = #{batchUrl,jdbcType=VARCHAR},
+      TABLE_TYPE = #{tableType,jdbcType=VARCHAR},
+      IS_FOR_QUERY = #{isForQuery,jdbcType=VARCHAR},
+      IS_TREE = #{isTree,jdbcType=VARCHAR},
+      IS_INDEX_TEMP = #{isIndexTemp,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--创建表-->
+    <update id="createTable" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+     CREATE TABLE ${tabCode} (
+     id varchar(36) NOT NULL COMMENT '主键',
+     modify_user varchar(36) default NULL COMMENT '修改用户',
+     modify_time datetime default NULL COMMENT '修改时间',
+     PRIMARY KEY (Id)
+     ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+     </update>
+
+    <!--删除表-->
+    <update id="deleteTable" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+    DROP TABLE ${tabCode}
+    </update>
+
+    <!--验证表名是否此存在-->
+    <select id="selectTableName" parameterType="com.hxoim.support.inforesource.entity.DataTable"
+            resultType="Integer">
+    SELECT COUNT(t.table_name) FROM information_schema.TABLES t
+    WHERE  t.TABLE_SCHEMA =#{nameSpace} AND t.TABLE_NAME =#{tabCode};
+    </select>
+    <!--获取表的最大序号-->
+    <select id="getMaxSequence" parameterType="com.hxoim.support.inforesource.entity.DataTable" resultType="java.lang.Integer">
+        select IFNULL(max(ORDER_INDEX),0) as sequence from data_table b
+        where
+        <if test="id != null and id!=''">
+            CatalogId =#{id,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--排序-->
+    <update id="sortOrderIndex" parameterType="com.hxoim.support.inforesource.entity.DataTable">
+    UPDATE data_table SET ORDER_INDEX=#{orderIndex} WHERE Id=#{id}
+    </update>
+
+    <select id="selectDataTable" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from data_table
+    </select>
+
+    <!--查询侧边列表-->
+    <select id="selectTableTree" resultType="java.util.Map">
+      select
+      a.resource_name as label,a.*
+      from
+      info_resource a
+  </select>
+
+    <!--查询表列表-->
+    <select id="selectByCatalogId" resultType="java.util.Map">
+    select
+    CatalogId as pid,ID as Id,TAB_CODE,TAB_NAME AS label
+    from
+    data_table
+    where
+    is_deleted = 0
+    ORDER BY
+    TAB_CODE ASC
+  </select>
+
+    <!--根据id查询表名-->
+    <select id="selectById" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+    d.TAB_CODE,d.TAB_NAME
+    FROM
+    info_resource i,data_table d
+    WHERE
+    d.CatalogId = #{id,jdbcType=VARCHAR}
+    AND
+    d.TAB_CODE LIKE 'A%'
+    ORDER BY
+    d.TAB_CODE asc
+  </select>
+
+    <!--通过code查询表-->
+    <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from data_table
+        where tab_code = #{tabCode} and is_deleted = 0
+    </select>
+
+    <select id="selectDataTableTree" resultType="com.hxoim.common.tree.Tree">
+        select *
+        from info_resource r
+        inner join data_table t
+        on r.id=t.CATALOGID
+        where r.resource_code=#{resourceCode}
+        and t.is_deleted='0'
+  </select>
+
+    <select id="selectGrantLeaderTypeInfo" resultMap="BaseResultMap">
+        select dt.* from
+        cf_org_leadertype ol inner join data_table dt
+        on ol.info_id=dt.TAB_CODE and ol.b0111=#{orgId} and leadertype_id=#{leaderTypeId}
+        order by dt.order_index
+    </select>
+    <select id="selectUserGrantLeaderTypeInfo" resultMap="BaseResultMap">``
+        select dt.* from
+        user_role_view urv
+        inner join cf_role_leader_info crli
+        on urv.role_id=crli.role_id
+        inner join data_table dt
+        on crli.info_id=dt.tab_code
+        inner join cf_org_leadertype olt
+        on crli.leadertype_id=olt.leadertype_id and crli.info_id=olt.info_id and olt.b0111=(select u.org_id from cf_user u where u.id=#{userId})
+        where urv.user_id=#{userId} and crli.leaderType_id=#{leaderTypeId}
+        order by dt.order_index
+  </select>
+    <!--查询表信息-->
+    <select id="selectTableInfo" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+	*
+    FROM
+	data_table
+	where
+    TAB_CODE = #{arg0,jdbcType=VARCHAR}
+  </select>
+
+    <!--查询表列名-->
+    <select id="selectTableCol" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+	LOWER(a.COL_CODE) as LOWER_CODE,a.*
+    FROM
+	data_table_col a
+	where
+    TAB_CODE = #{arg0,jdbcType=VARCHAR}
+    ORDER BY
+	col_code asc
+  </select>
+    <select id="selectDataTableByResourceCode" resultMap="BaseResultMap">
+        select dt.* from data_table dt
+        inner join info_resource ir
+        on dt.CatalogId=ir.id and ir.resource_code=#{resourceCode}
+    </select>
+</mapper>

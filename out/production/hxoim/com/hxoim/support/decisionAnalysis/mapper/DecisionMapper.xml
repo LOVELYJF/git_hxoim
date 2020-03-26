@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.decisionAnalysis.mapper.DecisionMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.decisionAnalysis.entity.DecisionAnalysis">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="node_name" jdbcType="VARCHAR" property="nodeName" />
+    <result column="order_index" jdbcType="INTEGER" property="orderIndex" />
+    <result column="da_sql" jdbcType="VARCHAR" property="daSql" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, modify_user, modify_time, pid, node_name, order_index, da_sql
+  </sql>
+
+  <!--查询目录结构树-->
+  <select id="selectDecisionTree" resultType="com.hxoim.common.tree.Tree">
+    select id,pid,node_name as "label" from sys_decision_analysis ORDER BY order_index
+  </select>
+
+  <!--查询配置项结构树-->
+  <select id="selectConfigTree" resultType="com.hxoim.common.tree.Tree">
+    select id,pid,json as "label" from decision_show where show_way = #{showWay}
+  </select>
+
+  <!--查询分析下有无分析-->
+  <select id="selectTreeNode1" resultType="java.lang.Integer">
+    select count(*) from sys_decision_analysis where pid=#{id}
+  </select>
+
+  <!--删除分析-->
+  <select id="deleteTreeNode1" parameterType="java.lang.String">
+    delete from sys_decision_analysis where id = #{id}
+  </select>
+
+    <!--查询配置项下有无配置-->
+  <select id="selectTreeNode2" parameterType="java.lang.String" resultType="integer">
+    select count(*) from decision_show where pid = #{id}
+  </select>
+
+  <!--配置项删除配置-->
+  <delete id="deleteTreeNode2" parameterType="java.lang.String">
+    delete from decision_show where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <!--查询全部列-->
+  <select id="selectAllColumn" resultType="java.util.LinkedHashMap">
+    select * from decision_show where pid = #{id}
+  </select>
+
+  <!--根据id查询列-->
+  <select id="selectColumn" resultType="java.util.LinkedHashMap">
+    select * from decision_show where id = #{id}
+  </select>
+
+  <!--查询a01表个数-->
+  <select id="selectA01" resultType="java.lang.Integer">
+    select count(*) from a01
+  </select>
+
+  <!--查询职务统计-->
+  <select id="selectRank" resultType="java.util.LinkedHashMap">
+    select count(a0501b) as num from a05 where a0501b in ("1A11","0111") or a0501b in ("1A12","0112")
+    union all
+    select count(a0501b) as num from a05 where a0501b in ("1A21","0121") or a0501b in ("1A22","0122")
+    union all
+    select count(a0501b) as num from a05 where a0501b in ("1A31","0131") or a0501b in ("1A32","0132")
+    union all
+    select count(a0501b) as num from a05 where a0501b in ("1A41","0141") or a0501b in ("1A42","0142")
+  </select>
+
+  <!--查询性别统计-->
+  <select id="selectA01Sex" resultType="java.lang.Integer">
+    select count(a0104_a) from a01 where a0104_a = "女"
+  </select>
+
+  <!--查询民族统计-->
+  <select id="selectNationality" resultType="java.lang.Integer">
+    select count(*) from a01 where a0117_a !="汉族"
+  </select>
+
+  <!--查询年龄结构-->
+  <select id="selectAge" resultType="java.util.LinkedHashMap">
+    select "35岁及以下" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(35+1)+1 month)) as num union
+    select "36至40岁" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(40+1)+1 month)
+    and a0107 &lt;= date_add(now(),interval -12*36 month)) as num union
+    select "41至45岁" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(45+1)+1 month)
+    and a0107 &lt;= date_add(now(),interval -12*41 month)) as num union
+    select "46至50岁" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(50+1)+1 month)
+    and a0107 &lt;= date_add(now(),interval -12*46 month)) as num union
+    select "51至54岁" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(54+1)+1 month)
+    and a0107 &lt;= date_add(now(),interval -12*51 month)) as num union
+    select "55至59岁" as name,
+    (select count(a0107) from a01 where a0107 &gt;= date_add(now(),interval -12*(59+1)+1 month)
+    and a0107 &lt;= date_add(now(),interval -12*55 month)) as num union
+    select "60岁及以上" as name,
+    (select count(a0107) from a01 where a0107 &lt;= date_add(now(),interval -12*60 month)) as num
+  </select>
+
+  <!--查询学历结构-->
+  <select id="selectEducation" resultType="java.util.LinkedHashMap">
+    select count(*) as num from a01 where qrzxl="研究生" or zzxl="研究生"
+    union all
+    select count(*) as num from a01 where qrzxl="大学" or zzxl="大学"
+    union all
+    select count(*) as num from a01 where qrzxl="大专" or zzxl="大专"
+    union all
+    select count(*) as num from a01 where qrzxl="研究生"
+    union all
+    select count(*) as num from a01 where qrzxl="大学"
+    union all
+    select count(*) as num from a01 where qrzxl="大专"
+  </select>
+
+</mapper>

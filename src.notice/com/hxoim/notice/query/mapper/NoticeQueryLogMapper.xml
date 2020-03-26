@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.notice.query.mapper.NoticeQueryLogMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.notice.query.entity.NoticeQueryLog">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="content_id" jdbcType="VARCHAR" property="contentId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="query_time" jdbcType="TIMESTAMP" property="queryTime"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, content_id, user_id, user_name, query_time, ip
+    </sql>
+
+    <!--插入浏览权限-->
+    <insert id="insert" parameterType="com.hxoim.notice.query.entity.NoticeQueryLog">
+        insert into notice_query_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="queryTime != null">
+                query_time,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="contentId != null">
+                #{contentId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="queryTime != null">
+                #{queryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询浏览权限列表-->
+    <select id="selectNoticeLogByContentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from notice_query_log t
+        where t.content_id = #{contentId}
+        order by t.query_time desc
+    </select>
+
+</mapper>

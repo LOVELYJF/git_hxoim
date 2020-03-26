@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.module.mapper.ModuleMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.module.entity.Module">
+        <id column="MU_ID" jdbcType="VARCHAR" property="id"/>
+        <result column="mu_code" jdbcType="VARCHAR" property="muCode"/>
+        <result column="mu_name" jdbcType="VARCHAR" property="muName"/>
+        <result column="mu_type" jdbcType="VARCHAR" property="muType"/>
+        <result column="mu_desc" jdbcType="VARCHAR" property="muDesc"/>
+        <result column="mu_state" jdbcType="VARCHAR" property="muState"/>
+        <result column="MU_ICONPATH" jdbcType="VARCHAR" property="muIcon"/>
+        <result column="MU_PID" jdbcType="VARCHAR" property="pId"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="assembly" jdbcType="VARCHAR" property="assembly"/>
+        <result column="order_index" jdbcType="INTEGER" property="orderIndex"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        MU_ID, mu_code, mu_name, mu_type, mu_desc, mu_state, MU_ICONPATH, MU_PID, url, order_index,
+    modify_user, modify_time,assembly
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_module
+        where MU_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cf_module
+    where MU_ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.module.entity.Module">
+    insert into cf_module (MU_ID, mu_code, mu_name,
+      mu_type, mu_desc, mu_state,
+      MU_ICONPATH, MU_PID, url, order_index,
+      modify_user, modify_time,assembly)
+    values (#{id,jdbcType=VARCHAR}, #{muCode,jdbcType=VARCHAR}, #{muName,jdbcType=VARCHAR},
+      #{muType,jdbcType=VARCHAR}, #{muDesc,jdbcType=VARCHAR}, #{muState,jdbcType=VARCHAR},
+      #{muIcon,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{orderIndex,jdbcType=INTEGER},
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},#{assembly,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.module.entity.Module">
+        insert into cf_module
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                MU_ID,
+            </if>
+            <if test="muCode != null">
+                mu_code,
+            </if>
+            <if test="muName != null">
+                mu_name,
+            </if>
+            <if test="muType != null">
+                mu_type,
+            </if>
+            <if test="muDesc != null">
+                mu_desc,
+            </if>
+            <if test="muState != null">
+                mu_state,
+            </if>
+            <if test="muIcon != null">
+                mu_icon,
+            </if>
+            <if test="pId != null">
+                p_id,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="orderIndex != null">
+                order_index,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="assembly != null">
+                assembly,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="muCode != null">
+                #{muCode,jdbcType=VARCHAR},
+            </if>
+            <if test="muName != null">
+                #{muName,jdbcType=VARCHAR},
+            </if>
+            <if test="muType != null">
+                #{muType,jdbcType=VARCHAR},
+            </if>
+            <if test="muDesc != null">
+                #{muDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="muState != null">
+                #{muState,jdbcType=VARCHAR},
+            </if>
+            <if test="muIcon != null">
+                #{muIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="pId != null">
+                #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="assembly != null">
+                #{assembly,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.module.entity.Module">
+        update cf_module
+        <set>
+            <if test="muCode != null">
+                mu_code = #{muCode,jdbcType=VARCHAR},
+            </if>
+            <if test="muName != null">
+                mu_name = #{muName,jdbcType=VARCHAR},
+            </if>
+            <if test="muType != null">
+                mu_type = #{muType,jdbcType=VARCHAR},
+            </if>
+            <if test="muDesc != null">
+                mu_desc = #{muDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="muState != null">
+                mu_state = #{muState,jdbcType=VARCHAR},
+            </if>
+            <if test="muIcon != null">
+                mu_icon = #{muIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="pId != null">
+                p_id = #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="assembly != null">
+                assembly = #{assembly,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.module.entity.Module">
+    update cf_module
+    set mu_code = #{muCode,jdbcType=VARCHAR},
+      mu_name = #{muName,jdbcType=VARCHAR},
+      mu_type = #{muType,jdbcType=VARCHAR},
+      mu_desc = #{muDesc,jdbcType=VARCHAR},
+      mu_state = #{muState,jdbcType=VARCHAR},
+      MU_ICONPATH = #{muIcon,jdbcType=VARCHAR},
+      MU_PID = #{pId,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      order_index = #{orderIndex,jdbcType=INTEGER},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      assembly = #{assembly,jdbcType=VARCHAR},
+    where MU_ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!--查询模块树-->
+    <select id="selectModuleTree" resultType="com.hxoim.common.tree.Tree">
+    select MU_ID as "id",MU_PID as "pId",mu_name as "label" from cf_module order by order_index
+  </select>
+    <select id="selectModuleList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_module order by order_index
+    </select>
+
+    <select id="selectModuleByCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_module where mu_code=#{muCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserGrantModules" resultMap="BaseResultMap">
+        select distinct m.* from user_role_view urv
+        inner join cf_role_module rm
+        on urv.role_id=rm.role_id and urv.user_id=#{userId}
+        inner join cf_module m
+        on rm.mu_id=m.id
+        inner join cf_org_module om
+        on m.id=om.mu_id
+        inner join cf_user u
+        on om.b0111=u.org_id and u.id=#{userId}
+        order by m.order_index
+    </select>
+
+    <select id="selectOrgGrantModule" resultMap="BaseResultMap">
+        SELECT m.MU_ID, m.mu_name,m.MU_ICONPATH, m.MU_PID, m.url,m.assembly FROM cf_module m
+        INNER JOIN cf_org_module om
+        on m.MU_ID=om.mu_id and om.b0111=#{orgId}
+        WHERE mu_state='1' and mu_type!='3'
+        ORDER BY order_index
+    </select>
+    <select id="selectRouterList" resultMap="BaseResultMap">
+        select t.MU_ID, t.mu_code, t.mu_name, t.mu_type, t.mu_desc, t.mu_state, t.MU_ICONPATH, t.MU_PID, t.url, t.order_index,
+        t.modify_user, t.modify_time,t.assembly
+        from cf_module t where t.url !='' and t.assembly !=''
+    </select>
+</mapper>

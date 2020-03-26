@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.dataServeApply.mapper.DataServeApplyMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.dataServeApply.entity.DataServeApply">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="apply_org" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="apply_office" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="software_dev_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_status" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="modify_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="apply_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, serve_ip, serve_password, serve_username, apply_org, apply_office, software_dev_name,
+    serve_status, modify_user, modify_time,apply_desc
+  </sql>
+  <select id="selectDataServeApply" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_serve_apply
+    where 1=1
+    <if test="applyOrg != null and applyOrg !=''">
+      and apply_org = #{applyOrg,jdbcType=VARCHAR}
+    </if>
+    <if test="softwareDevName != null and softwareDevName !=''">
+      and software_dev_name like  CONCAT(#{softwareDevName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="serveUsername != null and serveUsername !=''">
+      and serve_username like CONCAT(#{serveUsername,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="serveIp != null and serveIp !=''">
+      and serve_ip = #{serveIp,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectOtherDataServeApply" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_serve_apply
+    where id != #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_serve_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from data_serve_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.hxoim.support.dataServeApply.entity.DataServeApply">
+    insert into data_serve_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serveIp != null">
+        serve_ip,
+      </if>
+      <if test="servePassword != null">
+        serve_password,
+      </if>
+      <if test="serveUsername != null">
+        serve_username,
+      </if>
+      <if test="applyOrg != null">
+        apply_org,
+      </if>
+      <if test="applyOffice != null">
+        apply_office,
+      </if>
+      <if test="softwareDevName != null">
+        software_dev_name,
+      </if>
+      <if test="serveStatus != null">
+        serve_status,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="applyDesc != null">
+        apply_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="serveIp != null">
+        #{serveIp,jdbcType=VARCHAR},
+      </if>
+      <if test="servePassword != null">
+        #{servePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="serveUsername != null">
+        #{serveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="applyOrg != null">
+        #{applyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="applyOffice != null">
+        #{applyOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareDevName != null">
+        #{softwareDevName,jdbcType=VARCHAR},
+      </if>
+      <if test="serveStatus != null">
+        #{serveStatus,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDesc != null">
+        #{applyDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSelective" parameterType="com.hxoim.support.dataServeApply.entity.DataServeApply">
+    update data_serve_apply
+    <set>
+      <if test="serveIp != null">
+        serve_ip = #{serveIp,jdbcType=VARCHAR},
+      </if>
+      <if test="servePassword != null">
+        serve_password = #{servePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="serveUsername != null">
+        serve_username = #{serveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="applyOrg != null">
+        apply_org = #{applyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="applyOffice != null">
+        apply_office = #{applyOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareDevName != null">
+        software_dev_name = #{softwareDevName,jdbcType=VARCHAR},
+      </if>
+      <if test="serveStatus != null">
+        serve_status = #{serveStatus,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDesc != null">
+        apply_desc = #{applyDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectValidateByParams" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from data_serve_apply
+    where serve_ip = #{serveIp,jdbcType=VARCHAR} and serve_username = #{serveUsername,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

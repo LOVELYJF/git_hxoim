@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.notice.access.mapper.NoticeAccessMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.notice.access.entity.NoticeAccess">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="content_id" jdbcType="VARCHAR" property="contentId"/>
+        <result column="org_id" jdbcType="VARCHAR" property="orgId"/>
+        <result column="org_name" jdbcType="VARCHAR" property="orgName"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, content_id, org_id, user_id
+    </sql>
+
+    <!--插入浏览权限-->
+    <insert id="insert" parameterType="java.util.List">
+        insert into notice_content_role (
+            id, content_id, org_id, user_id
+        )
+        values
+        <foreach collection="list" item="item" index= "index" separator =",">
+            (
+                #{item.id},
+                #{item.contentId},
+                #{item.orgId},
+                #{item.userId}
+            )
+        </foreach>
+    </insert>
+
+    <!--插入浏览权限-->
+    <insert id="insertSelective" parameterType="com.hxoim.notice.access.entity.NoticeAccess">
+        insert into notice_content_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="contentId != null">
+                #{contentId,jdbcType=VARCHAR},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--删除浏览权限-->
+    <delete id="deleteByContentId" parameterType="java.lang.String">
+        delete from notice_content_role
+        where content_id = #{contentId,jdbcType=VARCHAR}
+    </delete>
+
+    <!--查询浏览权限列表-->
+    <select id="selectAccessByContentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        b.b0101 org_name
+        from notice_content_role t
+        LEFT JOIN b01 b ON t.org_id = b.b0111
+        where t.content_id = #{contentId}
+    </select>
+
+</mapper>

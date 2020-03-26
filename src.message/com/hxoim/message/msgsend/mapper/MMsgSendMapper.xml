@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.message.msgsend.mapper.MMsgSendMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.message.msgsend.entity.MMsgSend">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msgid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receive_user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receive_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="send_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="isreaded" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, msgid, receive_user_id, receive_username, send_time, isreaded
+  </sql>
+  <select id="selectByExample" parameterType="com.hxoim.message.msgsend.entity.MMsgSendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from m_msg_send
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_msg_send
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from m_msg_send
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.message.msgsend.entity.MMsgSend">
+    insert into m_msg_send (id, msgid, receive_user_id, 
+      receive_username, send_time, isreaded
+      )
+    values (#{id,jdbcType=VARCHAR}, #{msgid,jdbcType=VARCHAR}, #{receiveUserId,jdbcType=VARCHAR}, 
+      #{receiveUsername,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{isreaded,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.message.msgsend.entity.MMsgSend">
+    insert into m_msg_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgid != null">
+        msgid,
+      </if>
+      <if test="receiveUserId != null">
+        receive_user_id,
+      </if>
+      <if test="receiveUsername != null">
+        receive_username,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="isreaded != null">
+        isreaded,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="msgid != null">
+        #{msgid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUsername != null">
+        #{receiveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isreaded != null">
+        #{isreaded,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.message.msgsend.entity.MMsgSend">
+    update m_msg_send
+    <set>
+      <if test="msgid != null">
+        msgid = #{msgid,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        receive_user_id = #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUsername != null">
+        receive_username = #{receiveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isreaded != null">
+        isreaded = #{isreaded,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.message.msgsend.entity.MMsgSend">
+    update m_msg_send
+    set msgid = #{msgid,jdbcType=VARCHAR},
+      receive_user_id = #{receiveUserId,jdbcType=VARCHAR},
+      receive_username = #{receiveUsername,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      isreaded = #{isreaded,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="markReaded" parameterType="com.hxoim.message.msgsend.entity.MMsgSend">
+  update m_msg_send
+    set isreaded = 1
+    where receive_user_id = #{receiveUserId,jdbcType=VARCHAR} and msgid = #{msgid,jdbcType=VARCHAR}
+  </update>
+</mapper>

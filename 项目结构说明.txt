@@ -1,0 +1,6 @@
+src.common ---- 工具类或者通用类
+src.message ---- 消息模块
+src.resources ---- 文件配置，例如：spring.xml、mybatis.xml等等
+src.sso ---- 单点登录模块
+src.support ---- 基础业务模块，例如：用户管理、角色管理、模块管理、用户授权等等
+webRoot ---- 项目根路径

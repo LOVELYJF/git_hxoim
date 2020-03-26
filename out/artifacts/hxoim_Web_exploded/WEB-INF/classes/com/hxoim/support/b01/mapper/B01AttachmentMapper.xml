@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.b01.mapper.B01AttachmentMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.b01.entity.B01Attachment">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="b0111" jdbcType="VARCHAR" property="b0111" />
+        <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+        <result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.hxoim.support.b01.entity.B01Attachment">
+        insert into cf_b01_attachment (id, b0111, file_name,
+        file_size, remark, upload_time,
+        modify_user, modify_time, file_url
+        )
+        values (#{id,jdbcType=VARCHAR}, #{b0111,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR},
+        #{fileSize,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP},
+        #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{fileUrl,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="uplodeB01Attachment" parameterType="com.hxoim.support.b01.entity.B01Attachment">
+        insert into cf_b01_attachment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="b0111 != null">
+                b0111,
+            </if>
+            <if test="fileName != null">
+                file_name,
+            </if>
+            <if test="fileSize != null">
+                file_size,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="uploadTime != null">
+                upload_time,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="fileUrl != null">
+                file_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="b0111 != null">
+                #{b0111,jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null">
+                #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize != null">
+                #{fileSize,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="uploadTime != null">
+                #{uploadTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fileUrl != null">
+                #{fileUrl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询机构关联附件-->
+    <select id="selectAttachmentByB0111" resultMap="BaseResultMap" parameterType="com.hxoim.support.b01.entity.B01Attachment">
+    SELECT id,file_name,file_size,remark,upload_time,file_url FROM cf_b01_attachment WHERE b0111=#{b0111}
+    </select>
+
+    <!--删除附件-->
+    <delete id="deleteAttachmentById" parameterType="com.hxoim.support.b01.entity.B01Attachment">
+    DELETE FROM cf_b01_attachment WHERE id=#{id}
+    </delete>
+
+    <!--验证文件名是否重复-->
+    <select id="selectFileExist" parameterType="com.hxoim.support.b01.entity.B01Attachment" resultType="Integer">
+    SELECT COUNT(*) FROM cf_b01_attachment WHERE file_name=#{fileName} and b0111=#{b0111}
+    </select>
+</mapper>

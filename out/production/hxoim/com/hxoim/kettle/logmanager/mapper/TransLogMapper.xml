@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.kettle.logmanager.mapper.TransLogMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.kettle.logmanager.entity.TransLog">
+    <result column="ID_BATCH" jdbcType="INTEGER" property="idBatch" />
+    <result column="CHANNEL_ID" jdbcType="VARCHAR" property="channelId" />
+    <result column="TRANSNAME" jdbcType="VARCHAR" property="transname" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="LINES_READ" jdbcType="BIGINT" property="linesRead" />
+    <result column="LINES_WRITTEN" jdbcType="BIGINT" property="linesWritten" />
+    <result column="LINES_UPDATED" jdbcType="BIGINT" property="linesUpdated" />
+    <result column="LINES_INPUT" jdbcType="BIGINT" property="linesInput" />
+    <result column="LINES_OUTPUT" jdbcType="BIGINT" property="linesOutput" />
+    <result column="LINES_REJECTED" jdbcType="BIGINT" property="linesRejected" />
+    <result column="ERRORS" jdbcType="BIGINT" property="errors" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="LOGDATE" jdbcType="TIMESTAMP" property="logdate" />
+    <result column="DEPDATE" jdbcType="TIMESTAMP" property="depdate" />
+    <result column="REPLAYDATE" jdbcType="TIMESTAMP" property="replaydate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.kettle.logmanager.entity.TransLog">
+    <result column="LOG_FIELD" jdbcType="LONGVARCHAR" property="logField" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    LOG_FIELD
+  </sql>
+  <insert id="insert" parameterType="com.hxoim.kettle.logmanager.entity.TransLog">
+    insert into k_trans_log (ID_BATCH, CHANNEL_ID, TRANSNAME, 
+      STATUS, LINES_READ, LINES_WRITTEN, 
+      LINES_UPDATED, LINES_INPUT, LINES_OUTPUT, 
+      LINES_REJECTED, ERRORS, STARTDATE, 
+      ENDDATE, LOGDATE, DEPDATE, 
+      REPLAYDATE, LOG_FIELD)
+    values (#{idBatch,jdbcType=INTEGER}, #{channelId,jdbcType=VARCHAR}, #{transname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{linesRead,jdbcType=BIGINT}, #{linesWritten,jdbcType=BIGINT}, 
+      #{linesUpdated,jdbcType=BIGINT}, #{linesInput,jdbcType=BIGINT}, #{linesOutput,jdbcType=BIGINT}, 
+      #{linesRejected,jdbcType=BIGINT}, #{errors,jdbcType=BIGINT}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP}, #{logdate,jdbcType=TIMESTAMP}, #{depdate,jdbcType=TIMESTAMP}, 
+      #{replaydate,jdbcType=TIMESTAMP}, #{logField,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.kettle.logmanager.entity.TransLog">
+    insert into k_trans_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idBatch != null">
+        ID_BATCH,
+      </if>
+      <if test="channelId != null">
+        CHANNEL_ID,
+      </if>
+      <if test="transname != null">
+        TRANSNAME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="linesRead != null">
+        LINES_READ,
+      </if>
+      <if test="linesWritten != null">
+        LINES_WRITTEN,
+      </if>
+      <if test="linesUpdated != null">
+        LINES_UPDATED,
+      </if>
+      <if test="linesInput != null">
+        LINES_INPUT,
+      </if>
+      <if test="linesOutput != null">
+        LINES_OUTPUT,
+      </if>
+      <if test="linesRejected != null">
+        LINES_REJECTED,
+      </if>
+      <if test="errors != null">
+        ERRORS,
+      </if>
+      <if test="startdate != null">
+        STARTDATE,
+      </if>
+      <if test="enddate != null">
+        ENDDATE,
+      </if>
+      <if test="logdate != null">
+        LOGDATE,
+      </if>
+      <if test="depdate != null">
+        DEPDATE,
+      </if>
+      <if test="replaydate != null">
+        REPLAYDATE,
+      </if>
+      <if test="logField != null">
+        LOG_FIELD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idBatch != null">
+        #{idBatch,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="transname != null">
+        #{transname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="linesRead != null">
+        #{linesRead,jdbcType=BIGINT},
+      </if>
+      <if test="linesWritten != null">
+        #{linesWritten,jdbcType=BIGINT},
+      </if>
+      <if test="linesUpdated != null">
+        #{linesUpdated,jdbcType=BIGINT},
+      </if>
+      <if test="linesInput != null">
+        #{linesInput,jdbcType=BIGINT},
+      </if>
+      <if test="linesOutput != null">
+        #{linesOutput,jdbcType=BIGINT},
+      </if>
+      <if test="linesRejected != null">
+        #{linesRejected,jdbcType=BIGINT},
+      </if>
+      <if test="errors != null">
+        #{errors,jdbcType=BIGINT},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logdate != null">
+        #{logdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depdate != null">
+        #{depdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replaydate != null">
+        #{replaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logField != null">
+        #{logField,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!--转换日志列表-->
+  <select id="transLogList" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+    select
+    kt.id_batch, kt.channel_id, kt.transname, kt.status, kt.errors,
+    kt.startdate, kt.enddate, kt.logdate, kt.depdate, kt.replaydate, kt.log_field
+    from k_trans_log kt, r_transformation rt where kt.transname = rt.name
+    <if test="name != null and name != ''">
+      and kt.transname like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="idDirectory != null and idDirectory != ''">
+      and rt.id_directory = #{idDirectory,jdbcType=INTEGER}
+    </if>
+    order by kt.logdate desc
+  </select>
+  <!--统计转换执行次数-->
+  <select id="transExecuteNum" resultType="java.util.Map" parameterType="java.lang.Integer">
+    select
+      count(0) as num,
+      date_format( kt.logdate, '%Y-%m-%d' ) as date
+    from
+      `k_trans_log` kt, r_transformation rt
+    where
+      rt.`name`=kt.transname and rt.id_directory=#{idDirectory,jdbcType=INTEGER} and
+      date_sub(curdate(), interval 7 day) &lt;= date(kt.logdate)
+    group by date
+  </select>
+</mapper>

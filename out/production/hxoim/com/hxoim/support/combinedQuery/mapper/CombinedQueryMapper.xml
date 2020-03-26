@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.combinedQuery.mapper.CombinedQueryMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="condition_type" jdbcType="VARCHAR" property="conditionType"/>
+        <result column="condition_name" jdbcType="VARCHAR" property="conditionName"/>
+        <result column="table_Code" jdbcType="VARCHAR" property="tableCode"/>
+        <result column="column_code" jdbcType="VARCHAR" property="columnCode"/>
+        <result column="order_index" jdbcType="INTEGER" property="orderIndex"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+        <result column="templet" jdbcType="LONGVARCHAR" property="templet"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, condition_type, condition_name, table_Code, column_code, order_index
+  </sql>
+    <sql id="Blob_Column_List">
+    templet
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from combined_query
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from combined_query
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+    insert into combined_query (id, condition_type, condition_name, 
+      table_Code, column_code, order_index, 
+      templet)
+    values (#{id,jdbcType=VARCHAR}, #{conditionType,jdbcType=VARCHAR}, #{conditionName,jdbcType=VARCHAR}, 
+      #{tableCode,jdbcType=VARCHAR}, #{columnCode,jdbcType=VARCHAR}, #{orderIndex,jdbcType=INTEGER}, 
+      #{templet,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+        insert into combined_query
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="conditionType != null">
+                condition_type,
+            </if>
+            <if test="conditionName != null">
+                condition_name,
+            </if>
+            <if test="tableCode != null">
+                table_Code,
+            </if>
+            <if test="columnCode != null">
+                column_code,
+            </if>
+            <if test="orderIndex != null">
+                order_index,
+            </if>
+            <if test="templet != null">
+                templet,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionType != null">
+                #{conditionType,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionName != null">
+                #{conditionName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnCode != null">
+                #{columnCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="templet != null">
+                #{templet,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+        update combined_query
+        <set>
+            <if test="conditionType != null">
+                condition_type = #{conditionType,jdbcType=VARCHAR},
+            </if>
+            <if test="conditionName != null">
+                condition_name = #{conditionName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                table_Code = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="columnCode != null">
+                column_code = #{columnCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="templet != null">
+                templet = #{templet,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+    update combined_query
+    set condition_type = #{conditionType,jdbcType=VARCHAR},
+      condition_name = #{conditionName,jdbcType=VARCHAR},
+      table_Code = #{tableCode,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      order_index = #{orderIndex,jdbcType=INTEGER},
+      templet = #{templet,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.combinedQuery.entity.CombinedQuery">
+    update combined_query
+    set condition_type = #{conditionType,jdbcType=VARCHAR},
+      condition_name = #{conditionName,jdbcType=VARCHAR},
+      table_Code = #{tableCode,jdbcType=VARCHAR},
+      column_code = #{columnCode,jdbcType=VARCHAR},
+      order_index = #{orderIndex,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateListOrderIndex">
+        <foreach collection="list" item="item" index="index" separator=";" open="" close="">
+            update combined_query set order_index=#{item.orderIndex} where id=#{item.id}
+        </foreach>
+    </update>
+
+    <select id="selectCombinedQueryList" resultMap="BaseResultMap">
+        select * from combined_query t where 1=1
+        <if test="conditionType != null">
+            and condition_type = #{conditionType,jdbcType=VARCHAR}
+        </if>
+        <if test="conditionName != null">
+            and condition_name = #{conditionName,jdbcType=VARCHAR}
+        </if>
+        <if test="tableCode != null">
+            and table_Code = #{tableCode,jdbcType=VARCHAR}
+        </if>
+        <if test="columnCode != null">
+            and column_code = #{columnCode,jdbcType=VARCHAR}
+        </if>
+        <if test="orderIndex != null">
+            and order_index = #{orderIndex,jdbcType=INTEGER}
+        </if>
+        <if test="templet != null">
+            and templet = #{templet,jdbcType=LONGVARCHAR}
+        </if>
+        order by order_index
+    </select>
+    <select id="selectCombinedQueryAllList" resultMap="BaseResultMap">
+        select * from combined_query order by order_index
+    </select>
+    <select id="selectMaxOrderIndex" resultType="java.lang.Integer">
+        select ifnull(max(order_index),0) + 1 from combined_query
+    </select>
+</mapper>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.hxoim.support.sysdict.mapper.SysDictMapper">
+        <resultMap id="sysDictResultMap" type="com.hxoim.support.sysdict.entity.SysDict">
+            <result column="id" jdbcType="VARCHAR" property="id" />
+            <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+            <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+            <result column="standard" jdbcType="VARCHAR" property="standard" />
+            <result column="order_index" jdbcType="INTEGER" property="orderindex" />
+            <result column="time_stamp" jdbcType="VARCHAR" property="timeStamp" />
+            <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+            <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+            <result column="securitylevel" jdbcType="VARCHAR" property="securitylevel" />
+            <result column="hx_dict_code" jdbcType="VARCHAR" property="hxDictCode" />
+            <result column="remark" jdbcType="VARCHAR" property="remark" />
+        </resultMap>
+
+    <!--添加字典管理-->
+        <insert id="insertSysDict" parameterType="com.hxoim.support.sysdict.entity.SysDict">
+            insert into sys_dict
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    id,
+                </if>
+                <if test="dictCode != null">
+                    dict_code,
+                </if>
+                <if test="dictName != null">
+                    dict_name,
+                </if>
+                <if test="standard != null">
+                    standard,
+                </if>
+                <if test="orderindex != null">
+                    order_index,
+                </if>
+                <if test="timeStamp != null">
+                    time_stamp,
+                </if>
+                <if test="securitylevel != null">
+                    securitylevel,
+                </if>
+                <if test="hxDictCode != null">
+                    hx_dict_code,
+                </if>
+                <if test="remark != null">
+                    remark,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id,jdbcType=VARCHAR},
+                </if>
+                <if test="dictCode != null">
+                    #{dictCode,jdbcType=VARCHAR},
+                </if>
+                <if test="dictName != null">
+                    #{dictName,jdbcType=VARCHAR},
+                </if>
+                <if test="standard != null">
+                    #{standard,jdbcType=VARCHAR},
+                </if>
+                <if test="orderindex != null">
+                    #{orderindex,jdbcType=INTEGER},
+                </if>
+                <if test="timeStamp != null">
+                    #{timeStamp,jdbcType=VARCHAR},
+                </if>
+                <if test="securitylevel != null">
+                    #{securitylevel,jdbcType=VARCHAR},
+                </if>
+                <if test="hxDictCode != null">
+                    #{hxDictCode,jdbcType=VARCHAR},
+                </if>
+                <if test="remark != null">
+                    #{remark,jdbcType=VARCHAR},
+                </if>
+            </trim>
+        </insert>
+
+    <!--查询字典orderindex最大值-->
+    <select id="selectMAXOrderIndex" resultType="INTEGER">
+        SELECT MAX(order_index) FROM sys_dict
+    </select>
+
+    <!--修改字典-->
+    <update id="updateSysDict"  parameterType="com.hxoim.support.sysdict.entity.SysDict">
+    UPDATE sys_dict SET dict_name=#{dictName},standard=#{standard},modify_user=#{modifyUser},
+    modify_time=#{modifyTime},securitylevel=#{securitylevel},hx_dict_code=#{hxDictCode},
+    remark=#{remark} WHERE id=#{id}
+    </update>
+
+    <!--删除字典-->
+    <delete id="deleteSysDict" parameterType="String">
+    DELETE FROM sys_dict WHERE dict_code=#{dictCode}
+    </delete>
+
+    <!--查询字典名称和code-->
+    <select id="selectAllSysDict"  resultMap="sysDictResultMap">
+    SELECT id,dict_code,dict_name,hx_dict_code FROM sys_dict ORDER  by order_index
+    </select>
+
+    <!--根据id查询code-->
+    <select id="seleteSysDictCode" parameterType="String" resultType="String">
+    SELECT dict_code FROM sys_dict WHERE id=#{id}
+    </select>
+
+    <!--验证dictCode名称是否存在-->
+    <select id="selectDictCode" parameterType="com.hxoim.support.sysdict.entity.SysDict" resultType="Integer">
+    select count(dict_code) from sys_dict where dict_code=#{dictCode}
+        <if test="id != null and id!=''">
+            and id!=#{id}
+        </if>
+    </select>
+
+    <!--查询数据字典名称-->
+    <select id="selectSysDictName" parameterType="String" resultType="String">
+    SELECT dict_name FROM sys_dict WHERE dict_code=#{dictCode}
+    </select>
+
+    <!--搜索字典-->
+    <select id="selectDict" parameterType="com.hxoim.support.sysdict.entity.SysDict" resultMap="sysDictResultMap">
+    SELECT id ,dict_name,dict_code,standard  FROM sys_dict WHERE 1=1
+       <if test="dictName!=null and dictName!=''">
+         AND  dict_name LIKE "%"#{dictName}"%"
+       </if>
+        <if test="dictCode!=null and dictCode!=''">
+          AND  dict_code LIKE "%"#{dictCode}"%"
+        </if>
+    ORDER  by order_index
+    </select>
+
+    <!--查询字典树-->
+    <select id="selectDictTree" resultType="com.hxoim.common.tree.Tree">
+   SELECT * FROM ((SELECT id AS "tableId", dict_code  AS "id",
+                             standard   AS "pId",
+                             CONCAT(dict_code,dict_name)  AS "label",
+                             order_index AS orderIndex
+                        FROM sys_dict t2
+                       WHERE t2.standard IS NOT NULL)
+                         UNION ALL
+		(SELECT id AS "tableId",
+            item_code AS "id",
+            '0' AS "pId",
+            CONCAT(item_code,item_name) AS "label",
+            orderindex AS orderIndex
+            FROM SYS_DICT_ITEM
+            WHERE dict_code='Code_Standard')) t
+    ORDER BY orderIndex
+    </select>
+
+    <!--通过code查询字典-->
+    <select id="selectDictByCode" parameterType="String" resultMap="sysDictResultMap">
+    SELECT id,dict_code,dict_name,standard,order_index,time_stamp,securitylevel,hx_dict_code,remark,modify_user,modify_time
+    FROM sys_dict WHERE dict_code=#{dictCode}
+    </select>
+
+    <!--字典列表查询（标准）-->
+    <select id="selectDictList" parameterType="java.util.Map" resultMap="sysDictResultMap">
+        select id ,dict_name,dict_code,standard  from sys_dict where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (dict_name like concat('%',#{keyword,jdbcType=VARCHAR},'%') or dict_code like concat('%',#{keyword,jdbcType=VARCHAR},'%'))
+        </if>
+        <if test="standard != null and standard != ''">
+            and standard = #{standard,jdbcType=VARCHAR}
+        </if>
+        ORDER  by order_index
+    </select>
+    </mapper>

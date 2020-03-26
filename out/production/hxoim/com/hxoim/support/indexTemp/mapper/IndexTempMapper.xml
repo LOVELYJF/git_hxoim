@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.indexTemp.mapper.IndexTempMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.indexTemp.entity.IndexTemp">
+      <id column="id" jdbcType="VARCHAR" property="id"></id>
+      <result column="org_id" jdbcType="VARCHAR" property="orgId"></result>
+      <result column="temp_width" jdbcType="INTEGER" property="tempWidth"></result>
+      <result column="temp_height" jdbcType="INTEGER" property="tempHeight"></result>
+      <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"></result>
+      <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"></result>
+      <result column="order_no" jdbcType="INTEGER" property="orderNo"></result>
+      <result column="topleft_x" jdbcType="INTEGER" property="topleftX"></result>
+      <result column="topleft_y" jdbcType="INTEGER" property="topleftY"></result>
+      <result column="table_name" jdbcType="VARCHAR" property="tableName"></result>
+      <result column="table_code" jdbcType="VARCHAR" property="tableCode"></result>
+      <result column="module_url" jdbcType="VARCHAR" property="moduleUrl"></result>
+      <collection property="stms" ofType="com.hxoim.support.indexTemp.entity.SysTempModule">
+          <id column="id1" jdbcType="VARCHAR" property="id"></id>
+          <result column="temp_id" jdbcType="VARCHAR" property="tempId"></result>
+          <result column="module_id" jdbcType="VARCHAR" property="moduleId"></result>
+          <result column="module_name" jdbcType="VARCHAR" property="moduleName"/>
+          <result column="module_style" jdbcType="LONGVARCHAR" property="moduleStyle"></result>
+      </collection>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, org_id, temp_width, temp_height, modify_user, modify_time, order_no,
+    topleft_x, topleft_y, table_name ,table_code,module_url
+  </sql>
+
+  <delete id="deleteIndexTempById" parameterType="java.lang.String">
+      delete from index_temp where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectIndexTempById" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select * from index_temp where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectIndexTempByOrg" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select t.*,m.id as id1,m.temp_id,m.module_id,m.module_style,m.module_name
+      from index_temp t left join sys_temp_module m on t.id = m.temp_id
+      where t.org_id = #{orgId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertSelective" parameterType="com.hxoim.support.indexTemp.entity.IndexTemp">
+    insert into index_temp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="tempWidth != null">
+        temp_width,
+      </if>
+      <if test="tempHeight != null">
+        temp_height,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="topleftX != null">
+        topleft_x,
+      </if>
+      <if test="topleftY != null">
+        topleft_y,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="tableCode != null">
+          table_code,
+      </if>
+      <if test="moduleUrl != null">
+        module_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="tempWidth != null">
+        #{tempWidth,jdbcType=INTEGER},
+      </if>
+      <if test="tempHeight != null">
+        #{tempHeight,jdbcType=INTEGER},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="topleftX != null">
+        #{topleftX,jdbcType=INTEGER},
+      </if>
+      <if test="topleftY != null">
+        #{topleftY,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableCode != null">
+        #{tableCode,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUrl != null">
+        #{moduleUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <update id="updateSelective" parameterType="com.hxoim.support.indexTemp.entity.IndexTemp">
+        update index_temp
+        <set>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="tempWidth != null">
+                temp_width = #{tempWidth,jdbcType=INTEGER},
+            </if>
+            <if test="tempHeight != null">
+                temp_height = #{tempHeight,jdbcType=INTEGER},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=INTEGER},
+            </if>
+            <if test="topleftX != null">
+                topleft_x = #{topleftX,jdbcType=INTEGER},
+            </if>
+            <if test="topleftY != null">
+                topleft_y = #{topleftY,jdbcType=INTEGER},
+            </if>
+            <if test="tableName != null">
+                table_name = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="tableCode != null">
+                table_code = #{tableCode,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleUrl != null">
+                module_url = #{moduleUrl,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.work.workparagraph.mapper.WorkParaGraphMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.work.workinfo.entity.WorkInfo">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="work_title" jdbcType="VARCHAR" property="workTitle"/>
+        <result column="work_content" jdbcType="VARCHAR" property="workContent"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="plan_finished_time" jdbcType="TIMESTAMP" property="planFinishedTime"/>
+        <result column="real_finished_time" jdbcType="TIMESTAMP" property="realFinishedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, modify_user, modify_time, p_id,work_title,work_content,user_id,status,start_time,plan_finished_time,real_finished_time
+    </sql>
+
+    <!--查询待办事项列表-->
+    <select id="selectWorkParagraph" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+         from work_info  where status='0'
+         /*事项标题*/
+        <if test="workTitle != null and workTitle != ''">
+            and work_title like  ${workTitle}
+        </if>
+        /*发送时间*/
+        <if test="startTime != null and startTime != ''">
+            and start_time >= #{startTime,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+    <!--查询已办事项列表-->
+    <select id="selectWorkParagraphByStatus" resultMap="BaseResultMap">
+        select
+        t.*,t1.name user_name
+        from work_info t,cf_user t1 where status='1' and t.user_id=t1.id
+        /*事项标题*/
+        <if test="workTitle != null and workTitle != ''">
+            and work_title like  ${workTitle}
+        </if>
+        /*发送时间*/
+        <if test="startTime != null and startTime != ''">
+            and start_time >= #{startTime,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+
+    <select id="selectTodoPersonList"  resultType="map">
+        select t1.finished_desc,t1.id,t2.name ,date_format(t.plan_finished_time, '%Y-%m-%d') as planFinishedTime,t1.status,t1.responsible_content as responsibleContent from work_info t,work_responsible t1,cf_user t2
+        where t.id=t1.work_info_id and t1.user_id=t2.id  and t.id = #{id,jdbcType=VARCHAR}
+
+
+    </select>
+
+    <insert id="insertSelective" parameterType="com.hxoim.support.indexTemp.entity.IndexTemp">
+        insert into index_temp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="pId != null">
+                p_id,
+            </if>
+            <if test="workTitle != null">
+                work_title,
+            </if>
+            <if test="workContent != null">
+                work_content,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="planFinishedTime != null">
+                plan_finished_time,
+            </if>
+            <if test="realFinishedTime != null">
+                real_finished_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pId != null">
+                #{pId,jdbcType=VARCHAR},
+            </if>
+            <if test="workTitle != null">
+                #{workTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="workContent != null">
+                #{workContent,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="planFinishedTime != null">
+                #{planFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realFinishedTime != null">
+                #{realFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectWorkParagraphById" resultMap="BaseResultMap">
+        select * from work_info t,work_responsible t1
+        where t.id=t1.work_info_id and t1.id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateFinishdescById">
+        update work_responsible SET finished_desc=#{finishiedesc,jdbcType=VARCHAR} , status='2' where id=#{id,jdbcType=VARCHAR}
+
+    </update>
+</mapper>

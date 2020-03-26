@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.sysdict.mapper.SysDictItemMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.sysdict.entity.SysDictItem">
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="dict_code" jdbcType="VARCHAR" property="dictCode"/>
+        <result column="item_code" jdbcType="VARCHAR" property="itemCode"/>
+        <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
+        <result column="item_num" jdbcType="INTEGER" property="itemNum"/>
+        <result column="item_levelcode" jdbcType="VARCHAR" property="itemLevelcode"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="item_desc" jdbcType="VARCHAR" property="itemDesc"/>
+        <result column="comp_spell" jdbcType="VARCHAR" property="compSpell"/>
+        <result column="logo_spell" jdbcType="VARCHAR" property="logoSpell"/>
+        <result column="is_leaf" jdbcType="VARCHAR" property="isLeaf"/>
+        <result column="orderindex" jdbcType="INTEGER" property="orderindex"/>
+        <result column="time_stamp" jdbcType="VARCHAR" property="timeStamp"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="securitylevel" jdbcType="VARCHAR" property="securitylevel"/>
+        <result column="item_level" jdbcType="VARCHAR" property="itemLevel"/>
+        <result column="parent_item_code" jdbcType="VARCHAR" property="parentItemCode"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.support.sysdict.entity.SysDictItem">
+        <result column="is_use" jdbcType="VARBINARY" property="isUse"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+        is_use
+    </sql>
+
+    <insert id="insertSysDictItem" parameterType="com.hxoim.support.sysdict.entity.SysDictItem">
+        insert into sys_dict_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dictCode != null">
+                dict_code,
+            </if>
+            <if test="itemCode != null">
+                item_code,
+            </if>
+            <if test="itemName != null">
+                item_name,
+            </if>
+            <if test="itemNum != null">
+                item_num,
+            </if>
+            <if test="itemLevelcode != null">
+                item_levelcode,
+            </if>
+            <if test="shortName != null">
+                short_name,
+            </if>
+            <if test="itemDesc != null">
+                item_desc,
+            </if>
+            <if test="compSpell != null">
+                comp_spell,
+            </if>
+            <if test="logoSpell != null">
+                logo_spell,
+            </if>
+            <if test="isLeaf != null">
+                is_leaf,
+            </if>
+            <if test="orderindex != null">
+                orderindex,
+            </if>
+            <if test="timeStamp != null">
+                time_stamp,
+            </if>
+            <if test="securitylevel != null">
+                securitylevel,
+            </if>
+            <if test="itemLevel != null">
+                item_level,
+            </if>
+            <if test="parentItemCode != null">
+                parent_item_code,
+            </if>
+            <if test="isUse != null">
+                is_use,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="dictCode != null">
+                #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="itemCode != null">
+                #{itemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="itemName != null">
+                #{itemName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemNum != null">
+                #{itemNum,jdbcType=INTEGER},
+            </if>
+            <if test="itemLevelcode != null">
+                #{itemLevelcode,jdbcType=VARCHAR},
+            </if>
+            <if test="shortName != null">
+                #{shortName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemDesc != null">
+                #{itemDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="compSpell != null">
+                #{compSpell,jdbcType=VARCHAR},
+            </if>
+            <if test="logoSpell != null">
+                #{logoSpell,jdbcType=VARCHAR},
+            </if>
+            <if test="isLeaf != null">
+                #{isLeaf,jdbcType=VARCHAR},
+            </if>
+            <if test="orderindex != null">
+                #{orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="timeStamp != null">
+                #{timeStamp,jdbcType=VARCHAR},
+            </if>
+            <if test="securitylevel != null">
+                #{securitylevel,jdbcType=VARCHAR},
+            </if>
+            <if test="itemLevel != null">
+                #{itemLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="parentItemCode != null">
+                #{parentItemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="isUse != null">
+                #{isUse,jdbcType=VARBINARY},
+            </if>
+        </trim>
+    </insert>
+
+    <!--查询最大的orderIndex-->
+    <select id="selectMAXOrderIndex" resultType="INTEGER">
+    SELECT MAX(orderindex) FROM sys_dict_item
+    </select>
+
+    <!--修改字典映射表信息-->
+    <update id="updateSysDictItem" parameterType="com.hxoim.support.sysdict.entity.SysDictItem">
+    UPDATE sys_dict_item SET dict_code=#{dictCode},item_name=#{itemName},item_num=#{itemNum},
+    item_levelcode=#{itemLevelcode},short_name=#{shortName},item_desc=#{itemDesc},
+    comp_spell=#{compSpell},logo_spell=#{logoSpell},is_use=#{isUse},is_leaf=#{isLeaf},
+    modify_user=#{modifyUser},modify_time=#{modifyTime},securitylevel=#{securitylevel},
+    item_level=#{itemLevel},parent_item_code=#{parentItemCode} WHERE id=#{id}
+    </update>
+
+    <!--删除字典映射表信息-->
+    <delete id="deleteSysDictItem" parameterType="String">
+    DELETE FROM sys_dict_item WHERE item_code=#{itemCode} AND dict_code=#{dictCode}
+    </delete>
+
+    <!--通过id查询code-->
+    <select id="selectItemCodeById" parameterType="String" resultMap="BaseResultMap">
+    SELECT dict_code,item_code FROM sys_dict_item WHERE id=#{id}
+    </select>
+
+    <!--通过pCode查询子code-->
+    <select id="selectCodeByPcode" parameterType="com.hxoim.support.sysdict.entity.SysDictItem" resultMap="BaseResultMap">
+    SELECT dict_code,item_code FROM sys_dict_item WHERE parent_item_code=#{itemCode} AND dict_code=#{dictCode}
+    </select>
+
+    <!--通过dictCode查询itemCode-->
+    <select id="selectItemCodeByDictCode" parameterType="String" resultMap="BaseResultMap">
+    SELECT item_code FROM sys_dict_item WHERE dict_code=#{dictCode}
+    </select>
+
+    <!--同级排序-->
+    <update id="sortByOrderIndex" parameterType="java.util.List">
+        update sys_dict_item set orderindex=
+        <foreach collection="array" open="case id" close="end" item="id" index="index" separator="">
+            when #{id} then #{index}
+        </foreach>
+        where id IN
+        <foreach collection="array" open="(" close=")" item="id" index="index" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <!--通过dictCode删除-->
+    <delete id="deleteItemByDictCode" parameterType="String">
+    DELETE FROM sys_dict_item WHERE dict_code=#{dictCode}
+    </delete>
+
+    <!--通过code查询映射信息-->
+    <select id="selectItemAllById" parameterType="String" resultMap="BaseResultMap">
+        SELECT id,dict_code,item_code,item_name,item_num,item_levelcode,short_name,item_desc,comp_spell,
+        logo_spell,is_use,is_leaf,orderindex,time_stamp,modify_user,modify_time,securitylevel,
+        item_level,parent_item_code
+        FROM sys_dict_item WHERE id=#{id}
+    </select>
+
+    <!--点击资源信息项页面数据字典显示-->
+    <select id="selectSysDictItem" parameterType="String" resultType="com.hxoim.common.tree.Tree">
+    SELECT item_code as "id",item_name as "label",parent_item_code as "pId" FROM sys_dict_item WHERE dict_code=#{dictCode}
+    order by orderIndex
+    </select>
+
+    <!--通过父级code查询下级映射信息-->
+    <select id="selectDictItemByPCode" parameterType="String" resultMap="BaseResultMap">
+    SELECT id,item_code,item_name,orderindex FROM sys_dict_item WHERE parent_item_code=#{itemCode} AND dict_code=#{dictCode}
+    ORDER BY orderindex
+    </select>
+
+    <!--查询映射树-->
+    <select id="selectItemTree" parameterType="com.hxoim.support.sysdict.entity.SysDictItem" resultType="com.hxoim.common.tree.Tree">
+    SELECT id AS "tableId", item_code as "id",CONCAT(item_code,item_name) as "label",parent_item_code as "pId"
+    FROM sys_dict_item
+    WHERE dict_code=#{dictCode}
+    ORDER BY orderindex
+    </select>
+
+    <!--根据dictCode查询字典映射信息-->
+    <select id="selectItemByDictCode" parameterType="String" resultType="com.hxoim.common.tree.Tree">
+    SELECT id AS "tableId", item_code as "id",item_name as "label",parent_item_code as "pId"
+    FROM sys_dict_item
+    WHERE dict_code=#{dictCode}
+    ORDER BY orderindex
+    </select>
+
+    <!--验证itemCode名称是否存在-->
+    <select id="doubleItemCode" parameterType="com.hxoim.support.sysdict.entity.SysDictItem" resultType="Integer">
+        select count(dict_code) from sys_dict_item where dict_code=#{dictCode} and item_code=#{itemCode}
+        <if test="id != null and id!=''">
+            and id!=#{id}
+        </if>
+    </select>
+    <!--通过dictcode查询字典项-->
+    <select id="getDictInfoByDictCode" resultType="java.util.Map" parameterType="java.util.Map">
+        select item_code as "id",parent_item_code as "pId",item_name as "name",is_leaf as "isParent"
+        from SYS_DICT_ITEM t where IS_USE='1' and
+        dict_code = (select dict_code from sys_dict where hx_dict_code = #{dict_code,jdbcType=VARCHAR})
+        <choose>
+            <when test="item_code !=null and item_code != ''">
+                and parent_item_code =#{item_code,jdbcType=VARCHAR}
+            </when>
+        </choose>
+        order by orderindex, ITEM_CODE
+    </select>
+
+    <select id="selectSysdictItemListByDictCode" resultMap="BaseResultMap">
+        select * from sys_dict_item where dict_code=#{dictCode} and is_use='1' order by orderindex
+    </select>
+</mapper>

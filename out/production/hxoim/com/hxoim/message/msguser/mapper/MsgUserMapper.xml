@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.message.msguser.mapper.MsgUserMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.message.msguser.entity.MsgUser">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="discussion_group_id" jdbcType="VARCHAR" property="discussionGroupId" />
+    <result column="receive_user_id" jdbcType="VARCHAR" property="receiveUserId" />
+    <result column="receive_username" jdbcType="VARCHAR" property="receiveUsername" />
+    <result column="handle_identify" jdbcType="VARCHAR" property="handleIdentify" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+  </resultMap>
+
+  <!--######################################################自定义######################################################-->
+  <!--批量插入-->
+  <insert id="insertMsgUsers" parameterType="java.util.List">
+    insert into m_msg_user (id, msg_id, discussion_group_id,
+    receive_user_id, receive_username, handle_identify,
+    create_time, is_delete)
+    values
+    <foreach collection="disMsgUsers" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=VARCHAR}, #{item.msgId,jdbcType=VARCHAR}, #{item.discussionGroupId,jdbcType=VARCHAR},
+      #{item.receiveUserId,jdbcType=VARCHAR}, #{item.receiveUsername,jdbcType=VARCHAR}, #{item.handleIdentify,jdbcType=VARCHAR},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.isDelete,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <!--通过讨论组ID删除成员(伪删除)-->
+  <update id="deleteUsersByDisGroupId">
+    update m_msg_user
+    set is_delete = #{arg1,jdbcType=VARCHAR}
+    where discussion_group_id = #{arg0,jdbcType=VARCHAR}
+  </update>
+  <!--通过讨论组ID查询成员-->
+  <select id="selectDisGroupUsers" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_msg_user
+    where discussion_group_id = #{arg0,jdbcType=VARCHAR} and is_delete = #{arg1,jdbcType=VARCHAR}
+  </select>
+
+  <!--######################################################逆向工程生成######################################################-->
+  <sql id="Base_Column_List">
+    id, msg_id, discussion_group_id, receive_user_id, receive_username, 
+    handle_identify, create_time, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_msg_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from m_msg_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.message.msguser.entity.MsgUser">
+    insert into m_msg_user (id, msg_id, discussion_group_id, 
+      receive_user_id, receive_username, handle_identify, 
+      create_time, is_delete)
+    values (#{id,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, #{discussionGroupId,jdbcType=VARCHAR}, 
+      #{receiveUserId,jdbcType=VARCHAR}, #{receiveUsername,jdbcType=VARCHAR}, #{handleIdentify,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.message.msguser.entity.MsgUser">
+    insert into m_msg_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="discussionGroupId != null">
+        discussion_group_id,
+      </if>
+      <if test="receiveUserId != null">
+        receive_user_id,
+      </if>
+      <if test="receiveUsername != null">
+        receive_username,
+      </if>
+      <if test="handleIdentify != null">
+        handle_identify,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="discussionGroupId != null">
+        #{discussionGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUsername != null">
+        #{receiveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="handleIdentify != null">
+        #{handleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.message.msguser.entity.MsgUser">
+    update m_msg_user
+    <set>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="discussionGroupId != null">
+        discussion_group_id = #{discussionGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        receive_user_id = #{receiveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUsername != null">
+        receive_username = #{receiveUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="handleIdentify != null">
+        handle_identify = #{handleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.message.msguser.entity.MsgUser">
+    update m_msg_user
+    set msg_id = #{msgId,jdbcType=VARCHAR},
+      discussion_group_id = #{discussionGroupId,jdbcType=VARCHAR},
+      receive_user_id = #{receiveUserId,jdbcType=VARCHAR},
+      receive_username = #{receiveUsername,jdbcType=VARCHAR},
+      handle_identify = #{handleIdentify,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

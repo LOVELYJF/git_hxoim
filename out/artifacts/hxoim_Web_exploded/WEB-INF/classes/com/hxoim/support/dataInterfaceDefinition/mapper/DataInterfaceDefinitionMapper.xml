@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.dataInterfaceDefinition.mapper.DataInterfaceDefinitionMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.dataInterfaceDefinition.entity.DataInterfaceDefinition">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="info_resource_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="data_interface_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="data_interface" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Introductions" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="modify_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="data_sql" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="data_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, info_resource_id, data_interface_desc, data_interface, Introductions, status, 
+    modify_user, modify_time ,data_sql, data_desc
+  </sql>
+  <select id="selectDataInterface" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from data_interface_definition order by status
+  </select>
+  <select id="selectByInfoResourceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from data_interface_definition
+      where info_resource_id = #{infoResourceId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUndistributedInterface"  resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from data_interface_definition d
+    where d.info_resource_id in
+    <foreach collection="infoResourceIds" open="(" close=")" item="infoResourceId" separator=",">
+      #{infoResourceId}
+    </foreach>
+    and not EXISTS(select a.interface_definition_id from data_serve_auth a
+                          where a.interface_definition_id=d.id and a.serve_id = #{serveId}) order by d.status
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_interface_definition
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from data_interface_definition
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.hxoim.support.dataInterfaceDefinition.entity.DataInterfaceDefinition">
+    insert into data_interface_definition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="infoResourceId != null">
+        info_resource_id,
+      </if>
+      <if test="dataInterfaceDesc != null">
+        data_interface_desc,
+      </if>
+      <if test="dataInterface != null">
+        data_interface,
+      </if>
+      <if test="introductions != null">
+        Introductions,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="dataSql != null">
+        data_sql,
+      </if>
+      <if test="dataDesc != null">
+        data_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="infoResourceId != null">
+        #{infoResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterfaceDesc != null">
+        #{dataInterfaceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterface != null">
+        #{dataInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="introductions != null">
+        #{introductions,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSql != null">
+        #{dataSql,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dataDesc != null">
+        #{dataDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSelective" parameterType="com.hxoim.support.dataInterfaceDefinition.entity.DataInterfaceDefinition">
+    update data_interface_definition
+    <set>
+      <if test="infoResourceId != null">
+        info_resource_id = #{infoResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterfaceDesc != null">
+        data_interface_desc = #{dataInterfaceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dataInterface != null">
+        data_interface = #{dataInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="introductions != null">
+        Introductions = #{introductions,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataSql != null">
+        data_sql = #{dataSql,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dataDesc != null">
+        data_desc = #{dataDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

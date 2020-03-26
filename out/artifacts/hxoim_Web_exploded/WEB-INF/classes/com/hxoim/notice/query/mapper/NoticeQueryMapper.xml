@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.notice.query.mapper.NoticeQueryMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.notice.content.entity.NoticeContent">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="column_id" jdbcType="VARCHAR" property="columnId"/>
+        <result column="is_topping" jdbcType="CHAR" property="isTopping"/>
+        <result column="is_publish" jdbcType="CHAR" property="isPublish"/>
+        <result column="is_share" jdbcType="CHAR" property="isShare"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime"/>
+        <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
+        <result column="notice_name" jdbcType="VARCHAR" property="noticeName"/>
+        <result column="notice_title" jdbcType="VARCHAR" property="noticeTitle"/>
+        <result column="report_url" jdbcType="VARCHAR" property="reportUrl"/>
+        <result column="sort_id" jdbcType="INTEGER" property="sortId"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hxoim.notice.content.entity.NoticeContent">
+        <result column="notice_content" jdbcType="LONGVARCHAR" property="noticeContent"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, modify_user, modify_time, column_id, is_topping, is_publish, is_share, start_time,
+        end_time, publish_time, notice_name, notice_title, report_url, sort_id
+    </sql>
+    <sql id="Blob_Column_List">
+        notice_content
+    </sql>
+
+    <!-- 获取当前登录人通知公告浏览列表（按分类） -->
+    <select id="selectNoticeByQuery" parameterType="map" resultMap="ResultMapWithBLOBs">
+        select * from
+        (
+            select a.*,a.publish_time publish_date,u.name user_name
+            from notice_content a
+            left join cf_user u on a.modify_user = u.id
+            where a.modify_user = #{userId}
+            union
+            select a.*,a.publish_time publish_date,u.name user_name
+            from notice_content a
+            left join notice_content_role r on a.id = r.content_id
+            left join cf_user u on r.org_id = u.org_id
+            left join b01 b on u.org_id = b.b0111
+            where u.id = #{userId}
+        ) t
+        where t.is_publish = '1' and NOW() &gt;= t.start_time and NOW() &lt;= t.end_time
+        <if test="columnId != '' and columnId != null">
+            and t.column_id=#{columnId}
+        </if>
+        order by t.is_topping desc,t.publish_time desc,t.sort_id
+    </select>
+
+    <!-- 根据关键字（标题）获取当前登录人通知公告浏览列表 -->
+    <select id="selectNoticeByKeyWord" resultMap="ResultMapWithBLOBs">
+        select * from
+        (
+        select a.*,a.publish_time publish_date,u.name user_name
+        from notice_content a
+        left join cf_user u on a.modify_user = u.id
+        where a.modify_user = #{userId}
+        union
+        select a.*,a.publish_time publish_date,u.name user_name
+        from notice_content a
+        left join notice_content_role r on a.id = r.content_id
+        left join cf_user u on r.org_id = u.org_id
+        left join b01 b on u.org_id = b.b0111
+        where u.id = #{userId}
+        ) t
+        <where>
+            t.is_publish = '1'
+            <if test="keyWord != null and keyWord != ''">
+                and t.notice_title like "%"#{keyWord,jdbcType=VARCHAR}"%"
+            </if>
+        </where>
+        order by t.is_topping desc,t.publish_time desc,t.sort_id
+    </select>
+</mapper>

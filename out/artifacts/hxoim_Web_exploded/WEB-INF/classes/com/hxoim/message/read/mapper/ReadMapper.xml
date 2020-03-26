@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.message.read.mapper.ReadMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.message.read.entity.Read">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="read_user_id" jdbcType="VARCHAR" property="readUserId" />
+    <result column="msg_id" jdbcType="VARCHAR" property="msgId" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+  </resultMap>
+
+  <!--######################################################自定义######################################################-->
+  <!--批量阅读消息-->
+  <insert id="readingMark" parameterType="java.util.List">
+    insert into m_read (id, read_user_id, msg_id,read_time)
+    values
+    <foreach collection="readList" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=VARCHAR}, #{item.readUserId,jdbcType=VARCHAR}, #{item.msgId,jdbcType=VARCHAR}, #{item.readTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <!--消息是否已读-->
+  <select id="selectIsReadMsg" resultType="java.lang.Integer">
+    select
+       count(0)
+    from m_read
+    where read_user_id = #{userId,jdbcType=VARCHAR} and msg_id = #{msgId,jdbcType=VARCHAR}
+  </select>
+  <!--未读普通消息数量-->
+  <select id="notReadNum" resultType="java.lang.Integer">
+    select
+      COUNT(0)
+    from
+      m_message m
+        inner join m_msg_send mu on m.id = mu.msgid
+        inner join m_type mt on m.type_id = mt.id
+     where
+      mu.receive_user_id = #{userId,jdbcType=VARCHAR}
+      and (mu.isreaded=0 or (m.feather = '1' and msg_status=0))
+  </select>
+
+  <!--未读讨论组消息数量-->
+  <select id="notReadNumDisc" resultType="java.lang.Integer">
+    SELECT
+      count(0)
+    FROM
+      m_message m
+        LEFT JOIN m_msg_user mu ON m.discussion_group_id = mu.discussion_group_id
+        LEFT JOIN m_discussion_group md ON m.discussion_group_id = md.id
+        LEFT JOIN m_type mt ON m.type_id = mt.id
+    WHERE
+      mu.receive_user_id = #{userId,jdbcType=VARCHAR}
+      AND m.id NOT IN (
+      SELECT
+        msg_id
+      FROM
+        m_read
+      WHERE
+        read_user_id = #{userId,jdbcType=VARCHAR}
+    )
+      AND m.discussion_group_id IS NOT NULL
+      AND m.discussion_group_id != '' /*消息分类*/
+  </select>
+
+  <!--######################################################逆向工程生成######################################################-->
+  <sql id="Base_Column_List">
+    id, read_user_id, msg_id, read_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_read
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from m_read
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hxoim.message.read.entity.Read">
+    insert into m_read (id, read_user_id, msg_id, 
+      read_time)
+    values (#{id,jdbcType=VARCHAR}, #{readUserId,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, 
+      #{readTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxoim.message.read.entity.Read">
+    insert into m_read
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="readUserId != null">
+        read_user_id,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="readUserId != null">
+        #{readUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.message.read.entity.Read">
+    update m_read
+    <set>
+      <if test="readUserId != null">
+        read_user_id = #{readUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        read_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxoim.message.read.entity.Read">
+    update m_read
+    set read_user_id = #{readUserId,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      read_time = #{readTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

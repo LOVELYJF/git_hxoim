@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.work.workinfo.mapper.WorkResponsibleMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.work.workinfo.entity.WorkResponsible">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="work_info_id" jdbcType="VARCHAR" property="workInfoId"/>
+        <result column="responsible_content" jdbcType="VARCHAR" property="responsibleContent"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="finished_desc" jdbcType="VARCHAR" property="finishedDesc"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="plan_finished_time" jdbcType="TIMESTAMP" property="planFinishedTime"/>
+        <result column="real_finished_time" jdbcType="TIMESTAMP" property="realFinishedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, modify_user, modify_time, work_info_id,responsible_content,user_id,finished_desc,status,plan_finished_time,real_finished_time
+    </sql>
+
+    <!-- 新增工作安排 -->
+    <!--<insert id="insert" parameterType="java.util.List">
+        insert into work_responsible (
+        id, modify_user, modify_time, work_info_id,responsible_content,user_id,finished_desc,status,plan_finished_time,real_finished_time
+        )
+        values
+        <foreach collection="list" item="item" index= "index" separator =",">
+            (
+                #{item.id},
+                #{item.modifyUser},
+                #{item.modifyTime},
+                #{item.workInfoId},
+                #{item.responsibleContent},
+                #{item.userId},
+                #{item.finishedDesc},
+                #{item.status},
+                #{item.planFinishedTime},
+                #{item.realFinishedTime}
+            )
+        </foreach>
+    </insert>-->
+<insert id="insert" parameterType="com.hxoim.work.workinfo.entity.WorkResponsible">
+     insert into work_responsible (
+        id, modify_user, modify_time, work_info_id,responsible_content,user_id,finished_desc,status,plan_finished_time,real_finished_time
+        )
+        values(
+                #{id,jdbcType=VARCHAR},
+                #{modifyUser,jdbcType=VARCHAR},
+                #{modifyTime,jdbcType=TIMESTAMP},
+                #{workInfoId,jdbcType=VARCHAR},
+                #{responsibleContent,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR},
+                #{finishedDesc,jdbcType=VARCHAR},
+                #{status,jdbcType=CHAR},
+                #{planFinishedTime,jdbcType=TIMESTAMP},
+                #{realFinishedTime,jdbcType=TIMESTAMP}
+        )
+
+
+  </insert>
+
+
+
+    <!--删除工作安排-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from work_responsible
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <!--修改工作安排-->
+    <update id="updateWorkResponsible" parameterType="com.hxoim.work.workinfo.entity.WorkResponsible">
+        update work_responsible
+        set modify_user = #{modifyUser,jdbcType=VARCHAR},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            work_info_id = #{workInfoId,jdbcType=VARCHAR},
+            responsible_content = #{responsibleContent,jdbcType=VARCHAR},
+            user_id = #{userId,jdbcType=VARCHAR},
+            finished_desc = #{finishedDesc,jdbcType=VARCHAR},
+            status = #{status,jdbcType=CHAR},
+            plan_finished_time = #{planFinishedTime,jdbcType=TIMESTAMP},
+            real_finished_time = #{realFinishedTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.work.workinfo.entity.WorkResponsible">
+        update work_responsible
+        <set>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workInfoId != null">
+                work_info_id = #{workInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="responsibleContent != null">
+                responsible_content = #{responsibleContent,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="finishedDesc != null">
+                finished_desc = #{finishedDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="planFinishedTime != null">
+                plan_finished_time = #{planFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realFinishedTime != null">
+                real_finished_time = #{realFinishedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateStatusById">
+        update work_responsible set status="1" where id=#{id}
+
+    </update>
+    <update id="updateStatusByIds" parameterType="java.util.List">
+        update work_responsible set status="1" where id in
+        <foreach collection="ids" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+
+    <!--查看工作安排列表(userId)-->
+    <select id="selectListByUserId" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_responsible t
+        left join cf_user u on t.user_id = u.id
+        where t.user_id = #{userId}
+    </select>
+
+    <!--查看工作安排列表-->
+    <!--<select id="selectListByWorkInfoId" resultMap="BaseResultMap">
+        SELECT
+            b.id,
+            a.user_id,
+            c.NAME,
+            a.plan_finished_time,
+            a.real_finished_time,
+            a.STATUS,
+            a.responsible_content,
+            a.finished_desc
+        FROM
+        work_responsible a
+        INNER JOIN ( SELECT id FROM work_info WHERE FIND_IN_SET( id, getChild ( #{workInfoId} ) ) ) b ON a.work_info_id = b.id
+        LEFT JOIN cf_user c ON a.user_id = c.id
+    </select>-->
+
+    <select id="selectListByWorkInfoId" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_responsible t
+        left join cf_user u on t.user_id = u.id
+        where t.work_info_id = #{workInfoId}
+    </select>
+
+    <!--查看工作安排详情-->
+    <select id="selectWorkResponsibleById" resultMap="BaseResultMap">
+        select
+        t.*,u.name user_name
+        from work_responsible t
+        left join cf_user u on t.user_id = u.id
+        where t.id = #{id}
+    </select>
+
+</mapper>

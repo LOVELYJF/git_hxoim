@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.b01.mapper.OrgGrantMapper">
+    <!--保存模块授权-->
+    <insert id="insertGrantModule">
+        insert into cf_org_module
+        (id, b0111, mu_id) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.orgId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存系统授权-->
+    <insert id="insertGrantSystem">
+        insert into cf_org_system
+        (id, b0111, system_id) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.orgId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存干部类别信息集-->
+    <insert id="insertGrantLeaderTypeInfo">
+        insert into cf_org_leadertype
+        (id, b0111, leadertype_id,info_id) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.orgId},#{item.leaderTypeId},#{item.checkId})
+        </foreach>
+    </insert>
+    <!--保存机构权限-->
+    <insert id="insertGrantOrg">
+        insert into cf_org_sub
+        (id, b0111, managed_org) values
+        <foreach collection="list" index="index" item="item" separator="," open="" close="">
+            (#{item.id},#{item.orgId},#{item.checkId})
+        </foreach>
+    </insert>
+
+    <!--拷贝权限start-->
+    <insert id="copyGrantModule">
+       insert into cf_org_module
+        (id, b0111, mu_id)
+        select uuid(),#{tarOrgId},rm.mu_id
+        from cf_org_module rm
+        where rm.b0111=#{srcOrgId}
+    </insert>
+    <insert id="copyGrantOrg">
+        insert into cf_org_sub
+        (id, b0111, managed_org)
+        select uuid(),#{tarOrgId},managed_org
+        from cf_org_sub
+        where b0111=#{srcOrgId}
+    </insert>
+    <insert id="copyGrantLeaderType">
+        insert into cf_org_leadertype
+        (id, b0111, leadertype_id,info_id)
+        select uuid(),#{tarOrgId},leadertype_id,info_id
+        from cf_org_leadertype
+        where b0111=#{srcOrgId}
+        </insert>
+    <insert id="copyGrantSystem">
+        insert into cf_org_system
+        (id, b0111, system_id)
+        select uuid(),#{tarOrgId},system_id
+        from cf_org_system
+        where b0111=#{srcOrgId}
+        </insert>
+    <!--拷贝权限end-->
+
+    <delete id="deleteGrantByTabName">
+        delete from ${tabName} where b0111=#{id}
+    </delete>
+
+    <select id="selectGrantModuleId" resultType="string">
+        select m.id
+        from cf_org_module rm
+        inner join cf_module m
+        on rm.mu_id=m.id
+        where
+        m.mu_state='1'
+        and rm.b0111=#{orgId}
+        order by order_index
+    </select>
+    <!--单点登录系统-->
+    <select id="selectGrantSysInfo" resultType="java.lang.String">
+        select s.id
+        from cf_org_system rs
+        inner join cf_system s
+        on rs.system_id = s.id
+        where rs.b0111=#{orgId}
+        order by s.order_index
+    </select>
+
+    <select id="selectLeaderType" resultType="com.hxoim.common.tree.Tree">
+        SELECT id as "id", item_name as "label",parent_item_code as "pId"
+        FROM sys_dict_item
+        where dict_code=#{dictCode}
+        ORDER BY orderindex
+    </select>
+    <select id="selectGrantOrg" resultType="java.lang.String">
+        select rb.managed_org  from cf_org_sub rb
+        inner join b01 b
+        on rb.managed_org=b.b0111
+        where rb.b0111=#{orgId}
+    </select>
+    <select id="selectOrgGrantLeaderType" resultType="com.hxoim.common.tree.Tree">
+        SELECT dt.tab_code as "id",dt.tab_name as "label"
+        FROM cf_org_leadertype ol
+        inner join data_table dt
+        on ol.info_id=dt.tab_code
+        where ol.b0111=#{orgId} and ol.leadertype_id=#{leaderTypeId}
+        ORDER BY dt.order_index
+    </select>
+</mapper>

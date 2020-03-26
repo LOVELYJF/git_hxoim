@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--注解驱动-->
+    <mvc:annotation-driven/>
+    <!--包扫描路径-->
+    <context:component-scan base-package="com.hxoim.**.controller" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--静态资源放行-->
+    <mvc:default-servlet-handler/>
+
+    <!--跨域配置-->
+    <!--<mvc:cors>
+        <mvc:mapping path="/**"
+                     max-age="86400"/>
+    </mvc:cors>-->
+
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.hxoim.common.interceptor.CrossRequestInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/loginManage/login.action"/>
+            <mvc:exclude-mapping path="/loginManage/loginOut.action"/>
+            <mvc:exclude-mapping path="/loginManage/checkToken.action"/>
+            <mvc:exclude-mapping path="/websocket/**"/>
+            <mvc:exclude-mapping path="/loginManage/selectRouterList.action"/>
+            <mvc:exclude-mapping path="/dataInterfaceAccess/selectDataInterfaceAccess.action"/>
+            <mvc:exclude-mapping path="/decisionAnalysis/selectInformation.action"/>
+            <bean class="com.hxoim.common.interceptor.TokenVerifyInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/websocket/**"/>
+            <mvc:exclude-mapping path="/loginManage/login.action"/>
+            <mvc:exclude-mapping path="/loginManage/loginOut.action"/>
+            <mvc:exclude-mapping path="/loginManage/checkToken.action"/>
+            <mvc:exclude-mapping path="/loginManage/selectRouterList.action"/>
+            <mvc:exclude-mapping path="/dataInterfaceAccess/selectDataInterfaceAccess.action"/>
+            <mvc:exclude-mapping path="/decisionAnalysis/selectInformation.action"/>
+            <bean class="com.hxoim.common.interceptor.ClientRequestInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="exceptionResolver" class="com.hxoim.common.resolvers.CustomizeExceptionResolver">
+    </bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/leader/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 配置MultipartResolver 用于文件上传 使用spring的CommosMultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!-- 定时任务 用于定时扫描ETL工具生成的异常数据日志表，向管理处室推送消息-->
+    <!--<task:annotation-driven></task:annotation-driven>-->
+    <!--<bean id="etlDataException" class="com.hxoim.support.ETLDataException.service.impl.ETLDataExceptionServiceImpl"></bean>-->
+    <!--<task:scheduled-tasks>-->
+    <!--<task:scheduled ref="etlDataException" method="CollectExceptionSendToManager" cron="0/5 * * * * ?" />-->
+    <!--</task:scheduled-tasks>-->
+</beans>

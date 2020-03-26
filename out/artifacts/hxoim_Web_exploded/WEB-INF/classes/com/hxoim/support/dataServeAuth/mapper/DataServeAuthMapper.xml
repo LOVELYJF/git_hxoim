@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.dataServeAuth.mapper.DataServeAuthMapper">
+  <resultMap id="BaseResultMap" type="com.hxoim.support.dataServeAuth.entity.DataServeAuth">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="interface_definition_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="serve_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="info_resource_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="auth_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_user" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, interface_definition_id, serve_id, info_resource_id,modify_user, modify_time,auth_desc
+  </sql>
+  <select id="selectByServeIdAndInfoResourceId" parameterType="java.lang.String" resultType="com.hxoim.support.dataServeAuth.entity.DataServeAuthVO">
+    select a.id as serveAuthId, r.resource_name as resourceName, d.data_interface_desc as dataInterfaceDesc, d.id as dataInterfaceId,
+            d.data_interface as dataInterface, a.auth_desc as authDesc, d.status as dataInterfaceStatus, r.Id as resourceId
+    from data_serve_auth a
+    left join data_interface_definition d on a.interface_definition_id=d.id
+    left join info_resource r on d.info_resource_id = r.Id
+    where a.serve_id = #{serveId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByDataInterfaceDefinitionId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from data_serve_auth
+      where interface_definition_id = #{interfaceDefinitionId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_serve_auth
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByServeId" parameterType="java.lang.String">
+    delete from data_serve_auth
+    where serve_id = #{serveId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from data_serve_auth
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.hxoim.support.dataServeAuth.entity.DataServeAuth">
+    insert into data_serve_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="interfaceDefinitionId != null">
+        interface_definition_id,
+      </if>
+      <if test="serveId != null">
+        serve_id,
+      </if>
+      <if test="infoResourceId != null">
+        info_resource_id,
+      </if>
+      <if test="authDesc != null">
+        auth_desc,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceDefinitionId != null">
+        #{interfaceDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="serveId != null">
+        #{serveId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoResourceId != null">
+        #{infoResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="authDesc != null">
+        #{authDesc,jdbcType=INTEGER},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSelective" parameterType="com.hxoim.support.dataServeAuth.entity.DataServeAuth">
+    update data_serve_auth
+    <set>
+      <if test="interfaceDefinitionId != null">
+        interface_definition_id = #{interfaceDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="serveId != null">
+        serve_id = #{serveId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoResourceId != null">
+        info_resource_id = #{infoResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="authDesc != null">
+        auth_desc = #{authDesc,jdbcType=INTEGER},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectDataInterfaceByParam" parameterType="java.util.Map" resultType="com.hxoim.support.dataServeAuth.entity.DataServeAuthVO">
+    select a.serve_ip as serveIP,d.data_interface as dataInterface,d.data_interface_desc as dataInterfaceDesc,d.data_sql as dataSql,d.status as dataInterfaceStatus,
+            d.data_desc as dataDesc
+    from data_serve_apply a
+    LEFT JOIN data_serve_auth h on h.serve_id=a.id
+    LEFT JOIN data_interface_definition d on h.interface_definition_id=d.id
+    where 1=1
+    <if test="serveIp != null and serveIp != ''">
+      and a.serve_ip = #{serveIp,jdbcType=VARCHAR}
+    </if>
+    <if test="dataInterface != null and dataInterface != ''">
+      and d.data_interface = #{dataInterface,jdbcType=VARCHAR}
+    </if>
+    <if test="serveUsername != null and serveUsername != ''">
+      and a.serve_username= #{serveUsername,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+</mapper>

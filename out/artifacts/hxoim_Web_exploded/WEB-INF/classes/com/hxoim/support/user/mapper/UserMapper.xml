@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxoim.support.user.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.hxoim.support.user.entity.User">
+        <id column="USER_ID" jdbcType="VARCHAR" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="name"/>
+        <result column="user_code" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+        <result column="user_state" jdbcType="VARCHAR" property="userState"/>
+        <result column="user_photo" jdbcType="VARCHAR" property="userPhoto"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_mobile" jdbcType="VARCHAR" property="userMobile"/>
+        <result column="user_Password" jdbcType="VARCHAR" property="password"/>
+        <result column="order_index" jdbcType="INTEGER" property="orderIndex"/>
+        <result column="org_id" jdbcType="VARCHAR" property="orgId"/>
+        <result column="org_name" jdbcType="VARCHAR" property="orgName"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        USER_ID, user_name, user_code, user_type, user_state, user_photo, user_email, user_mobile,
+        user_Password, order_index, org_id, modify_user, modify_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_user
+        where USER_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!--查询密码-->
+    <select id="selectPassword" parameterType="java.lang.String" resultType="java.lang.String">
+        select
+            user_Password
+        from cf_user
+        where USER_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!--修改密码-->
+    <update id="updatePassword" parameterType="com.hxoim.support.user.entity.User">
+        update cf_user
+        <set>
+            <if test="password != null">
+                user_Password = #{password,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where
+        USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cf_user
+    where USER_ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hxoim.support.user.entity.User">
+    insert into cf_user (USER_ID, user_name, user_code,
+      user_type, user_state, user_photo,
+      user_email, user_mobile, user_Password,
+      order_index, org_id, modify_user,
+      modify_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{userType,jdbcType=VARCHAR}, #{userState,jdbcType=VARCHAR}, #{userPhoto,jdbcType=VARCHAR},
+      #{userEmail,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{orderIndex,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR},
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hxoim.support.user.entity.User">
+        insert into cf_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                USER_ID,
+            </if>
+            <if test="name != null">
+                user_name,
+            </if>
+            <if test="userName != null">
+                user_code,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="userState != null">
+                user_state,
+            </if>
+            <if test="userPhoto != null">
+                user_photo,
+            </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="userMobile != null">
+                user_mobile,
+            </if>
+            <if test="password != null">
+                user_Password,
+            </if>
+            <if test="orderIndex != null">
+                order_index,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="modifyUser != null">
+                modify_user,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="userState != null">
+                #{userState,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhoto != null">
+                #{userPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userMobile != null">
+                #{userMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxoim.support.user.entity.User">
+        update cf_user
+        <set>
+            <if test="name != null">
+                user_name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_code = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="userState != null">
+                user_state = #{userState,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhoto != null">
+                user_photo = #{userPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userMobile != null">
+                user_mobile = #{userMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                user_Password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="orderIndex != null">
+                order_index = #{orderIndex,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyUser != null">
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where USER_ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxoim.support.user.entity.User">
+    update cf_user
+    set name = #{name,jdbcType=VARCHAR},
+      user_code = #{userName,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=VARCHAR},
+      user_photo = #{userPhoto,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      user_Password = #{password,jdbcType=VARCHAR},
+      order_index = #{orderIndex,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where USER_ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectByUserCode" parameterType="java.lang.String" resultType="Integer">
+    select
+    count(1)
+    from cf_user
+    where user_code = #{userName,jdbcType=VARCHAR}
+  </select>
+
+    <update id="updateUserStateByUserCode" parameterType="com.hxoim.support.user.entity.User">
+        update CF_USER
+        <set>
+            <if test="userName!=null">
+                user_code = #{userName},
+            </if>
+            <if test="name!=null">
+                USER_NAME = #{name},
+            </if>
+            <if test="userType!=null">
+                USER_TYPE = #{userType},
+            </if>
+            <if test="userState!=null">
+                USER_STATE = #{userState},
+            </if>
+            <if test="userPhoto!=null">
+                USER_PHOTO = #{userPhoto},
+            </if>
+            <if test="userEmail!=null">
+                USER_EMAIL = #{userEmail},
+            </if>
+            <if test="userMobile!=null">
+                USER_MOBILE = #{userMobile},
+            </if>
+            <if test="password!=null">
+                USER_PASSWORD = #{password},
+            </if>
+            <if test="userPasswordType!=null">
+                USER_PASSWORDTYPE = #{userPasswordType},
+            </if>
+            <if test="userLoginFailnum!=null">
+                USER_LOGINFAILNUM = #{userLoginFailnum},
+            </if>
+            <if test="orderNo!=null">
+                ORDERNO = #{orderNo},
+            </if>
+            <if test="creator!=null">
+                CREATOR = #{creator},
+            </if>
+            <if test="createTime!=null">
+                CREATETIME = #{createTime},
+            </if>
+            <if test="orgId!=null">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="userIndate!=null">
+                USER_INDATE = #{userIndate},
+            </if>
+            <if test="expirTime!=null">
+                expirTime=#{expirTime}
+            </if>
+        </set>
+        where
+        user_code=#{userName}
+    </update>
+    <select id="getSysUserList" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_user
+        <where>
+            <if test='orgId != null and orgId != ""'>
+                and org_id = #{orgId}
+            </if>
+            <if test='userName != null and userName != ""'>
+                and (user_name like CONCAT('%',#{userName},'%')
+                or user_code like CONCAT('%',#{userName},'%'))
+            </if>
+        </where>
+    </select>
+
+    <!--登录验证查询-->
+    <select id="selectPasswordByUsername" resultMap="BaseResultMap">
+        select * from cf_user where user_Code=#{username} and user_state ='1'
+    </select>
+
+    <!--通过处室id查询用户-->
+    <select id="selectUserByUserGroupId" parameterType="java.util.Map" resultType="com.hxoim.support.user.entity.User">
+        select cu.id,cu.name,cu.user_name,cu.org_id,cu.user_type,cu.user_state from cf_user cu, cf_usergroup_user cuu where cu.id = cuu.user_id and cuu.ug_id = #{userGroupId}
+    </select>
+    <!--查询除了当前登录用户-->
+    <select id="selectAllUser" resultType="com.hxoim.support.user.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from cf_user
+    </select>
+    <select id="selectSysUserList" resultMap="BaseResultMap">
+        select u.*,b.b0101 as org_name from cf_user u
+        left join b01 b on u.org_id=b.b0111
+        where u.user_state='0' order by u.order_index
+    </select>
+</mapper>
